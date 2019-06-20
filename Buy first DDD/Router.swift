@@ -27,11 +27,11 @@ final class Router {
             return
         }
 
-        // tab bar view controllers
+        // tabBar view controllers
         let firstTabBarController = UINavigationController(rootViewController: mainViewContoller)
         tabBarController.viewControllers = [firstTabBarController]
 
-        // tab bar items
+        // tabBar items
         let item1 = UITabBarItem(tabBarSystemItem: .search, tag: 0)
         firstTabBarController.tabBarItem = item1
 
