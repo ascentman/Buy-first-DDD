@@ -11,7 +11,7 @@ import UIKit
 final class Router {
 
     private let tabBarController = UITabBarController()
-    private var mainViewController: MainViewController?
+    private var mainViewController: MainTableViewController?
     private var mainViewControllerPresenter: MainViewControllerPresenter?
     private var mainViewControllerInteractor: MainViewControllerInteractor?
 
@@ -23,7 +23,7 @@ final class Router {
 
     func start() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let mainViewContoller = storyboard.instantiateViewController(withIdentifier: "MainViewController") as? MainViewController else {
+        guard let mainViewContoller = storyboard.instantiateViewController(withIdentifier: "MainTableViewController") as? MainTableViewController else {
             return
         }
 
@@ -32,7 +32,7 @@ final class Router {
         tabBarController.viewControllers = [firstTabBarController]
 
         // tab bar items
-        let item1 = UITabBarItem(title: "Search", image: nil, tag: 0)
+        let item1 = UITabBarItem(tabBarSystemItem: .search, tag: 0)
         firstTabBarController.tabBarItem = item1
 
         mainViewController = mainViewContoller

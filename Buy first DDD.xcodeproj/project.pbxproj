@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CE4470B722BB9F8A0036524B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4470B622BB9F8A0036524B /* AppDelegate.swift */; };
-		CE4470B922BB9F8A0036524B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4470B822BB9F8A0036524B /* MainViewController.swift */; };
+		CE4470B922BB9F8A0036524B /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4470B822BB9F8A0036524B /* MainTableViewController.swift */; };
 		CE4470BC22BB9F8A0036524B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE4470BA22BB9F8A0036524B /* Main.storyboard */; };
 		CE4470BF22BB9F8A0036524B /* Buy_first_DDD.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE4470BD22BB9F8A0036524B /* Buy_first_DDD.xcdatamodeld */; };
 		CE4470C122BB9F8B0036524B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE4470C022BB9F8B0036524B /* Assets.xcassets */; };
@@ -21,7 +21,7 @@
 /* Begin PBXFileReference section */
 		CE4470B322BB9F8A0036524B /* Buy first DDD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Buy first DDD.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE4470B622BB9F8A0036524B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CE4470B822BB9F8A0036524B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		CE4470B822BB9F8A0036524B /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		CE4470BB22BB9F8A0036524B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CE4470BE22BB9F8A0036524B /* Buy_first_DDD.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Buy_first_DDD.xcdatamodel; sourceTree = "<group>"; };
 		CE4470C022BB9F8B0036524B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -63,7 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				CE4470B622BB9F8A0036524B /* AppDelegate.swift */,
-				CE4470B822BB9F8A0036524B /* MainViewController.swift */,
+				CE4470B822BB9F8A0036524B /* MainTableViewController.swift */,
 				CE4470CB22BBA1E30036524B /* Router.swift */,
 				CE4470CD22BBA6330036524B /* MainViewControllerPresenter.swift */,
 				CE4470CF22BBA6500036524B /* MainViewControllerInteractor.swift */,
@@ -148,7 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE4470CC22BBA1E30036524B /* Router.swift in Sources */,
-				CE4470B922BB9F8A0036524B /* MainViewController.swift in Sources */,
+				CE4470B922BB9F8A0036524B /* MainTableViewController.swift in Sources */,
 				CE4470CE22BBA6330036524B /* MainViewControllerPresenter.swift in Sources */,
 				CE4470B722BB9F8A0036524B /* AppDelegate.swift in Sources */,
 				CE4470D022BBA6500036524B /* MainViewControllerInteractor.swift in Sources */,

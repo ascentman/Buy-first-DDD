@@ -10,9 +10,9 @@ import Foundation
 
 final class MainViewControllerPresenter {
 
-    private let mainViewController: MainViewController
+    private let mainViewController: MainTableViewController
 
-    init(viewController: MainViewController) {
+    init(viewController: MainTableViewController) {
         self.mainViewController = viewController
     }
 }

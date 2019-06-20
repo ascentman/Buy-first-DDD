@@ -17,10 +17,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
+        setupWindowLayout()
         router.start()
         window?.rootViewController = router.rootViewController
         window?.makeKeyAndVisible()
         return true
+    }
+
+    // MARK: - Private
+
+    private func setupWindowLayout() {
+        window?.tintColor = .orange
     }
 
     // MARK: - Core Data stack
