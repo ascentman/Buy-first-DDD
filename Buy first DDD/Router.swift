@@ -39,5 +39,7 @@ final class Router {
         let presenter = MainViewControllerPresenter(viewController: mainViewContoller)
         mainViewControllerInteractor = MainViewControllerInteractor(presenter: presenter)
         mainViewControllerPresenter = presenter
+
+        mainViewControllerInteractor?.start()
     }
 }

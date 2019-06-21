@@ -8,6 +8,35 @@
 
 import UIKit
 
+enum Condition: Int, CaseIterable {
+    case any = 0
+    case new
+    case openBox
+    case manufactureRefurbished
+    case sellerRefurbished
+    case used
+    case forParts
+
+    var value: String {
+        switch self {
+        case .any:
+            return "any"
+        case .new:
+            return "new"
+        case .openBox:
+            return "open box"
+        case .manufactureRefurbished:
+            return "manufacture refurbished"
+        case .sellerRefurbished:
+            return "seller refurbished"
+        case .used:
+            return "used"
+        case .forParts:
+            return "for parts"
+        }
+    }
+}
+
 private enum Row: Int {
     case title
     case auction
@@ -44,7 +73,46 @@ private enum Row: Int {
     }
 }
 
+struct Checkmark {
+    let isChecked: Bool
+    let onSelect: () -> Void
+}
+
 final class MainTableViewController: UITableViewController {
+
+    var props: Props = .initial
+
+    struct Props {
+        let title: String
+        var auctionCheckMark: Checkmark
+        let buyItNowCheckMark: Checkmark
+        let anyShippingCheckmark: Checkmark
+        let freeShippingCheckmark: Checkmark
+
+        var selectedCondition: Condition
+        let onUpdateCondition: (Condition) -> Void
+
+        static let initial = Props(title: "",
+                                   auctionCheckMark: Checkmark(isChecked: false, onSelect: {}),
+                                   buyItNowCheckMark: Checkmark(isChecked: false, onSelect: {}),
+                                   anyShippingCheckmark: Checkmark(isChecked: false, onSelect: {}),
+                                   freeShippingCheckmark: Checkmark(isChecked: false, onSelect: {}),
+                                   selectedCondition: .any,
+                                   onUpdateCondition: { _ in })
+    }
+
+    func render(props: Props) {
+        self.props = props
+        title = props.title
+        if self.isViewLoaded {
+            markRow(cell: auctionCell, state: props.auctionCheckMark.isChecked)
+            markRow(cell: buyItNowCell, state: props.buyItNowCheckMark.isChecked)
+            markRow(cell: anyShippingCell, state: props.anyShippingCheckmark.isChecked)
+            markRow(cell: freeShippingCell, state: props.freeShippingCheckmark.isChecked)
+
+            tableView.reloadData()
+        }
+    }
 
     @IBOutlet weak var auctionCell: UITableViewCell!
     @IBOutlet weak var buyItNowCell: UITableViewCell!
@@ -54,23 +122,13 @@ final class MainTableViewController: UITableViewController {
     @IBOutlet weak var freeShippingCell: UITableViewCell!
 
     private var conditionPickerIsHidden = false
-    private var conditions: [String] = [
-        "any",
-        "new",
-        "open box",
-        "manufacture refurbished",
-        "seller refurbished",
-        "used",
-        "for parts"
-    ]
-    private var selectedCondition: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Search"
+        render(props: props)
         tableView.tableFooterView = UIView()
-        toggleDatePicker()
+        togglePicker()
         conditionPicker.delegate = self
     }
 
@@ -80,15 +138,15 @@ final class MainTableViewController: UITableViewController {
         let row = Row(indexPath: indexPath)
         switch row {
         case .condition:
-            toggleDatePicker()
+            togglePicker()
         case .auction:
-            changeCellAccessoryType(cell: auctionCell)
+            props.auctionCheckMark.onSelect()
         case .buyItNow:
-            changeCellAccessoryType(cell: buyItNowCell)
+            props.buyItNowCheckMark.onSelect()
         case .anyShipping:
-            changeCellAccessoryType(cell: anyShippingCell)
+            props.anyShippingCheckmark.onSelect()
         case .freeShipping:
-            changeCellAccessoryType(cell: freeShippingCell)
+            props.freeShippingCheckmark.onSelect()
         default:
             break
         }
@@ -101,16 +159,16 @@ final class MainTableViewController: UITableViewController {
 
     // MARK: - Private
 
-    private func toggleDatePicker() {
+    private func togglePicker() {
         conditionPickerIsHidden = !conditionPickerIsHidden
         tableView.reloadData()
     }
 
-    private func changeCellAccessoryType(cell: UITableViewCell) {
-        if cell.accessoryType == .checkmark {
-            cell.accessoryType = .none
-        } else {
+    private func markRow(cell: UITableViewCell, state: Bool) {
+        if state {
             cell.accessoryType = .checkmark
+        } else {
+            cell.accessoryType = .none
         }
     }
 }
@@ -124,15 +182,17 @@ extension MainTableViewController: UIPickerViewDataSource, UIPickerViewDelegate 
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return conditions.count
+        return Condition.allCases.count
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return conditions[row]
+        return Condition(rawValue: row)?.value
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedCondition = conditions[row]
-        conditionCell.detailTextLabel?.text = selectedCondition
+        if let condition = Condition(rawValue: row) {
+            conditionCell.detailTextLabel?.text = condition.value
+            props.onUpdateCondition(condition)
+        }
     }
 }
