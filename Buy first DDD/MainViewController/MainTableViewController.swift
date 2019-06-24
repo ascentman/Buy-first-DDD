@@ -41,10 +41,14 @@ private enum Row: Int {
     case title
     case auction
     case buyItNow
+    case configurePrice
+    case minPrice
+    case maxPrice
     case condition
     case conditionPicker
     case anyShipping
     case freeShipping
+    case search
     case unknown
 
     init(indexPath: IndexPath) {
@@ -58,13 +62,21 @@ private enum Row: Int {
         case (1, 1):
             row = Row.buyItNow
         case (2, 0):
-            row = Row.condition
+            row = Row.configurePrice
         case (2, 1):
-            row = Row.conditionPicker
+            row = Row.minPrice
+        case (2, 2):
+            row = Row.maxPrice
         case (3, 0):
-            row = Row.anyShipping
+            row = Row.condition
         case (3, 1):
+            row = Row.conditionPicker
+        case (4, 0):
+            row = Row.anyShipping
+        case (4, 1):
             row = Row.freeShipping
+        case (5, 0):
+            row = Row.search
         default:
             break
         }
@@ -88,17 +100,22 @@ final class MainTableViewController: UITableViewController {
         let buyItNowCheckMark: Checkmark
         let anyShippingCheckmark: Checkmark
         let freeShippingCheckmark: Checkmark
-
+        let minPrice: String
+        let maxPrice: String
         var selectedCondition: Condition
         let onUpdateCondition: (Condition) -> Void
+        let onSearch: () -> Void
 
         static let initial = Props(title: "",
                                    auctionCheckMark: Checkmark(isChecked: false, onSelect: {}),
                                    buyItNowCheckMark: Checkmark(isChecked: false, onSelect: {}),
                                    anyShippingCheckmark: Checkmark(isChecked: false, onSelect: {}),
                                    freeShippingCheckmark: Checkmark(isChecked: false, onSelect: {}),
+                                   minPrice: "",
+                                   maxPrice: "",
                                    selectedCondition: .any,
-                                   onUpdateCondition: { _ in })
+                                   onUpdateCondition: { _ in },
+                                   onSearch: {} )
     }
 
     func render(props: Props) {
@@ -109,10 +126,13 @@ final class MainTableViewController: UITableViewController {
             markRow(cell: buyItNowCell, state: props.buyItNowCheckMark.isChecked)
             markRow(cell: anyShippingCell, state: props.anyShippingCheckmark.isChecked)
             markRow(cell: freeShippingCell, state: props.freeShippingCheckmark.isChecked)
-
+            minPriceTextLabel.text = props.minPrice
+            maxPriceTextLabel.text = props.maxPrice
             tableView.reloadData()
         }
     }
+
+    var retainedObject: AnyObject?
 
     @IBOutlet weak var auctionCell: UITableViewCell!
     @IBOutlet weak var buyItNowCell: UITableViewCell!
@@ -120,16 +140,36 @@ final class MainTableViewController: UITableViewController {
     @IBOutlet weak var conditionPicker: UIPickerView!
     @IBOutlet weak var anyShippingCell: UITableViewCell!
     @IBOutlet weak var freeShippingCell: UITableViewCell!
+    @IBOutlet weak var priceSwitch: UISwitch!
+    @IBOutlet weak var minPriceTextLabel: UITextField!
+    @IBOutlet weak var maxPriceTextLabel: UITextField!
 
     private var conditionPickerIsHidden = false
+    private var configurePriceIsHidden = true
+
+
+    // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         render(props: props)
         tableView.tableFooterView = UIView()
+        addDoneButtonOnKeyboard()
         togglePicker()
         conditionPicker.delegate = self
+    }
+
+    // MARK: - Actions
+
+    @IBAction func configurePricePressed(_ sender: Any) {
+        configurePriceIsHidden = !configurePriceIsHidden
+        tableView.reloadData()
+    }
+
+    
+    @IBAction func searchPressed(_ sender: Any) {
+        props.onSearch()
     }
 
     // MARK: - UITableViewDelegate
@@ -154,7 +194,16 @@ final class MainTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = Row(indexPath: indexPath)
-        return conditionPickerIsHidden && row == .conditionPicker ? 0 : super.tableView(tableView, heightForRowAt: indexPath)
+        var rowHeight: CGFloat = super.tableView(tableView, heightForRowAt: indexPath)
+        switch row {
+        case .conditionPicker:
+            rowHeight = conditionPickerIsHidden ? 0 : super.tableView(tableView, heightForRowAt: indexPath)
+        case .minPrice, .maxPrice:
+            rowHeight = configurePriceIsHidden ? 0 : super.tableView(tableView, heightForRowAt: indexPath)
+        default:
+            break
+        }
+        return rowHeight
     }
 
     // MARK: - Private
@@ -170,6 +219,26 @@ final class MainTableViewController: UITableViewController {
         } else {
             cell.accessoryType = .none
         }
+    }
+
+    private func addDoneButtonOnKeyboard(){
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+        doneToolbar.barStyle = .default
+
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.doneButtonAction))
+
+        let items = [flexSpace, done]
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+
+        maxPriceTextLabel.inputAccessoryView = doneToolbar
+        minPriceTextLabel.inputAccessoryView = doneToolbar
+    }
+
+    @objc func doneButtonAction(){
+        maxPriceTextLabel.resignFirstResponder()
+        minPriceTextLabel.resignFirstResponder()
     }
 }
 

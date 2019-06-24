@@ -11,9 +11,16 @@ import UIKit
 final class Router {
 
     private let tabBarController = UITabBarController()
-    private var mainViewController: MainTableViewController?
-    private var mainViewControllerPresenter: MainViewControllerPresenter?
-    private var mainViewControllerInteractor: MainViewControllerInteractor?
+    private let searchNavController = UINavigationController()
+    private let bookmarksNavController = UINavigationController()
+
+    init() {
+        tabBarController.viewControllers = [searchNavController, bookmarksNavController]
+
+        // tabBar items
+        let item1 = UITabBarItem(tabBarSystemItem: .search, tag: 0)
+        searchNavController.tabBarItem = item1
+    }
 
     var rootViewController: UIViewController {
         return tabBarController
@@ -22,24 +29,32 @@ final class Router {
     // MARK: - Public
 
     func start() {
+        self.showMainViewController()
+    }
+
+    private func showMainViewController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let mainViewContoller = storyboard.instantiateViewController(withIdentifier: "MainTableViewController") as? MainTableViewController else {
+        guard let mainViewController = storyboard.instantiateViewController(withIdentifier: "MainTableViewController") as? MainTableViewController else {
             return
         }
 
-        // tabBar view controllers
-        let firstTabBarController = UINavigationController(rootViewController: mainViewContoller)
-        tabBarController.viewControllers = [firstTabBarController]
+        searchNavController.pushViewController(mainViewController, animated: false)
 
-        // tabBar items
-        let item1 = UITabBarItem(tabBarSystemItem: .search, tag: 0)
-        firstTabBarController.tabBarItem = item1
+        let presenter = MainViewControllerPresenter(viewController: mainViewController, onSearchPressed: { [weak self] in
+            self?.routeToResultsViewController()
+        })
+        let mainViewControllerInteractor = MainViewControllerInteractor(presenter: presenter)
 
-        mainViewController = mainViewContoller
-        let presenter = MainViewControllerPresenter(viewController: mainViewContoller)
-        mainViewControllerInteractor = MainViewControllerInteractor(presenter: presenter)
-        mainViewControllerPresenter = presenter
+        mainViewController.retainedObject = [presenter, mainViewControllerInteractor] as AnyObject
+        mainViewControllerInteractor.start()
+    }
 
-        mainViewControllerInteractor?.start()
+    func routeToResultsViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let resultsViewContoller = storyboard.instantiateViewController(withIdentifier: "ResultsViewController") as? ResultsViewController else {
+            return
+        }
+
+        searchNavController.pushViewController(resultsViewContoller, animated: true)
     }
 }

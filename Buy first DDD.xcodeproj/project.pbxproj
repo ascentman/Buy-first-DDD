@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE1C703622C0E4E50069D29D /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1C703522C0E4E50069D29D /* ResultsViewController.swift */; };
+		CE1C703A22C0E6950069D29D /* ResultsViewControllerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1C703922C0E6950069D29D /* ResultsViewControllerInteractor.swift */; };
+		CE1C703C22C0E6AB0069D29D /* ResultsViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1C703B22C0E6AB0069D29D /* ResultsViewControllerPresenter.swift */; };
 		CE4470B722BB9F8A0036524B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4470B622BB9F8A0036524B /* AppDelegate.swift */; };
 		CE4470B922BB9F8A0036524B /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4470B822BB9F8A0036524B /* MainTableViewController.swift */; };
 		CE4470BC22BB9F8A0036524B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE4470BA22BB9F8A0036524B /* Main.storyboard */; };
@@ -19,6 +22,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE1C703522C0E4E50069D29D /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
+		CE1C703922C0E6950069D29D /* ResultsViewControllerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewControllerInteractor.swift; sourceTree = "<group>"; };
+		CE1C703B22C0E6AB0069D29D /* ResultsViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewControllerPresenter.swift; sourceTree = "<group>"; };
 		CE4470B322BB9F8A0036524B /* Buy first DDD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Buy first DDD.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE4470B622BB9F8A0036524B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE4470B822BB9F8A0036524B /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
@@ -43,6 +49,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE1C703722C0E4F60069D29D /* MainViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CE4470B822BB9F8A0036524B /* MainTableViewController.swift */,
+				CE4470CD22BBA6330036524B /* MainViewControllerPresenter.swift */,
+				CE4470CF22BBA6500036524B /* MainViewControllerInteractor.swift */,
+			);
+			path = MainViewController;
+			sourceTree = "<group>";
+		};
+		CE1C703822C0E5150069D29D /* ResultsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CE1C703522C0E4E50069D29D /* ResultsViewController.swift */,
+				CE1C703922C0E6950069D29D /* ResultsViewControllerInteractor.swift */,
+				CE1C703B22C0E6AB0069D29D /* ResultsViewControllerPresenter.swift */,
+			);
+			path = ResultsViewController;
+			sourceTree = "<group>";
+		};
 		CE4470AA22BB9F8A0036524B = {
 			isa = PBXGroup;
 			children = (
@@ -63,11 +89,10 @@
 			isa = PBXGroup;
 			children = (
 				CE4470B622BB9F8A0036524B /* AppDelegate.swift */,
-				CE4470B822BB9F8A0036524B /* MainTableViewController.swift */,
+				CE1C703722C0E4F60069D29D /* MainViewController */,
 				CE4470CB22BBA1E30036524B /* Router.swift */,
-				CE4470CD22BBA6330036524B /* MainViewControllerPresenter.swift */,
-				CE4470CF22BBA6500036524B /* MainViewControllerInteractor.swift */,
 				CE4470BA22BB9F8A0036524B /* Main.storyboard */,
+				CE1C703822C0E5150069D29D /* ResultsViewController */,
 				CE4470C022BB9F8B0036524B /* Assets.xcassets */,
 				CE4470C222BB9F8B0036524B /* LaunchScreen.storyboard */,
 				CE4470C522BB9F8B0036524B /* Info.plist */,
@@ -150,7 +175,10 @@
 				CE4470CC22BBA1E30036524B /* Router.swift in Sources */,
 				CE4470B922BB9F8A0036524B /* MainTableViewController.swift in Sources */,
 				CE4470CE22BBA6330036524B /* MainViewControllerPresenter.swift in Sources */,
+				CE1C703622C0E4E50069D29D /* ResultsViewController.swift in Sources */,
+				CE1C703A22C0E6950069D29D /* ResultsViewControllerInteractor.swift in Sources */,
 				CE4470B722BB9F8A0036524B /* AppDelegate.swift in Sources */,
+				CE1C703C22C0E6AB0069D29D /* ResultsViewControllerPresenter.swift in Sources */,
 				CE4470D022BBA6500036524B /* MainViewControllerInteractor.swift in Sources */,
 				CE4470BF22BB9F8A0036524B /* Buy_first_DDD.xcdatamodeld in Sources */,
 			);

@@ -11,6 +11,8 @@ import Foundation
 struct Filter {
     let title: String
     var selectedCondition: Condition
+    var minPrice: String
+    var maxPrice: String
     var rows: [Row]
     struct Row {
         let title: String
@@ -33,53 +35,27 @@ final class MainViewControllerInteractor {
         self.presenter = presenter
 
         self.presenter.didSelectAuction = { [weak self] in
-            guard var filter = self?.currentFilter else {
-                assertionFailure()
-                return
-            }
-            var row = filter.rows[0]
-            row.isSelected = !row.isSelected
-
-            filter.rows[0] = row
-
-            self?.currentFilter = filter
+            self?.updateFilterCriteria(itemRow: 0)
         }
 
         self.presenter.didSelectBuyItNow = { [weak self] in
-            guard var filter = self?.currentFilter else {
-                assertionFailure()
-                return
-            }
-            var row = filter.rows[1]
-            row.isSelected = !row.isSelected
-            filter.rows[1] = row
-            self?.currentFilter = filter
+            self?.updateFilterCriteria(itemRow: 1)
         }
 
         self.presenter.didSelectAnyShipping = { [weak self] in
-            guard var filter = self?.currentFilter else {
-                assertionFailure()
-                return
-            }
-            var row = filter.rows[2]
-            row.isSelected = !row.isSelected
-            filter.rows[2] = row
-            self?.currentFilter = filter
+            self?.updateFilterCriteria(itemRow: 2)
         }
 
         self.presenter.didSelectFreeShipping = { [weak self] in
-            guard var filter = self?.currentFilter else {
-                assertionFailure()
-                return
-            }
-            var row = filter.rows[3]
-            row.isSelected = !row.isSelected
-            filter.rows[3] = row
-            self?.currentFilter = filter
+            self?.updateFilterCriteria(itemRow: 3)
         }
 
         self.presenter.didSelectCondition = { [weak self] condition in
             self?.currentFilter?.selectedCondition = condition
+        }
+
+        self.presenter.didSearchPressed = {
+            presenter.onSearchPressed()
         }
     }
 
@@ -90,6 +66,19 @@ final class MainViewControllerInteractor {
         let anyShippingRow = Filter.Row(title: "Any", isSelected: true)
         let freeShippingRow = Filter.Row(title: "Auction", isSelected: false)
 
-        self.currentFilter = Filter(title: "Search", selectedCondition: .any, rows: [auctionRow, buyItNowRow, anyShippingRow, freeShippingRow])
+        self.currentFilter = Filter(title: "Search", selectedCondition: .any, minPrice: "100", maxPrice: "200", rows: [auctionRow, buyItNowRow, anyShippingRow, freeShippingRow])
+    }
+
+    // MARK: - Private
+
+    private func updateFilterCriteria(itemRow: Int) {
+        guard var filter = self.currentFilter else {
+            assertionFailure()
+            return
+        }
+        var row = filter.rows[itemRow]
+        row.isSelected = !row.isSelected
+        filter.rows[itemRow] = row
+        self.currentFilter = filter
     }
 }
