@@ -17,7 +17,7 @@ final class MainViewControllerPresenter {
     var didSelectAnyShipping: () -> Void = { assertionFailure() }
     var didSelectFreeShipping: () -> Void = { assertionFailure() }
     var didSelectCondition: (Condition) -> Void = { _ in assertionFailure() }
-    var onSearchPressed: () -> Void = { assertionFailure() }
+    var onSearchPressed: (String, String, String) -> Void = { _,_,_ in assertionFailure() }
 
     init(viewController: MainTableViewController) {
         self.mainViewController = viewController
@@ -38,6 +38,7 @@ final class MainViewControllerPresenter {
         }
 
         mainViewController?.render(props: MainTableViewController.Props(title: filter.title,
+                                                                        itemName: filter.itemToSearch,
                                                                         auctionCheckMark: auctionCheckMark,
                                                                         buyItNowCheckMark: buyItNowCheckMark,
                                                                         anyShippingCheckmark: anyShippingCheckMark,

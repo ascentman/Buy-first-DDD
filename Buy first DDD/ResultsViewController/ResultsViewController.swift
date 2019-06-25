@@ -42,13 +42,16 @@ final class ResultsViewController: UIViewController {
     @IBOutlet private weak var resultsTableView: UITableView!
     let webView = WKWebView()
 
+    var retainedObject: AnyObject?
+
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         render(props: props)
-        resultsTableView.tableFooterView = UIView()
+        setupWebView()
+//        resultsTableView.tableFooterView = UIView()
         resultsTableView.delegate = self
         webView.navigationDelegate = self
     }
@@ -56,9 +59,10 @@ final class ResultsViewController: UIViewController {
     // MARK: - Private
 
     private func setupWebView() {
-        webView.frame = CGRect(x: 2, y: 300, width: view.bounds.width - 5, height: view.bounds.height / 2 - 5)
+        webView.frame = CGRect(x: 2, y: 400, width: view.bounds.width - 5, height: view.bounds.height / 2.5 - 5)
         webView.layer.borderColor = UIColor.red.cgColor
         webView.layer.borderWidth = 1.0
+        webView.backgroundColor = .orange
 //        webView.isHidden = true
         view.addSubview(webView)
     }

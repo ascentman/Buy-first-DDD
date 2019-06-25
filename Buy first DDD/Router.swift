@@ -54,7 +54,8 @@ final class Router {
         guard let resultsViewContoller = storyboard.instantiateViewController(withIdentifier: "ResultsViewController") as? ResultsViewController else {
             return
         }
-
+        let resultViewControllerInteractor = ResultsViewControllerInteractor(resultsViewController: resultsViewContoller, filter: filter)
+        resultsViewContoller.retainedObject = [resultViewControllerInteractor] as AnyObject
         searchNavController.pushViewController(resultsViewContoller, animated: true)
     }
 }

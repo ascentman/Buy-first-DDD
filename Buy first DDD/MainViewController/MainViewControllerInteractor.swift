@@ -10,6 +10,7 @@ import Foundation
 
 struct Filter {
     let title: String
+    var itemToSearch: String
     var selectedCondition: Condition
     var minPrice: String
     var maxPrice: String
@@ -54,7 +55,10 @@ final class MainViewControllerInteractor {
             self?.currentFilter?.selectedCondition = condition
         }
 
-        self.presenter.onSearchPressed = { [weak self] in
+        self.presenter.onSearchPressed = { [weak self] (name, minPrice, maxPrice) in
+            self?.currentFilter?.itemToSearch = name
+            self?.currentFilter?.minPrice = minPrice
+            self?.currentFilter?.maxPrice = maxPrice
             guard let filter = self?.currentFilter else {
                 return
             }
@@ -69,7 +73,7 @@ final class MainViewControllerInteractor {
         let anyShippingRow = Filter.Row(title: "Any", isSelected: true)
         let freeShippingRow = Filter.Row(title: "Auction", isSelected: false)
 
-        self.currentFilter = Filter(title: "Search", selectedCondition: .any, minPrice: "100", maxPrice: "200", rows: [auctionRow, buyItNowRow, anyShippingRow, freeShippingRow])
+        self.currentFilter = Filter(title: "Search", itemToSearch: "", selectedCondition: .any, minPrice: "100", maxPrice: "200", rows: [auctionRow, buyItNowRow, anyShippingRow, freeShippingRow])
     }
 
     // MARK: - Private

@@ -46,16 +46,32 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="98.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prepare filter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pVw-v4-Viq">
-                                                    <rect key="frame" x="152" y="37.5" width="110" height="24"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Ene-yw-S8D">
+                                                    <rect key="frame" x="57" y="14.5" width="300" height="70"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What do you want to find?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w1P-Cr-8QA">
+                                                            <rect key="frame" x="50" y="0.0" width="200" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X5E-RV-Fyu">
+                                                            <rect key="frame" x="0.0" y="40" width="300" height="30"/>
+                                                            <nil key="textColor"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                        </textField>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="D8P-ft-0Sd"/>
+                                                        <constraint firstItem="X5E-RV-Fyu" firstAttribute="leading" secondItem="Ene-yw-S8D" secondAttribute="leading" id="Uvx-Ny-uIP"/>
+                                                        <constraint firstAttribute="trailing" secondItem="X5E-RV-Fyu" secondAttribute="trailing" id="Wzm-tb-WxU"/>
+                                                    </constraints>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="pVw-v4-Viq" firstAttribute="centerY" secondItem="hdk-Vd-q4U" secondAttribute="centerY" id="hml-n5-GTb"/>
-                                                <constraint firstItem="pVw-v4-Viq" firstAttribute="centerX" secondItem="hdk-Vd-q4U" secondAttribute="centerX" id="jx2-QP-0Yf"/>
+                                                <constraint firstItem="Ene-yw-S8D" firstAttribute="centerX" secondItem="hdk-Vd-q4U" secondAttribute="centerX" id="DpV-oh-IDH"/>
+                                                <constraint firstItem="Ene-yw-S8D" firstAttribute="centerY" secondItem="hdk-Vd-q4U" secondAttribute="centerY" id="Fon-cc-Sva"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -358,6 +374,7 @@
                         <outlet property="conditionCell" destination="5Xr-j9-Pwk" id="FRq-dk-1nx"/>
                         <outlet property="conditionPicker" destination="9eI-qV-u0m" id="TBp-RT-J16"/>
                         <outlet property="freeShippingCell" destination="fKv-38-ILU" id="Pty-BH-jr6"/>
+                        <outlet property="itemNameTextField" destination="X5E-RV-Fyu" id="fa8-tI-7HB"/>
                         <outlet property="maxPriceTextLabel" destination="LQ6-yx-5A9" id="jH8-g5-mgu"/>
                         <outlet property="minPriceTextLabel" destination="WxY-lG-QAL" id="Waw-lW-PWd"/>
                         <outlet property="priceSwitch" destination="440-UZ-jKY" id="9Oo-QI-0V6"/>

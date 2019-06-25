@@ -38,7 +38,7 @@ enum Condition: Int, CaseIterable {
 }
 
 private enum Row: Int {
-    case title
+    case itemName
     case auction
     case buyItNow
     case configurePrice
@@ -56,7 +56,7 @@ private enum Row: Int {
 
         switch (indexPath.section, indexPath.row) {
         case (0, 0):
-            row = Row.title
+            row = Row.itemName
         case (1, 0):
             row = Row.auction
         case (1, 1):
@@ -97,6 +97,7 @@ final class MainTableViewController: UITableViewController {
     var props: Props = .initial
     struct Props {
         let title: String
+        let itemName: String
         var auctionCheckMark: Checkmark
         let buyItNowCheckMark: Checkmark
         let anyShippingCheckmark: Checkmark
@@ -105,9 +106,10 @@ final class MainTableViewController: UITableViewController {
         let maxPrice: String
         var selectedCondition: Condition
         let onUpdateCondition: (Condition) -> Void
-        let onSearch: () -> Void
+        let onSearch: (String, String, String) -> Void
 
         static let initial = Props(title: "",
+                                   itemName: "",
                                    auctionCheckMark: Checkmark(isChecked: false, onSelect: {}),
                                    buyItNowCheckMark: Checkmark(isChecked: false, onSelect: {}),
                                    anyShippingCheckmark: Checkmark(isChecked: false, onSelect: {}),
@@ -116,7 +118,7 @@ final class MainTableViewController: UITableViewController {
                                    maxPrice: "",
                                    selectedCondition: .any,
                                    onUpdateCondition: { _ in },
-                                   onSearch: {})
+                                   onSearch: {_,_,_ in })
     }
 
     func render(props: Props) {
@@ -129,6 +131,7 @@ final class MainTableViewController: UITableViewController {
             markRow(cell: freeShippingCell, state: props.freeShippingCheckmark.isChecked)
             minPriceTextLabel.text = props.minPrice
             maxPriceTextLabel.text = props.maxPrice
+            itemNameTextField.text = props.itemName
             tableView.reloadData()
         }
     }
@@ -146,6 +149,7 @@ final class MainTableViewController: UITableViewController {
     @IBOutlet weak var priceSwitch: UISwitch!
     @IBOutlet weak var minPriceTextLabel: UITextField!
     @IBOutlet weak var maxPriceTextLabel: UITextField!
+    @IBOutlet weak var itemNameTextField: UITextField!
 
     private var conditionPickerIsHidden = false
     private var configurePriceIsHidden = true
@@ -161,6 +165,7 @@ final class MainTableViewController: UITableViewController {
         addDoneButtonOnKeyboard()
         togglePicker()
         conditionPicker.delegate = self
+        itemNameTextField.delegate = self
     }
 
     // MARK: - Actions
@@ -172,7 +177,12 @@ final class MainTableViewController: UITableViewController {
 
     
     @IBAction func searchPressed(_ sender: Any) {
-        props.onSearch()
+        guard let name = itemNameTextField.text,
+        let minPrice = minPriceTextLabel.text,
+        let maxPrice = maxPriceTextLabel.text else {
+            return
+        }
+        props.onSearch(name, minPrice, maxPrice)
     }
 
     // MARK: - UITableViewDelegate
@@ -266,5 +276,16 @@ extension MainTableViewController: UIPickerViewDataSource, UIPickerViewDelegate 
             conditionCell.detailTextLabel?.text = condition.value
             props.onUpdateCondition(condition)
         }
+    }
+}
+
+// MARK: - UITextFieldDelegate
+
+extension MainTableViewController: UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        itemNameTextField.endEditing(true)
+
+        return true
     }
 }
