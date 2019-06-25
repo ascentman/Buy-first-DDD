@@ -40,16 +40,16 @@ final class Router {
 
         searchNavController.pushViewController(mainViewController, animated: false)
 
-        let presenter = MainViewControllerPresenter(viewController: mainViewController, onSearchPressed: { [weak self] in
-            self?.routeToResultsViewController()
+        let presenter = MainViewControllerPresenter(viewController: mainViewController)
+        let mainViewControllerInteractor = MainViewControllerInteractor(presenter: presenter, onSearchRequested: { [weak self] filter in
+            self?.routeToResultsViewController(filter: filter)
         })
-        let mainViewControllerInteractor = MainViewControllerInteractor(presenter: presenter)
 
         mainViewController.retainedObject = [presenter, mainViewControllerInteractor] as AnyObject
         mainViewControllerInteractor.start()
     }
 
-    func routeToResultsViewController() {
+    func routeToResultsViewController(filter: Filter) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let resultsViewContoller = storyboard.instantiateViewController(withIdentifier: "ResultsViewController") as? ResultsViewController else {
             return

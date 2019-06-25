@@ -31,7 +31,7 @@ final class MainViewControllerInteractor {
         }
     }
 
-    init(presenter: MainViewControllerPresenter) {
+    init(presenter: MainViewControllerPresenter, onSearchRequested: @escaping (Filter) -> Void) {
         self.presenter = presenter
 
         self.presenter.didSelectAuction = { [weak self] in
@@ -54,8 +54,11 @@ final class MainViewControllerInteractor {
             self?.currentFilter?.selectedCondition = condition
         }
 
-        self.presenter.didSearchPressed = {
-            presenter.onSearchPressed()
+        self.presenter.onSearchPressed = { [weak self] in
+            guard let filter = self?.currentFilter else {
+                return
+            }
+            onSearchRequested(filter)
         }
     }
 

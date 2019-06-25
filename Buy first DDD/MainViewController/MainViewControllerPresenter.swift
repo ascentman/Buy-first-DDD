@@ -17,12 +17,10 @@ final class MainViewControllerPresenter {
     var didSelectAnyShipping: () -> Void = { assertionFailure() }
     var didSelectFreeShipping: () -> Void = { assertionFailure() }
     var didSelectCondition: (Condition) -> Void = { _ in assertionFailure() }
-    var didSearchPressed: () -> Void = { assertionFailure() }
     var onSearchPressed: () -> Void = { assertionFailure() }
 
-    init(viewController: MainTableViewController, onSearchPressed: @escaping () -> Void) {
+    init(viewController: MainTableViewController) {
         self.mainViewController = viewController
-        self.onSearchPressed = onSearchPressed
     }
 
     func present(filter: Filter) {
@@ -49,7 +47,7 @@ final class MainViewControllerPresenter {
                                                                         selectedCondition: filter.selectedCondition,
                                                                         onUpdateCondition: { [weak self] condition in
                                                                             self?.didSelectCondition(condition) },
-                                                                        onSearch: didSearchPressed
+                                                                        onSearch: onSearchPressed
         ))
     }
 }

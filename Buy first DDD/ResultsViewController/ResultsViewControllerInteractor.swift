@@ -7,3 +7,12 @@
 //
 
 import Foundation
+
+final class ResultsViewControllerInteractor {
+
+    let currentFilter: Filter
+
+    init(filter: Filter) {
+        self.currentFilter = filter
+    }
+}

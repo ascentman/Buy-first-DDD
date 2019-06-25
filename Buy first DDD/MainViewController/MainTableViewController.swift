@@ -92,8 +92,9 @@ struct Checkmark {
 
 final class MainTableViewController: UITableViewController {
 
-    var props: Props = .initial
+    // MARK: - Props
 
+    var props: Props = .initial
     struct Props {
         let title: String
         var auctionCheckMark: Checkmark
@@ -115,7 +116,7 @@ final class MainTableViewController: UITableViewController {
                                    maxPrice: "",
                                    selectedCondition: .any,
                                    onUpdateCondition: { _ in },
-                                   onSearch: {} )
+                                   onSearch: {})
     }
 
     func render(props: Props) {
@@ -133,6 +134,8 @@ final class MainTableViewController: UITableViewController {
     }
 
     var retainedObject: AnyObject?
+
+    // MARK: - IBOutlets
 
     @IBOutlet weak var auctionCell: UITableViewCell!
     @IBOutlet weak var buyItNowCell: UITableViewCell!
