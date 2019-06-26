@@ -11,36 +11,12 @@ import WebKit
 
 final class ResultsViewController: UIViewController {
 
-    // MARK: - Props
-
-    var props: Props = .initial
-    struct Props {
-        let title: String
-        let results: String
-        let lastResults: String
-        let items: [Item]
-
-        struct Item {
-            let name: String
-            let price: String
-            let image: UIImage
-            let onSelectItem: () -> Void
-        }
-
-        static let initial: Props = Props(title: "", results: "", lastResults: "", items: [])
-    }
-
-    func render(props: Props) {
-        self.props = props
-        title = props.title
-    }
-
-    // MARK: - IBOutlets
-
     @IBOutlet private weak var reloadSwitch: UISwitch!
     @IBOutlet private weak var resultsLabel: UILabel!
     @IBOutlet private weak var resultsTableView: UITableView!
     let webView = WKWebView()
+    var items: [Item] = []
+    var timer = Timer()
 
     var retainedObject: AnyObject?
 
@@ -49,9 +25,8 @@ final class ResultsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        render(props: props)
         setupWebView()
-//        resultsTableView.tableFooterView = UIView()
+        resultsTableView.tableFooterView = UIView()
         resultsTableView.delegate = self
         webView.navigationDelegate = self
     }
@@ -63,7 +38,7 @@ final class ResultsViewController: UIViewController {
         webView.layer.borderColor = UIColor.red.cgColor
         webView.layer.borderWidth = 1.0
         webView.backgroundColor = .orange
-//        webView.isHidden = true
+        webView.isHidden = true
         view.addSubview(webView)
     }
 }
@@ -84,28 +59,36 @@ extension WKWebView {
 extension ResultsViewController: WKNavigationDelegate {
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        webView.evaluateJavaScript("document.getElementsByTagName('html')[0].innerHTML") { (value, error) in
-            print("loaded!!!!!!!")
+        webView.evaluateJavaScript("document.getElementsByTagName('html')[0].innerHTML") { [weak self] (value, error) in
+            do {
+                let response = try EbayResponse(value)
+                self?.items = response.items
+                self?.resultsLabel.text = response.totalResults
+                self?.resultsTableView.reloadData()
+            } catch {}
         }
     }
 }
 
 extension ResultsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return props.items.count
+        return items.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = resultsTableView.dequeueReusableCell(withIdentifier: "cell") as? ItemTableViewCell else {
             return UITableViewCell()
         }
-        cell.nameLabel.text = props.items[indexPath.row].name
-        cell.priceLabel.text = props.items[indexPath.row].price
-        cell.itemImageView.image = props.items[indexPath.row].image
+
+        cell.setupCell(item: items[indexPath.row])
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row)
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
     }
 }

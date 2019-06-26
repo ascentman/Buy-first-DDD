@@ -36,19 +36,19 @@ final class MainViewControllerInteractor {
         self.presenter = presenter
 
         self.presenter.didSelectAuction = { [weak self] in
-            self?.updateFilterCriteria(itemRow: 0)
+            self?.updateFilterCriteria(itemRow: 0, uncheckRow: nil)
         }
 
         self.presenter.didSelectBuyItNow = { [weak self] in
-            self?.updateFilterCriteria(itemRow: 1)
+            self?.updateFilterCriteria(itemRow: 1, uncheckRow: nil)
         }
 
         self.presenter.didSelectAnyShipping = { [weak self] in
-            self?.updateFilterCriteria(itemRow: 2)
+            self?.updateFilterCriteria(itemRow: 2, uncheckRow: 3)
         }
 
         self.presenter.didSelectFreeShipping = { [weak self] in
-            self?.updateFilterCriteria(itemRow: 3)
+            self?.updateFilterCriteria(itemRow: 3, uncheckRow: 2)
         }
 
         self.presenter.didSelectCondition = { [weak self] condition in
@@ -78,7 +78,7 @@ final class MainViewControllerInteractor {
 
     // MARK: - Private
 
-    private func updateFilterCriteria(itemRow: Int) {
+    private func updateFilterCriteria(itemRow: Int, uncheckRow: Int?) {
         guard var filter = self.currentFilter else {
             assertionFailure()
             return
@@ -86,6 +86,11 @@ final class MainViewControllerInteractor {
         var row = filter.rows[itemRow]
         row.isSelected = !row.isSelected
         filter.rows[itemRow] = row
+        if let uncheckRow = uncheckRow {
+            var uncheckedRow = filter.rows[uncheckRow]
+            uncheckedRow.isSelected = !uncheckedRow.isSelected
+            filter.rows[uncheckRow] = uncheckedRow
+        }
         self.currentFilter = filter
     }
 }

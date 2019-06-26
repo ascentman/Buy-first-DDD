@@ -3,12 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		257F48F4ACAAC40B419A9728 /* Pods_Buy_first_DDD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E37C4F8B5042B260FE2396 /* Pods_Buy_first_DDD.framework */; };
 		CE1C703622C0E4E50069D29D /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1C703522C0E4E50069D29D /* ResultsViewController.swift */; };
 		CE1C703A22C0E6950069D29D /* ResultsViewControllerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1C703922C0E6950069D29D /* ResultsViewControllerInteractor.swift */; };
+		CE39285622C3B4B90098EEE7 /* EbayResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE39285522C3B4B90098EEE7 /* EbayResponse.swift */; };
+		CE39285822C3B4F10098EEE7 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE39285722C3B4F10098EEE7 /* Item.swift */; };
 		CE4470B722BB9F8A0036524B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4470B622BB9F8A0036524B /* AppDelegate.swift */; };
 		CE4470B922BB9F8A0036524B /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4470B822BB9F8A0036524B /* MainTableViewController.swift */; };
 		CE4470BC22BB9F8A0036524B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE4470BA22BB9F8A0036524B /* Main.storyboard */; };
@@ -22,8 +25,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05E37C4F8B5042B260FE2396 /* Pods_Buy_first_DDD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Buy_first_DDD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		956A10EC62918BC27427DE91 /* Pods-Buy first DDD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buy first DDD.release.xcconfig"; path = "Target Support Files/Pods-Buy first DDD/Pods-Buy first DDD.release.xcconfig"; sourceTree = "<group>"; };
+		B84D70FCCEE0BB73FCBA20C2 /* Pods-Buy first DDD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buy first DDD.debug.xcconfig"; path = "Target Support Files/Pods-Buy first DDD/Pods-Buy first DDD.debug.xcconfig"; sourceTree = "<group>"; };
 		CE1C703522C0E4E50069D29D /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		CE1C703922C0E6950069D29D /* ResultsViewControllerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewControllerInteractor.swift; sourceTree = "<group>"; };
+		CE39285522C3B4B90098EEE7 /* EbayResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EbayResponse.swift; sourceTree = "<group>"; };
+		CE39285722C3B4F10098EEE7 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		CE4470B322BB9F8A0036524B /* Buy first DDD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Buy first DDD.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE4470B622BB9F8A0036524B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE4470B822BB9F8A0036524B /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
@@ -43,12 +51,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				257F48F4ACAAC40B419A9728 /* Pods_Buy_first_DDD.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18456A18300C1A6E1FD079A6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				05E37C4F8B5042B260FE2396 /* Pods_Buy_first_DDD.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		63CAA1D1105582BF96C24AAF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B84D70FCCEE0BB73FCBA20C2 /* Pods-Buy first DDD.debug.xcconfig */,
+				956A10EC62918BC27427DE91 /* Pods-Buy first DDD.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		CE1C703722C0E4F60069D29D /* MainViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +100,8 @@
 			children = (
 				CE4470B522BB9F8A0036524B /* Buy first DDD */,
 				CE4470B422BB9F8A0036524B /* Products */,
+				63CAA1D1105582BF96C24AAF /* Pods */,
+				18456A18300C1A6E1FD079A6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,6 +125,8 @@
 				CE4470C222BB9F8B0036524B /* LaunchScreen.storyboard */,
 				CE4470C522BB9F8B0036524B /* Info.plist */,
 				CE4470BD22BB9F8A0036524B /* Buy_first_DDD.xcdatamodeld */,
+				CE39285522C3B4B90098EEE7 /* EbayResponse.swift */,
+				CE39285722C3B4F10098EEE7 /* Item.swift */,
 			);
 			path = "Buy first DDD";
 			sourceTree = "<group>";
@@ -108,9 +138,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE4470C822BB9F8B0036524B /* Build configuration list for PBXNativeTarget "Buy first DDD" */;
 			buildPhases = (
+				1DF839E662B7C14DF55C36C7 /* [CP] Check Pods Manifest.lock */,
 				CE4470AF22BB9F8A0036524B /* Sources */,
 				CE4470B022BB9F8A0036524B /* Frameworks */,
 				CE4470B122BB9F8A0036524B /* Resources */,
+				342549020001D937E7B718C3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -167,16 +199,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1DF839E662B7C14DF55C36C7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Buy first DDD-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		342549020001D937E7B718C3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Buy first DDD/Pods-Buy first DDD-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Buy first DDD/Pods-Buy first DDD-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Buy first DDD/Pods-Buy first DDD-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		CE4470AF22BB9F8A0036524B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				CE4470CC22BBA1E30036524B /* Router.swift in Sources */,
+				CE39285622C3B4B90098EEE7 /* EbayResponse.swift in Sources */,
 				CE4470B922BB9F8A0036524B /* MainTableViewController.swift in Sources */,
 				CE4C110122C20B9B001855AE /* ItemTableViewCell.swift in Sources */,
 				CE4470CE22BBA6330036524B /* MainViewControllerPresenter.swift in Sources */,
 				CE1C703622C0E4E50069D29D /* ResultsViewController.swift in Sources */,
+				CE39285822C3B4F10098EEE7 /* Item.swift in Sources */,
 				CE1C703A22C0E6950069D29D /* ResultsViewControllerInteractor.swift in Sources */,
 				CE4470B722BB9F8A0036524B /* AppDelegate.swift in Sources */,
 				CE4470D022BBA6500036524B /* MainViewControllerInteractor.swift in Sources */,
@@ -324,6 +400,7 @@
 		};
 		CE4470C922BB9F8B0036524B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B84D70FCCEE0BB73FCBA20C2 /* Pods-Buy first DDD.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -342,6 +419,7 @@
 		};
 		CE4470CA22BB9F8B0036524B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 956A10EC62918BC27427DE91 /* Pods-Buy first DDD.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
