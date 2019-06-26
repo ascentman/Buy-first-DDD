@@ -33,7 +33,7 @@ final class EbayResponse {
         let itemImages = try document.getElementsByClass("s-item__image-img").array()
         let itemLink = try document.getElementsByClass("s-item__link").array()
 
-        for i in 3..<8 {
+        for i in 3..<13 {
             let item = Item(name: try itemTitles[i + 1].text(), price: try itemPrices[i].text(), imageAbsolutePath: try itemImages[i].attr("src"), detailsLink: try itemLink[i].attr("href"))
             items.append(item)
         }

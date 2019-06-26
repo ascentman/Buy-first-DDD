@@ -8,15 +8,19 @@
 
 import UIKit
 import WebKit
+import SafariServices
 
 final class ResultsViewController: UIViewController {
 
     @IBOutlet private weak var reloadSwitch: UISwitch!
     @IBOutlet private weak var resultsLabel: UILabel!
     @IBOutlet private weak var resultsTableView: UITableView!
+    @IBOutlet private weak var itemActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet private weak var statusLabel: UILabel!
     let webView = WKWebView()
     var items: [Item] = []
     var timer = Timer()
+    var onGenerateRequest: () -> Void = {}
 
     var retainedObject: AnyObject?
 
@@ -27,8 +31,29 @@ final class ResultsViewController: UIViewController {
 
         setupWebView()
         resultsTableView.tableFooterView = UIView()
-        resultsTableView.delegate = self
         webView.navigationDelegate = self
+
+        statusLabel.text = "Loading"
+        itemActivityIndicator.isHidden = false
+        itemActivityIndicator.startAnimating()
+    }
+
+    @IBAction func switchDidTapped(_ sender: Any) {
+        if reloadSwitch.isOn {
+            timer.invalidate()
+            timer = Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
+            RunLoop.current.add(timer, forMode: .common)
+        } else {
+            timer.invalidate()
+        }
+    }
+
+    @objc func timerAction() {
+        itemActivityIndicator.isHidden = false
+        itemActivityIndicator.startAnimating()
+        statusLabel.text = "Loading"
+        resultsTableView.alpha = 0.7
+        onGenerateRequest()
     }
 
     // MARK: - Private
@@ -63,7 +88,9 @@ extension ResultsViewController: WKNavigationDelegate {
             do {
                 let response = try EbayResponse(value)
                 self?.items = response.items
-                self?.resultsLabel.text = response.totalResults
+                self?.itemActivityIndicator.stopAnimating()
+                self?.statusLabel.text = "Loaded"
+                self?.resultsTableView.alpha = 1.0
                 self?.resultsTableView.reloadData()
             } catch {}
         }
@@ -84,11 +111,15 @@ extension ResultsViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
-    }
-
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let url = URL(string: items[indexPath.row].detailsLink) {
+            let svc = SFSafariViewController(url: url)
+            svc.preferredControlTintColor = UIColor.orange
+            present(svc, animated: true, completion: nil)
+        }
     }
 }

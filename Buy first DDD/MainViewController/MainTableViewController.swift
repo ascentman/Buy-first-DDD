@@ -283,6 +283,10 @@ extension MainTableViewController: UIPickerViewDataSource, UIPickerViewDelegate 
 
 extension MainTableViewController: UITextFieldDelegate {
 
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return true
+    }
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         itemNameTextField.endEditing(true)
 

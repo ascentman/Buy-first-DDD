@@ -18,6 +18,10 @@ final class ResultsViewControllerInteractor {
         self.currentFilter = filter
 
         generateNetworkRequest()
+
+        resultsViewController.onGenerateRequest = { [weak self] in
+            self?.generateNetworkRequest()
+        }
     }
 
     // MARK: - Private
