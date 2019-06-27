@@ -7,4 +7,5 @@ target 'Buy first DDD' do
 
   # Pods for Buy first DDD
     pod 'SwiftSoup'
+    pod 'Motion'
 end

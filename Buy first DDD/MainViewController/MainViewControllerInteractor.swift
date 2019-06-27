@@ -24,6 +24,7 @@ struct Filter {
 final class MainViewControllerInteractor {
 
     private let presenter: MainViewControllerPresenter
+    private var itemToSearch: String = ""
     private var currentFilter: Filter? {
         didSet {
             if let newFilter = currentFilter {
@@ -55,8 +56,8 @@ final class MainViewControllerInteractor {
             self?.currentFilter?.selectedCondition = condition
         }
 
-        self.presenter.onSearchPressed = { [weak self] (name, minPrice, maxPrice) in
-            self?.currentFilter?.itemToSearch = name
+        self.presenter.onSearchPressed = { [weak self] (minPrice, maxPrice) in
+            self?.currentFilter?.itemToSearch = self?.itemToSearch ?? ""
             self?.currentFilter?.minPrice = minPrice
             self?.currentFilter?.maxPrice = maxPrice
             guard let filter = self?.currentFilter else {
@@ -66,14 +67,15 @@ final class MainViewControllerInteractor {
         }
     }
 
-    func start() {
+    func start(_ name: String) {
 
+        itemToSearch = name
         let auctionRow = Filter.Row(title: "Auction", isSelected: true)
         let buyItNowRow = Filter.Row(title: "Buy it now", isSelected: false)
         let anyShippingRow = Filter.Row(title: "Any", isSelected: true)
         let freeShippingRow = Filter.Row(title: "Auction", isSelected: false)
 
-        self.currentFilter = Filter(title: "Search", itemToSearch: "", selectedCondition: .any, minPrice: "100", maxPrice: "200", rows: [auctionRow, buyItNowRow, anyShippingRow, freeShippingRow])
+        self.currentFilter = Filter(title: "Filter", itemToSearch: itemToSearch, selectedCondition: .any, minPrice: "0", maxPrice: "9999", rows: [auctionRow, buyItNowRow, anyShippingRow, freeShippingRow])
     }
 
     // MARK: - Private

@@ -22,6 +22,9 @@
 		CE4470CE22BBA6330036524B /* MainViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4470CD22BBA6330036524B /* MainViewControllerPresenter.swift */; };
 		CE4470D022BBA6500036524B /* MainViewControllerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4470CF22BBA6500036524B /* MainViewControllerInteractor.swift */; };
 		CE4C110122C20B9B001855AE /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C110022C20B9B001855AE /* ItemTableViewCell.swift */; };
+		CEC9B7BD22C4B38A00DD2F54 /* StartTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9B7BC22C4B38A00DD2F54 /* StartTableViewController.swift */; };
+		CEC9B7BF22C4B3B600DD2F54 /* StartTableViewControllerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9B7BE22C4B3B600DD2F54 /* StartTableViewControllerInteractor.swift */; };
+		CEC9B7C122C4B3C400DD2F54 /* StartTableViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9B7C022C4B3C400DD2F54 /* StartTableViewControllerPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +47,9 @@
 		CE4470CD22BBA6330036524B /* MainViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerPresenter.swift; sourceTree = "<group>"; };
 		CE4470CF22BBA6500036524B /* MainViewControllerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerInteractor.swift; sourceTree = "<group>"; };
 		CE4C110022C20B9B001855AE /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
+		CEC9B7BC22C4B38A00DD2F54 /* StartTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTableViewController.swift; sourceTree = "<group>"; };
+		CEC9B7BE22C4B3B600DD2F54 /* StartTableViewControllerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTableViewControllerInteractor.swift; sourceTree = "<group>"; };
+		CEC9B7C022C4B3C400DD2F54 /* StartTableViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTableViewControllerPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +124,7 @@
 			children = (
 				CE4470B622BB9F8A0036524B /* AppDelegate.swift */,
 				CE1C703722C0E4F60069D29D /* MainViewController */,
+				CEC9B7C222C4B3CE00DD2F54 /* StartTableViewController */,
 				CE4470CB22BBA1E30036524B /* Router.swift */,
 				CE4470BA22BB9F8A0036524B /* Main.storyboard */,
 				CE1C703822C0E5150069D29D /* ResultsViewController */,
@@ -129,6 +136,16 @@
 				CE39285722C3B4F10098EEE7 /* Item.swift */,
 			);
 			path = "Buy first DDD";
+			sourceTree = "<group>";
+		};
+		CEC9B7C222C4B3CE00DD2F54 /* StartTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CEC9B7BC22C4B38A00DD2F54 /* StartTableViewController.swift */,
+				CEC9B7BE22C4B3B600DD2F54 /* StartTableViewControllerInteractor.swift */,
+				CEC9B7C022C4B3C400DD2F54 /* StartTableViewControllerPresenter.swift */,
+			);
+			path = StartTableViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,9 +270,12 @@
 				CE4470CE22BBA6330036524B /* MainViewControllerPresenter.swift in Sources */,
 				CE1C703622C0E4E50069D29D /* ResultsViewController.swift in Sources */,
 				CE39285822C3B4F10098EEE7 /* Item.swift in Sources */,
+				CEC9B7C122C4B3C400DD2F54 /* StartTableViewControllerPresenter.swift in Sources */,
 				CE1C703A22C0E6950069D29D /* ResultsViewControllerInteractor.swift in Sources */,
 				CE4470B722BB9F8A0036524B /* AppDelegate.swift in Sources */,
 				CE4470D022BBA6500036524B /* MainViewControllerInteractor.swift in Sources */,
+				CEC9B7BD22C4B38A00DD2F54 /* StartTableViewController.swift in Sources */,
+				CEC9B7BF22C4B3B600DD2F54 /* StartTableViewControllerInteractor.swift in Sources */,
 				CE4470BF22BB9F8A0036524B /* Buy_first_DDD.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

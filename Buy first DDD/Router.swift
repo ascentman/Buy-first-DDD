@@ -29,16 +29,31 @@ final class Router {
     // MARK: - Public
 
     func start() {
-        self.showMainViewController()
+        self.showStartViewController()
     }
 
-    private func showMainViewController() {
+    private func showStartViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let startViewController = storyboard.instantiateViewController(withIdentifier: "StartTableViewController") as? StartTableViewController else {
+            return
+        }
+
+        searchNavController.pushViewController(startViewController, animated: false)
+
+        let presenter = StartTableViewControllerPresenter(viewController: startViewController)
+        let startViewControllerInteractor = StartTableViewControllerInteractor(presenter: presenter, onSearchRequested: { [weak self] name in
+            self?.routeToMainViewController(name)
+        })
+
+        startViewController.retainedObject = [presenter, startViewControllerInteractor] as AnyObject
+        startViewControllerInteractor.start()
+    }
+
+    func routeToMainViewController(_ name: String) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let mainViewController = storyboard.instantiateViewController(withIdentifier: "MainTableViewController") as? MainTableViewController else {
             return
         }
-
-        searchNavController.pushViewController(mainViewController, animated: false)
 
         let presenter = MainViewControllerPresenter(viewController: mainViewController)
         let mainViewControllerInteractor = MainViewControllerInteractor(presenter: presenter, onSearchRequested: { [weak self] filter in
@@ -46,7 +61,8 @@ final class Router {
         })
 
         mainViewController.retainedObject = [presenter, mainViewControllerInteractor] as AnyObject
-        mainViewControllerInteractor.start()
+        mainViewControllerInteractor.start(name)
+        searchNavController.pushViewController(mainViewController, animated: true)
     }
 
     func routeToResultsViewController(filter: Filter) {
