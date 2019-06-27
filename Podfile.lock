@@ -1,22 +1,16 @@
 PODS:
-  - Motion (3.1.1):
-    - Motion/Core (= 3.1.1)
-  - Motion/Core (3.1.1)
   - SwiftSoup (2.2.0)
 
 DEPENDENCIES:
-  - Motion
   - SwiftSoup
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - Motion
     - SwiftSoup
 
 SPEC CHECKSUMS:
-  Motion: f115b33f36cc52472a25a965daa89b3859817de0
   SwiftSoup: 230991361c5ba249d140161860a3864a28b63860
 
-PODFILE CHECKSUM: 1b39eddc3c3eb4fdb4ee0a3adf5cd4012b901ebe
+PODFILE CHECKSUM: df0de757888eb9eb6c6869e844d1d7df61c95f3e
 
 COCOAPODS: 1.7.1
