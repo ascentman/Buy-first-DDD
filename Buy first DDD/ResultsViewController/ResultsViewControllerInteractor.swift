@@ -67,12 +67,7 @@ final class ResultsViewControllerInteractor {
             baseAbsoluteUrl.append("&LH_FS=1")
         }
 
-        guard let url = URL(string: baseAbsoluteUrl) else {
-            return
-        }
-        print(url)
-        let request = URLRequest(url: url)
-        resultsViewController?.webView.load(request)
+        resultsViewController?.webView.loadUrl(string: baseAbsoluteUrl)
     }
 }
 

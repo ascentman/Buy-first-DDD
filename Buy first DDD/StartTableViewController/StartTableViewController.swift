@@ -35,7 +35,6 @@ final class StartTableViewController: UITableViewController {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet var baseTableView: UITableView!
-
     var retainedObject: AnyObject?
 
     // MARK: - Lifecycle
@@ -49,29 +48,9 @@ final class StartTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        addGradientLayer()
         tabBarController?.tabBar.isHidden = true
         navigationController?.navigationBar.isHidden = true
-    }
-
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-
-        let gradient = CAGradientLayer()
-        gradient.frame = view.bounds
-        gradient.colors = [UIColor.orange.cgColor, UIColor.blue.cgColor]
-        gradient.locations =  [-3, 3]
-
-        let animation = CABasicAnimation(keyPath: "colors")
-        animation.fromValue = [UIColor.orange.cgColor, UIColor.blue.cgColor]
-        animation.toValue = [UIColor.blue.cgColor, UIColor.orange.cgColor]
-        animation.duration = 5.0
-        animation.autoreverses = true
-        animation.repeatCount = Float.infinity
-
-        gradient.add(animation, forKey: nil)
-        let backgroundView = UIView(frame: view.bounds)
-        backgroundView.layer.insertSublayer(gradient, at: 0)
-        baseTableView.backgroundView = backgroundView
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -82,7 +61,6 @@ final class StartTableViewController: UITableViewController {
     }
 
     override var prefersStatusBarHidden: Bool {
-
         return true
     }
 
@@ -93,6 +71,27 @@ final class StartTableViewController: UITableViewController {
             return
         }
         props.onSearch(name)
+    }
+
+    // MARK : Private
+
+    private func addGradientLayer() {
+        let gradient = CAGradientLayer()
+        gradient.frame = view.bounds
+        gradient.colors = [UIColor.orange.cgColor, UIColor.magenta.cgColor]
+        gradient.locations =  [-0.5, 1.5]
+
+        let animation = CABasicAnimation(keyPath: "colors")
+        animation.fromValue = [UIColor.orange.cgColor, UIColor.blue.cgColor]
+        animation.toValue = [UIColor.blue.cgColor, UIColor.orange.cgColor]
+        animation.duration = 10.0
+        animation.autoreverses = true
+        animation.repeatCount = Float.infinity
+
+        gradient.add(animation, forKey: nil)
+        let backgroundView = UIView(frame: view.bounds)
+        backgroundView.layer.insertSublayer(gradient, at: 0)
+        baseTableView.backgroundView = backgroundView
     }
 }
 

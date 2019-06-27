@@ -17,6 +17,7 @@ final class ResultsViewController: UIViewController {
     @IBOutlet private weak var resultsTableView: UITableView!
     @IBOutlet private weak var itemActivityIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var statusLabel: UILabel!
+
     let webView = WKWebView()
     var items: [Item] = []
     var timer = Timer()
@@ -36,6 +37,12 @@ final class ResultsViewController: UIViewController {
         statusLabel.text = "Loading"
         itemActivityIndicator.isHidden = false
         itemActivityIndicator.startAnimating()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        webView.stopLoading()
     }
 
     @IBAction func switchDidTapped(_ sender: Any) {
@@ -59,7 +66,7 @@ final class ResultsViewController: UIViewController {
     // MARK: - Private
 
     private func setupWebView() {
-        webView.frame = CGRect(x: 2, y: 400, width: view.bounds.width - 5, height: view.bounds.height / 2.5 - 5)
+        webView.frame = CGRect(x: 300, y: 400, width: 1, height: 1)
         webView.layer.borderColor = UIColor.red.cgColor
         webView.layer.borderWidth = 1.0
         webView.backgroundColor = .orange
@@ -72,27 +79,29 @@ final class ResultsViewController: UIViewController {
 // MARK: - Extensions
 
 extension WKWebView {
-    func loadUrl(string: String, completion: () -> ()) {
+    func loadUrl(string: String) {
         if let url = URL(string: string) {
-            print(url)
-            load(URLRequest(url: url))
+            DispatchQueue.main.async { [weak self] in
+                self?.load(URLRequest(url: url))
+            }
         }
-        completion()
     }
 }
 
 extension ResultsViewController: WKNavigationDelegate {
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        webView.evaluateJavaScript("document.getElementsByTagName('html')[0].innerHTML") { [weak self] (value, error) in
-            do {
-                let response = try EbayResponse(value)
-                self?.items = response.items
-                self?.itemActivityIndicator.stopAnimating()
-                self?.statusLabel.text = "Loaded"
-                self?.resultsTableView.alpha = 1.0
-                self?.resultsTableView.reloadData()
-            } catch {}
+        DispatchQueue.main.async { [weak self] in
+            self?.webView.evaluateJavaScript("document.getElementsByTagName('html')[0].innerHTML") { [weak self] (value, error) in
+                do {
+                    let response = try EbayResponse(value)
+                    self?.items = response.items
+                    self?.itemActivityIndicator.stopAnimating()
+                    self?.statusLabel.text = "Loaded"
+                    self?.resultsTableView.alpha = 1.0
+                    self?.resultsTableView.reloadData()
+                } catch {}
+            }
         }
     }
 }

@@ -62,7 +62,7 @@ final class Router {
 
         mainViewController.retainedObject = [presenter, mainViewControllerInteractor] as AnyObject
         mainViewControllerInteractor.start(name)
-        searchNavController.pushViewController(mainViewController, animated: true)
+        searchNavController.fadeTo(mainViewController)
     }
 
     func routeToResultsViewController(filter: Filter) {
@@ -73,5 +73,17 @@ final class Router {
         let resultViewControllerInteractor = ResultsViewControllerInteractor(resultsViewController: resultsViewContoller, filter: filter)
         resultsViewContoller.retainedObject = [resultViewControllerInteractor] as AnyObject
         searchNavController.pushViewController(resultsViewContoller, animated: true)
+    }
+}
+
+// MARK: - Extensions
+
+extension UINavigationController {
+    func fadeTo(_ viewController: UIViewController) {
+        let transition: CATransition = CATransition()
+        transition.duration = 0.4
+        transition.type = CATransitionType.fade
+        view.layer.add(transition, forKey: nil)
+        pushViewController(viewController, animated: false)
     }
 }
