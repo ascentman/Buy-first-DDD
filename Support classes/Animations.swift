@@ -20,7 +20,7 @@ enum AnimationFactory {
                 UIView.animate(
                     withDuration: duration,
                     delay: delayFactor * Double(index),
-                    usingSpringWithDamping: 0.4,
+                    usingSpringWithDamping: 0.9,
                     initialSpringVelocity: 0.1,
                     options: [.curveEaseInOut],
                     animations: {

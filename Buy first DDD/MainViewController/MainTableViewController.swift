@@ -162,7 +162,7 @@ final class MainTableViewController: UITableViewController {
         togglePicker()
         conditionPicker.delegate = self
 
-        let animation = AnimationFactory.makeMoveUpWithBounce(rowHeight: 44, duration: 0.7, delayFactor: 0.05)
+        let animation = AnimationFactory.makeMoveUpWithBounce(rowHeight: 44, duration: 0.5, delayFactor: 0.05)
         let animator = Animator(animation: animation)
         animator.animate(tableView: tableView)
     }
@@ -237,11 +237,10 @@ final class MainTableViewController: UITableViewController {
 
     private func addDoneButtonOnKeyboard(){
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
-        doneToolbar.barStyle = .default
+        doneToolbar.barStyle = .blackTranslucent
 
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.doneButtonAction))
-
         let items = [flexSpace, done]
         doneToolbar.items = items
         doneToolbar.sizeToFit()
