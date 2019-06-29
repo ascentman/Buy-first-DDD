@@ -16,17 +16,12 @@ private enum HTMLError: Error {
 final class EbayResponse {
 
     var items: [Item] = []
-    var totalResults: String = "0"
 
     init(_ innerHTML: Any?) throws {
         guard let htmlString = innerHTML as? String else {
             throw HTMLError.badResponse
         }
         let document = try SwiftSoup.parse(htmlString)
-        //        print(document)
-
-        let totalCount = try document.getElementsByClass("srp-controls__count-heading").text()
-        totalResults = totalCount
 
         let itemTitles = try document.getElementsByClass("s-item__title").array()
         let itemPrices = try document.getElementsByClass("s-item__price").array()

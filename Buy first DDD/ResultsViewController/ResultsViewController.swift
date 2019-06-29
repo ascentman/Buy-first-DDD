@@ -37,7 +37,6 @@ final class ResultsViewController: UIViewController {
 
         activityIndicatorView.isHidden = false
         activityIndicatorView.startAnimating()
-        createBanner()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -69,7 +68,7 @@ final class ResultsViewController: UIViewController {
     // MARK: - Private
 
     private func createBanner() -> Banner {
-        let banner = Banner(title: "Info", subtitle: "Please don't lock your device when continuous update enbled!", image: UIImage(named: "info"), backgroundColor: .purple, didTapBlock: nil)
+        let banner = Banner(title: "Info", subtitle: "Please don't lock your device when continuous update enabled!", image: UIImage(named: "info"), backgroundColor: .purple, didTapBlock: nil)
         banner.dismissesOnTap = true
         banner.position = .bottom
         return banner
