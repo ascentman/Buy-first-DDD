@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import AudioToolbox
 
-final class StartTableViewController: UITableViewController {
+final class StartViewController: UIViewController {
 
     // MARK: - Props
 
@@ -28,43 +29,34 @@ final class StartTableViewController: UITableViewController {
         title = props.title
         if self.isViewLoaded {
             nameTextField.text = props.itemName
-            tableView.reloadData()
+            view.layoutIfNeeded()
         }
     }
 
     // MARK: - IBOutlets
 
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var startButton: UIButton!
-    @IBOutlet var baseTableView: UITableView!
+
+    @IBOutlet private weak var nameTextField: UITextField!
+    @IBOutlet private weak var searchButton: UIButton!
     var retainedObject: AnyObject?
 
-    private var backgroundView: UIView!
-    private var gradientLayer: CAGradientLayer?
     private var cartLayer: CALayer?
     private var presentLayer: CALayer?
+    private var nameLayer: CATextLayer?
 
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        addAnimations()
+        nameTextField.tintColor = .orange
         nameTextField.delegate = self
-        backgroundView = UIView(frame: view.bounds)
-        baseTableView.backgroundView = backgroundView
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        addGradientLayer()
-        addCartAnimation(completion: { [weak self] in
-            self?.addPresentAnimation(completion: { [weak self] in
-                self?.addFullCartAnimation(completion: { [weak self] in
-                    self?.addShakeAnimation()
-                })
-            })
-        })
         tabBarController?.tabBar.isHidden = true
         navigationController?.navigationBar.isHidden = true
     }
@@ -72,42 +64,34 @@ final class StartTableViewController: UITableViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        backgroundView.layer.sublayers = nil
         tabBarController?.tabBar.isHidden = false
         navigationController?.navigationBar.isHidden = false
-    }
-
-    override var prefersStatusBarHidden: Bool {
-        return true
     }
 
     // MARK: - Actions
 
     @IBAction func startButtonDidPressed(_ sender: Any) {
         guard let name = nameTextField.text, !name.isEmpty else {
+            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+            nameTextField.shake()
             return
         }
-        props.onSearch(name)
+        nameTextField.endEditing(true)
+        searchButton.pulse(completion: { [weak self] in
+            self?.props.onSearch(name)
+        })
     }
 
     // MARK : Private
 
-    private func addGradientLayer() {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = view.bounds
-        gradientLayer.colors = [UIColor.orange.cgColor, UIColor.magenta.cgColor]
-        gradientLayer.locations =  [-0.5, 1.5]
-
-        let animation = CABasicAnimation(keyPath: "colors")
-        animation.fromValue = [UIColor.orange.cgColor, UIColor.blue.cgColor]
-        animation.toValue = [UIColor.blue.cgColor, UIColor.orange.cgColor]
-        animation.duration = 10.0
-        animation.autoreverses = true
-        animation.repeatCount = Float.infinity
-
-        gradientLayer.add(animation, forKey: nil)
-        backgroundView.layer.insertSublayer(gradientLayer, at: 0)
-        self.gradientLayer = gradientLayer
+    private func addAnimations() {
+        addCartAnimation(completion: { [weak self] in
+            self?.addPresentAnimation(completion: { [weak self] in
+                self?.addFullCartAnimation(completion: { [weak self] in
+                    self?.addAnimatedText()
+                })
+            })
+        })
     }
 
     private func addCartAnimation(completion: @escaping () -> ()) {
@@ -124,7 +108,7 @@ final class StartTableViewController: UITableViewController {
         animation.isRemovedOnCompletion = false
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         cartLayer.add(animation, forKey: nil)
-        backgroundView.layer.addSublayer(cartLayer)
+        view.layer.addSublayer(cartLayer)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             completion()
         }
@@ -145,7 +129,7 @@ final class StartTableViewController: UITableViewController {
         animation.isRemovedOnCompletion = false
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
         presentLayer.add(animation, forKey: nil)
-        backgroundView.layer.insertSublayer(presentLayer, at: 1)
+        view.layer.insertSublayer(presentLayer, at: 1)
         self.presentLayer = presentLayer
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
@@ -159,7 +143,7 @@ final class StartTableViewController: UITableViewController {
         animation1.fromValue = [view.frame.width / 2 , 150]
         animation1.toValue = [view.frame.width + 100 , 150]
         animation1.duration = 1.5
-        animation1.isRemovedOnCompletion = true
+        animation1.isRemovedOnCompletion = false
         animation1.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         animation2.fromValue = [view.frame.width / 2 + 10 , 130]
         animation2.toValue = [view.frame.width + 110 , 130]
@@ -171,10 +155,40 @@ final class StartTableViewController: UITableViewController {
         }
         cartLayer.add(animation1, forKey: nil)
         presentLayer.add(animation2, forKey: nil)
-
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             completion()
+            presentLayer.removeAllAnimations()
+            cartLayer.removeAllAnimations()
+            presentLayer.removeFromSuperlayer()
+            cartLayer.removeFromSuperlayer()
         }
+    }
+
+    private func addAnimatedText() {
+        let myAttributes = [
+            NSAttributedString.Key.font: UIFont(name: "Chalkduster", size: 48.0)! ,
+            NSAttributedString.Key.foregroundColor: UIColor.white
+        ]
+        let myAttributedString = NSAttributedString(string: "Buy first", attributes: myAttributes )
+
+        let textLayer = CATextLayer()
+        textLayer.string = myAttributedString
+        textLayer.backgroundColor = UIColor.clear.cgColor
+        textLayer.frame = CGRect(x: view.bounds.width / 2 - 120, y: 100, width: 240, height: 150)
+
+        let animationOpacity = CABasicAnimation(keyPath: "opacity")
+        let animationScaling = CABasicAnimation(keyPath: "transform.scale.y")
+        animationOpacity.fromValue = 0
+        animationOpacity.toValue = 1
+        animationScaling.fromValue = 0
+        animationScaling.toValue = 1
+        let animationGroup = CAAnimationGroup()
+        animationGroup.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+        animationGroup.duration = 1.5
+        animationGroup.animations = [animationOpacity, animationScaling]
+        textLayer.add(animationGroup, forKey: nil)
+        view.layer.addSublayer(textLayer)
+        self.nameLayer = textLayer
     }
 
     private func addShakeAnimation() {
@@ -206,7 +220,7 @@ final class StartTableViewController: UITableViewController {
 
 // MARK: - UITextFieldDelegate
 
-extension StartTableViewController: UITextFieldDelegate {
+extension StartViewController: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         nameTextField.endEditing(true)
@@ -237,6 +251,32 @@ extension UIImage {
             return coloredImage
         } else {
             return nil
+        }
+    }
+}
+
+extension UIView {
+    func shake() {
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.05
+        animation.repeatCount = 5
+        animation.autoreverses = true
+        animation.fromValue = CGPoint(x: self.center.x - 4.0, y: self.center.y)
+        animation.toValue = CGPoint(x: self.center.x + 4.0, y: self.center.y)
+        layer.add(animation, forKey: "position")
+    }
+
+    func pulse(completion: @escaping () -> ()) {
+        let animation = CASpringAnimation(keyPath: "transform.scale")
+        animation.duration = 0.3
+        animation.fromValue = 0.95
+        animation.toValue = 1.0
+        animation.repeatCount = 1
+        animation.initialVelocity = 0.5
+        layer.add(animation, forKey: nil)
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            completion()
         }
     }
 }

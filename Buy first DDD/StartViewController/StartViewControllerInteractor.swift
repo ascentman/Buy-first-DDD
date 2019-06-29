@@ -8,12 +8,12 @@
 
 import Foundation
 
-final class StartTableViewControllerInteractor {
+final class StartViewControllerInteractor {
 
-    private let presenter: StartTableViewControllerPresenter
+    private let presenter: StartViewControllerPresenter
     private let viewControllerTitle = "Start"
 
-    init(presenter: StartTableViewControllerPresenter, onSearchRequested: @escaping (String) -> ()) {
+    init(presenter: StartViewControllerPresenter, onSearchRequested: @escaping (String) -> ()) {
         self.presenter = presenter
 
         presenter.onSearchPressed = { name in

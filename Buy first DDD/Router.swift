@@ -34,14 +34,14 @@ final class Router {
 
     private func showStartViewController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let startViewController = storyboard.instantiateViewController(withIdentifier: "StartTableViewController") as? StartTableViewController else {
+        guard let startViewController = storyboard.instantiateViewController(withIdentifier: "StartViewController") as? StartViewController else {
             return
         }
 
         searchNavController.pushViewController(startViewController, animated: false)
 
-        let presenter = StartTableViewControllerPresenter(viewController: startViewController)
-        let startViewControllerInteractor = StartTableViewControllerInteractor(presenter: presenter, onSearchRequested: { [weak self] name in
+        let presenter = StartViewControllerPresenter(viewController: startViewController)
+        let startViewControllerInteractor = StartViewControllerInteractor(presenter: presenter, onSearchRequested: { [weak self] name in
             self?.routeToMainViewController(name)
         })
 

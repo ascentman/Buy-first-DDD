@@ -8,18 +8,18 @@
 
 import Foundation
 
-final class StartTableViewControllerPresenter {
+final class StartViewControllerPresenter {
 
-    let startViewController: StartTableViewController?
+    let startViewController: StartViewController?
     var onSearchPressed: (String) -> Void = { _ in assertionFailure() }
 
-    init(viewController: StartTableViewController) {
+    init(viewController: StartViewController) {
         self.startViewController = viewController
     }
 
     func present(title: String, name: String) {
 
-        startViewController?.render(props: StartTableViewController.Props(title: title,
+        startViewController?.render(props: StartViewController.Props(title: title,
                                                                           itemName: name,
                                                                           onSearch: onSearchPressed
         ))
