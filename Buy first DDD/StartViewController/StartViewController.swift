@@ -100,7 +100,9 @@ final class StartViewController: UIViewController {
         addCartAnimation(completion: { [weak self] in
             self?.addPresentAnimation(completion: { [weak self] in
                 self?.addFullCartAnimation(completion: { [weak self] in
-                    self?.addAnimatedText()
+                    self?.addShakeAnimation(completion: { [weak self] in
+                        self?.addAnimatedText()
+                    })
                 })
             })
         })
@@ -110,12 +112,12 @@ final class StartViewController: UIViewController {
         let cartLayer = CALayer()
         let myImage = UIImage(named: "shoppingCart")?.maskWithColor(color: .white)?.cgImage
         cartLayer.frame = CGRect(x: -100, y: 150, width: 100, height: 100)
-        cartLayer.position = CGPoint(x: view.frame.width / 2, y: 150)
+        cartLayer.position = CGPoint(x: view.frame.width / 2, y: 200)
         cartLayer.contents = myImage
 
         let animation = CABasicAnimation(keyPath: "position")
-        animation.fromValue = [0, 150]
-        animation.toValue = [view.frame.width / 2 , 150]
+        animation.fromValue = [0, 200]
+        animation.toValue = [view.frame.width / 2 , 200]
         animation.duration = 1.3
         animation.isRemovedOnCompletion = false
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
@@ -131,12 +133,12 @@ final class StartViewController: UIViewController {
         let presentLayer = CALayer()
         let myImage = UIImage(named: "present")?.cgImage
         presentLayer.frame = CGRect(x: -50, y: 0, width: 60, height: 60)
-        presentLayer.position = CGPoint(x: view.frame.width / 2 + 10, y: 130)
+        presentLayer.position = CGPoint(x: view.frame.width / 2 + 10, y: 180)
         presentLayer.contents = myImage
 
         let animation = CABasicAnimation(keyPath: "position")
         animation.fromValue = [view.frame.width / 2 + 10, 0]
-        animation.toValue = [view.frame.width / 2  + 10, 130]
+        animation.toValue = [view.frame.width / 2  + 10, 180]
         animation.duration = 1.3
         animation.isRemovedOnCompletion = false
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
@@ -152,13 +154,13 @@ final class StartViewController: UIViewController {
     private func addFullCartAnimation(completion: @escaping () -> ()) {
         let animation1 = CABasicAnimation(keyPath: "position")
         let animation2 = CABasicAnimation(keyPath: "position")
-        animation1.fromValue = [view.frame.width / 2 , 150]
-        animation1.toValue = [view.frame.width + 100 , 150]
+        animation1.fromValue = [view.frame.width / 2 , 200]
+        animation1.toValue = [view.frame.width + 100 , 200]
         animation1.duration = 1.5
         animation1.isRemovedOnCompletion = false
         animation1.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        animation2.fromValue = [view.frame.width / 2 + 10 , 130]
-        animation2.toValue = [view.frame.width + 110 , 130]
+        animation2.fromValue = [view.frame.width / 2 + 10 , 180]
+        animation2.toValue = [view.frame.width + 110 , 180]
         animation2.duration = 1.5
         animation2.isRemovedOnCompletion = false
         animation2.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
@@ -169,12 +171,39 @@ final class StartViewController: UIViewController {
         presentLayer.add(animation2, forKey: nil)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             completion()
-            presentLayer.removeAllAnimations()
-            cartLayer.removeAllAnimations()
-            presentLayer.removeFromSuperlayer()
-            cartLayer.removeFromSuperlayer()
         }
     }
+
+    private func addShakeAnimation(completion: @escaping () -> ()) {
+        guard let cartLayer = cartLayer, let presentLayer = presentLayer else {
+            return
+        }
+
+        let animation1 = CABasicAnimation(keyPath: "transform.rotation")
+        let animation2 = CABasicAnimation(keyPath: "transform.rotation")
+        animation1.fromValue = -CGFloat(Double.pi / 20)
+        animation1.toValue = CGFloat(Double.pi / 20)
+        animation1.duration = 0.1
+        animation1.repeatCount = 5
+        animation1.autoreverses = true
+        animation1.isRemovedOnCompletion = true
+        animation1.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        animation2.fromValue = -CGFloat(Double.pi / 20)
+        animation2.toValue = CGFloat(Double.pi / 20)
+        animation2.duration = 0.1
+        animation2.repeatCount = 5
+        animation2.autoreverses = true
+        animation2.isRemovedOnCompletion = true
+        animation2.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+
+        cartLayer.add(animation1, forKey: nil)
+        presentLayer.add(animation2, forKey: nil)
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            completion()
+        }
+    }
+
 
     private func addAnimatedText() {
         let myAttributes = [
@@ -186,7 +215,7 @@ final class StartViewController: UIViewController {
         let textLayer = CATextLayer()
         textLayer.string = myAttributedString
         textLayer.backgroundColor = UIColor.clear.cgColor
-        textLayer.frame = CGRect(x: view.bounds.width / 2 - 110, y: 100, width: 240, height: 150)
+        textLayer.frame = CGRect(x: view.bounds.width / 2 - 100, y: 50, width: 240, height: 100)
 
         let animationOpacity = CABasicAnimation(keyPath: "opacity")
         let animationScaling = CABasicAnimation(keyPath: "transform.scale.y")

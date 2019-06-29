@@ -68,6 +68,12 @@
                                     <action selector="startButtonDidPressed:" destination="ZLB-Bl-Cfx" eventType="touchUpInside" id="cbv-0L-6WJ"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ng9-Fm-vAo">
+                                <rect key="frame" x="171.5" y="764" width="71" height="19"/>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="13"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -78,6 +84,8 @@
                             <constraint firstItem="dbo-NE-rfO" firstAttribute="leading" secondItem="SIz-ju-DD7" secondAttribute="leading" constant="40" id="AgK-Rj-J9P"/>
                             <constraint firstItem="dbo-NE-rfO" firstAttribute="centerY" secondItem="ZGe-Gq-Gfe" secondAttribute="centerY" id="PbO-Ab-EiJ"/>
                             <constraint firstItem="3hD-4C-Zex" firstAttribute="width" secondItem="dbo-NE-rfO" secondAttribute="width" id="ZZS-ph-yFj"/>
+                            <constraint firstItem="Ng9-Fm-vAo" firstAttribute="centerX" secondItem="ZGe-Gq-Gfe" secondAttribute="centerX" id="gxD-Be-d5e"/>
+                            <constraint firstItem="SIz-ju-DD7" firstAttribute="bottom" secondItem="Ng9-Fm-vAo" secondAttribute="bottom" constant="30" id="v4H-qj-YsD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SIz-ju-DD7"/>
                     </view>
