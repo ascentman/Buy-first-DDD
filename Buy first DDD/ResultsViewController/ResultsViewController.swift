@@ -9,14 +9,14 @@
 import UIKit
 import WebKit
 import SafariServices
+import NVActivityIndicatorView
+import BRYXBanner
 
 final class ResultsViewController: UIViewController {
 
     @IBOutlet private weak var reloadSwitch: UISwitch!
-    @IBOutlet private weak var resultsLabel: UILabel!
     @IBOutlet private weak var resultsTableView: UITableView!
-    @IBOutlet private weak var itemActivityIndicator: UIActivityIndicatorView!
-    @IBOutlet private weak var statusLabel: UILabel!
+    @IBOutlet private weak var activityIndicatorView: NVActivityIndicatorView!
 
     let webView = WKWebView()
     var items: [Item] = []
@@ -35,9 +35,9 @@ final class ResultsViewController: UIViewController {
         resultsTableView.tableFooterView = UIView()
         webView.navigationDelegate = self
 
-        statusLabel.text = "Loading"
-        itemActivityIndicator.isHidden = false
-        itemActivityIndicator.startAnimating()
+        activityIndicatorView.isHidden = false
+        activityIndicatorView.startAnimating()
+        createBanner()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -47,7 +47,10 @@ final class ResultsViewController: UIViewController {
     }
 
     @IBAction func switchDidTapped(_ sender: Any) {
+
         if reloadSwitch.isOn {
+            let banner = createBanner()
+            banner.show(duration: 3.0)
             timer.invalidate()
             timer = Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
             RunLoop.current.add(timer, forMode: .common)
@@ -57,14 +60,20 @@ final class ResultsViewController: UIViewController {
     }
 
     @objc func timerAction() {
-        itemActivityIndicator.isHidden = false
-        itemActivityIndicator.startAnimating()
-        statusLabel.text = "Loading"
+        activityIndicatorView.isHidden = false
+        activityIndicatorView.startAnimating()
         resultsTableView.alpha = 0.7
         onGenerateRequest()
     }
 
     // MARK: - Private
+
+    private func createBanner() -> Banner {
+        let banner = Banner(title: "Info", subtitle: "Please don't lock your device when continuous update enbled!", image: UIImage(named: "info"), backgroundColor: .purple, didTapBlock: nil)
+        banner.dismissesOnTap = true
+        banner.position = .bottom
+        return banner
+    }
 
     private func setupWebView() {
         webView.frame = CGRect(x: 300, y: 400, width: 1, height: 1)
@@ -97,8 +106,8 @@ extension ResultsViewController: WKNavigationDelegate {
                 do {
                     let response = try EbayResponse(value)
                     self?.items = response.items
-                    self?.itemActivityIndicator.stopAnimating()
-                    self?.statusLabel.text = "Loaded"
+                    self?.activityIndicatorView.stopAnimating()
+                    self?.activityIndicatorView.isHidden = true
                     self?.resultsTableView.alpha = 1.0
                     self?.resultsTableView.reloadData()
                 } catch {}

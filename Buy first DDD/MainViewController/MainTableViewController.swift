@@ -162,7 +162,7 @@ final class MainTableViewController: UITableViewController {
         togglePicker()
         conditionPicker.delegate = self
 
-        let animation = AnimationFactory.makeMoveUpWithBounce(rowHeight: 44, duration: 1.5, delayFactor: 0.05)
+        let animation = AnimationFactory.makeMoveUpWithBounce(rowHeight: 44, duration: 1.0, delayFactor: 0.05)
         let animator = Animator(animation: animation)
         animator.animate(tableView: tableView)
     }

@@ -8,4 +8,6 @@ target 'Buy first DDD' do
   # Pods for Buy first DDD
     pod 'SwiftSoup'
     pod 'SkyFloatingLabelTextField'
+    pod 'NVActivityIndicatorView'
+    pod 'BRYXBanner'
 end

@@ -207,7 +207,7 @@ final class StartViewController: UIViewController {
 
     private func addAnimatedText() {
         let myAttributes = [
-            NSAttributedString.Key.font: UIFont(name: "ChalkboardSE-Bold", size: 50.0)! ,
+            NSAttributedString.Key.font: UIFont(name: "ChalkboardSE-Bold", size: 44.0)! ,
             NSAttributedString.Key.foregroundColor: UIColor.white
         ]
         let myAttributedString = NSAttributedString(string: "Buy first", attributes: myAttributes )
@@ -215,7 +215,7 @@ final class StartViewController: UIViewController {
         let textLayer = CATextLayer()
         textLayer.string = myAttributedString
         textLayer.backgroundColor = UIColor.clear.cgColor
-        textLayer.frame = CGRect(x: view.bounds.width / 2 - 100, y: 50, width: 240, height: 100)
+        textLayer.frame = CGRect(x: view.bounds.width / 2 - 90, y: 50, width: 240, height: 100)
 
         let animationOpacity = CABasicAnimation(keyPath: "opacity")
         let animationScaling = CABasicAnimation(keyPath: "transform.scale.y")
