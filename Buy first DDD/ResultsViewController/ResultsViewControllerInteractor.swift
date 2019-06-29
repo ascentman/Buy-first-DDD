@@ -70,11 +70,3 @@ final class ResultsViewControllerInteractor {
         resultsViewController?.webView.loadUrl(string: baseAbsoluteUrl)
     }
 }
-
-// Extensions
-
-extension String {
-    func trim() -> String {
-        return trimmingCharacters(in: CharacterSet.whitespaces)
-    }
-}

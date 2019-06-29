@@ -25,6 +25,10 @@
 		CEC9B7BD22C4B38A00DD2F54 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9B7BC22C4B38A00DD2F54 /* StartViewController.swift */; };
 		CEC9B7BF22C4B3B600DD2F54 /* StartViewControllerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9B7BE22C4B3B600DD2F54 /* StartViewControllerInteractor.swift */; };
 		CEC9B7C122C4B3C400DD2F54 /* StartViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9B7C022C4B3C400DD2F54 /* StartViewControllerPresenter.swift */; };
+		CEC9B7CD22C75FDF00DD2F54 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9B7CC22C75FDF00DD2F54 /* UIView+Extensions.swift */; };
+		CEC9B7CF22C7601900DD2F54 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9B7CE22C7601900DD2F54 /* UIImage+Extensions.swift */; };
+		CEC9B7D422C760C100DD2F54 /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9B7D322C760C100DD2F54 /* UINavigationController+Extensions.swift */; };
+		CEC9B7D622C7612400DD2F54 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9B7D522C7612400DD2F54 /* String+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +54,10 @@
 		CEC9B7BC22C4B38A00DD2F54 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		CEC9B7BE22C4B3B600DD2F54 /* StartViewControllerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewControllerInteractor.swift; sourceTree = "<group>"; };
 		CEC9B7C022C4B3C400DD2F54 /* StartViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewControllerPresenter.swift; sourceTree = "<group>"; };
+		CEC9B7CC22C75FDF00DD2F54 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		CEC9B7CE22C7601900DD2F54 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		CEC9B7D322C760C100DD2F54 /* UINavigationController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extensions.swift"; sourceTree = "<group>"; };
+		CEC9B7D522C7612400DD2F54 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				CE4470B522BB9F8A0036524B /* Buy first DDD */,
+				CEC9B7CB22C75FAE00DD2F54 /* Extensions */,
 				CE4470B422BB9F8A0036524B /* Products */,
 				63CAA1D1105582BF96C24AAF /* Pods */,
 				18456A18300C1A6E1FD079A6 /* Frameworks */,
@@ -132,8 +141,8 @@
 				CE4470C222BB9F8B0036524B /* LaunchScreen.storyboard */,
 				CE4470C522BB9F8B0036524B /* Info.plist */,
 				CE4470BD22BB9F8A0036524B /* Buy_first_DDD.xcdatamodeld */,
-				CE39285522C3B4B90098EEE7 /* EbayResponse.swift */,
-				CE39285722C3B4F10098EEE7 /* Item.swift */,
+				CEC9B7CA22C75F8700DD2F54 /* Parser */,
+				CEC9B7C922C75F7500DD2F54 /* Model */,
 			);
 			path = "Buy first DDD";
 			sourceTree = "<group>";
@@ -146,6 +155,33 @@
 				CEC9B7C022C4B3C400DD2F54 /* StartViewControllerPresenter.swift */,
 			);
 			path = StartViewController;
+			sourceTree = "<group>";
+		};
+		CEC9B7C922C75F7500DD2F54 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CE39285722C3B4F10098EEE7 /* Item.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CEC9B7CA22C75F8700DD2F54 /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				CE39285522C3B4B90098EEE7 /* EbayResponse.swift */,
+			);
+			path = Parser;
+			sourceTree = "<group>";
+		};
+		CEC9B7CB22C75FAE00DD2F54 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CEC9B7CC22C75FDF00DD2F54 /* UIView+Extensions.swift */,
+				CEC9B7CE22C7601900DD2F54 /* UIImage+Extensions.swift */,
+				CEC9B7D322C760C100DD2F54 /* UINavigationController+Extensions.swift */,
+				CEC9B7D522C7612400DD2F54 /* String+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,6 +303,8 @@
 				CE39285622C3B4B90098EEE7 /* EbayResponse.swift in Sources */,
 				CE4470B922BB9F8A0036524B /* MainTableViewController.swift in Sources */,
 				CE4C110122C20B9B001855AE /* ItemTableViewCell.swift in Sources */,
+				CEC9B7D622C7612400DD2F54 /* String+Extensions.swift in Sources */,
+				CEC9B7D422C760C100DD2F54 /* UINavigationController+Extensions.swift in Sources */,
 				CE4470CE22BBA6330036524B /* MainViewControllerPresenter.swift in Sources */,
 				CE1C703622C0E4E50069D29D /* ResultsViewController.swift in Sources */,
 				CE39285822C3B4F10098EEE7 /* Item.swift in Sources */,
@@ -275,8 +313,10 @@
 				CE4470B722BB9F8A0036524B /* AppDelegate.swift in Sources */,
 				CE4470D022BBA6500036524B /* MainViewControllerInteractor.swift in Sources */,
 				CEC9B7BD22C4B38A00DD2F54 /* StartViewController.swift in Sources */,
+				CEC9B7CD22C75FDF00DD2F54 /* UIView+Extensions.swift in Sources */,
 				CEC9B7BF22C4B3B600DD2F54 /* StartViewControllerInteractor.swift in Sources */,
 				CE4470BF22BB9F8A0036524B /* Buy_first_DDD.xcdatamodeld in Sources */,
+				CEC9B7CF22C7601900DD2F54 /* UIImage+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
