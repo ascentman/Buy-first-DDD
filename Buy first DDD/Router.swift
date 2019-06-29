@@ -12,14 +12,27 @@ final class Router {
 
     private let tabBarController = UITabBarController()
     private let searchNavController = UINavigationController()
-    private let bookmarksNavController = UINavigationController()
+    private let historyNavController = UINavigationController()
 
     init() {
-        tabBarController.viewControllers = [searchNavController, bookmarksNavController]
+        tabBarController.viewControllers = [searchNavController, historyNavController]
+        searchNavController.navigationBar.titleTextAttributes =
+            [NSAttributedString.Key.foregroundColor: UIColor.purple,
+             NSAttributedString.Key.font: UIFont(name: "ChalkboardSE-Bold", size: 19.0)!]
+
+        let backImage = UIImage(named: "back")
+        UINavigationBar.appearance().backIndicatorImage = backImage
+        UINavigationBar.appearance().backIndicatorTransitionMaskImage = backImage
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor:
+            UIColor.white], for: .normal)
+        UIBarButtonItem.appearance().tintColor = UIColor.orange
+        UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: 0, vertical: -5), for: .default)
 
         // tabBar items
         let item1 = UITabBarItem(tabBarSystemItem: .search, tag: 0)
+        let item2 = UITabBarItem(tabBarSystemItem: .history, tag: 1)
         searchNavController.tabBarItem = item1
+        historyNavController.tabBarItem = item2
     }
 
     var rootViewController: UIViewController {

@@ -73,7 +73,7 @@ final class StartViewController: UIViewController {
     // MARK: - Actions
 
     @IBAction func startButtonDidPressed(_ sender: Any) {
-        guard let name = nameTextField.text, !name.isEmpty else {
+        guard let name = nameTextField.text, !name.isEmpty, name.isAlphanumericWithSpace else {
             AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
             nameTextField.shake()
             return

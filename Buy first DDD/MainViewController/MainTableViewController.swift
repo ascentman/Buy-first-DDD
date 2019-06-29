@@ -107,7 +107,7 @@ final class MainTableViewController: UITableViewController {
         let onUpdateCondition: (Condition) -> Void
         let onSearch: (String, String) -> Void
 
-        static let initial = Props(title: "",
+        static let initial = Props(title: "Results",
                                    auctionCheckMark: Checkmark(isChecked: false, onSelect: {}),
                                    buyItNowCheckMark: Checkmark(isChecked: false, onSelect: {}),
                                    anyShippingCheckmark: Checkmark(isChecked: false, onSelect: {}),
@@ -146,6 +146,7 @@ final class MainTableViewController: UITableViewController {
     @IBOutlet weak var priceSwitch: UISwitch!
     @IBOutlet weak var minPriceTextLabel: UITextField!
     @IBOutlet weak var maxPriceTextLabel: UITextField!
+    @IBOutlet private weak var searchButton: UIButton!
 
     private var conditionPickerIsHidden = false
     private var configurePriceIsHidden = true
@@ -179,7 +180,10 @@ final class MainTableViewController: UITableViewController {
         let maxPrice = maxPriceTextLabel.text else {
             return
         }
-        props.onSearch(minPrice, maxPrice)
+
+        searchButton.pulse(completion: { [weak self] in
+            self?.props.onSearch(minPrice, maxPrice)
+        })
     }
 
     // MARK: - UITableViewDelegate

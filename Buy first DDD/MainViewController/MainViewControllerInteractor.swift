@@ -75,7 +75,7 @@ final class MainViewControllerInteractor {
         let anyShippingRow = Filter.Row(title: "Any shipping", isSelected: true)
         let freeShippingRow = Filter.Row(title: "Free shipping", isSelected: false)
 
-        self.currentFilter = Filter(title: "", itemToSearch: itemToSearch, selectedCondition: .any, minPrice: "0", maxPrice: "9999", rows: [auctionRow, buyItNowRow, anyShippingRow, freeShippingRow])
+        self.currentFilter = Filter(title: "Apply filters", itemToSearch: itemToSearch, selectedCondition: .any, minPrice: "0", maxPrice: "9999", rows: [auctionRow, buyItNowRow, anyShippingRow, freeShippingRow])
     }
 
     // MARK: - Private

@@ -30,6 +30,7 @@ final class ResultsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "Results"
         setupWebView()
         resultsTableView.tableFooterView = UIView()
         webView.navigationDelegate = self
