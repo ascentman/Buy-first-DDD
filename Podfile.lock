@@ -1,16 +1,20 @@
 PODS:
+  - SkyFloatingLabelTextField (3.7.0)
   - SwiftSoup (2.2.0)
 
 DEPENDENCIES:
+  - SkyFloatingLabelTextField
   - SwiftSoup
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - SkyFloatingLabelTextField
     - SwiftSoup
 
 SPEC CHECKSUMS:
+  SkyFloatingLabelTextField: 4b46db0ab1ccde0919cded29c656e6b4805eda04
   SwiftSoup: 230991361c5ba249d140161860a3864a28b63860
 
-PODFILE CHECKSUM: df0de757888eb9eb6c6869e844d1d7df61c95f3e
+PODFILE CHECKSUM: a5f56e856c3a1370bc723c88a9171f65fe410e69
 
 COCOAPODS: 1.7.1

@@ -8,6 +8,7 @@
 
 import UIKit
 import AudioToolbox
+import SkyFloatingLabelTextField
 
 final class StartViewController: UIViewController {
 
@@ -36,7 +37,7 @@ final class StartViewController: UIViewController {
     // MARK: - IBOutlets
 
 
-    @IBOutlet private weak var nameTextField: UITextField!
+    @IBOutlet private weak var nameTextField: SkyFloatingLabelTextField!
     @IBOutlet private weak var searchButton: UIButton!
     var retainedObject: AnyObject?
 
@@ -52,6 +53,7 @@ final class StartViewController: UIViewController {
         addAnimations()
         nameTextField.tintColor = .orange
         nameTextField.delegate = self
+        nameTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -83,6 +85,16 @@ final class StartViewController: UIViewController {
     }
 
     // MARK : Private
+
+    @objc private func textFieldDidChange(_ textfield: UITextField) {
+        if let text = nameTextField.text {
+            if text.isAlphanumericWithSpace || text.isEmpty {
+                nameTextField.errorMessage = ""
+            } else {
+                nameTextField.errorMessage = "Invalid characters"
+            }
+        }
+    }
 
     private func addAnimations() {
         addCartAnimation(completion: { [weak self] in
@@ -166,7 +178,7 @@ final class StartViewController: UIViewController {
 
     private func addAnimatedText() {
         let myAttributes = [
-            NSAttributedString.Key.font: UIFont(name: "Chalkduster", size: 48.0)! ,
+            NSAttributedString.Key.font: UIFont(name: "ChalkboardSE-Bold", size: 50.0)! ,
             NSAttributedString.Key.foregroundColor: UIColor.white
         ]
         let myAttributedString = NSAttributedString(string: "Buy first", attributes: myAttributes )
@@ -174,7 +186,7 @@ final class StartViewController: UIViewController {
         let textLayer = CATextLayer()
         textLayer.string = myAttributedString
         textLayer.backgroundColor = UIColor.clear.cgColor
-        textLayer.frame = CGRect(x: view.bounds.width / 2 - 120, y: 100, width: 240, height: 150)
+        textLayer.frame = CGRect(x: view.bounds.width / 2 - 110, y: 100, width: 240, height: 150)
 
         let animationOpacity = CABasicAnimation(keyPath: "opacity")
         let animationScaling = CABasicAnimation(keyPath: "transform.scale.y")

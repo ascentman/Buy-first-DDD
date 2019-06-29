@@ -1,2 +1,3 @@
 ${PODS_ROOT}/Target Support Files/Pods-Buy first DDD/Pods-Buy first DDD-frameworks.sh
+${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework
 ${BUILT_PRODUCTS_DIR}/SwiftSoup/SwiftSoup.framework

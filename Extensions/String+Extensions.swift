@@ -12,4 +12,8 @@ extension String {
     func trim() -> String {
         return trimmingCharacters(in: CharacterSet.whitespaces)
     }
+
+    var isAlphanumericWithSpace: Bool {
+        return !isEmpty && range(of: "[^a-zA-Z0-9 ]", options: .regularExpression) == nil
+    }
 }
