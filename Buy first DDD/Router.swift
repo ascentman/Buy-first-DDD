@@ -15,7 +15,13 @@ final class Router {
     private let bookmarksNavController = UINavigationController()
 
     init() {
-        tabBarController.viewControllers = [searchNavController, bookmarksNavController]
+//        UITabBar.appearance().shadowImage = UIImage()
+//        UITabBar.appearance().backgroundImage = UIImage()
+//        UITabBar.appearance().barTintColor = UIColor.clear
+//        tabBarController.viewControllers = [searchNavController, bookmarksNavController]
+//
+//        searchNavController.navigationBar.shadowImage = UIImage()
+//        searchNavController.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
 
         // tabBar items
         let item1 = UITabBarItem(tabBarSystemItem: .search, tag: 0)

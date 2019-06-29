@@ -150,7 +150,6 @@ final class MainTableViewController: UITableViewController {
     private var conditionPickerIsHidden = false
     private var configurePriceIsHidden = true
 
-
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
@@ -161,6 +160,10 @@ final class MainTableViewController: UITableViewController {
         addDoneButtonOnKeyboard()
         togglePicker()
         conditionPicker.delegate = self
+
+        let animation = AnimationFactory.makeMoveUpWithBounce(rowHeight: 44, duration: 1.5, delayFactor: 0.05)
+        let animator = Animator(animation: animation)
+        animator.animate(tableView: tableView)
     }
 
     // MARK: - Actions

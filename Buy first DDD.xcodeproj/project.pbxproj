@@ -29,6 +29,9 @@
 		CEC9B7CF22C7601900DD2F54 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9B7CE22C7601900DD2F54 /* UIImage+Extensions.swift */; };
 		CEC9B7D422C760C100DD2F54 /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9B7D322C760C100DD2F54 /* UINavigationController+Extensions.swift */; };
 		CEC9B7D622C7612400DD2F54 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9B7D522C7612400DD2F54 /* String+Extensions.swift */; };
+		CEC9B7D922C77E9000DD2F54 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9B7D822C77E9000DD2F54 /* Animator.swift */; };
+		CEC9B7DB22C77F0B00DD2F54 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9B7DA22C77F0B00DD2F54 /* Animations.swift */; };
+		CEC9B7DD22C77F9700DD2F54 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9B7DC22C77F9700DD2F54 /* UITableView+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +61,9 @@
 		CEC9B7CE22C7601900DD2F54 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		CEC9B7D322C760C100DD2F54 /* UINavigationController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extensions.swift"; sourceTree = "<group>"; };
 		CEC9B7D522C7612400DD2F54 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		CEC9B7D822C77E9000DD2F54 /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
+		CEC9B7DA22C77F0B00DD2F54 /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
+		CEC9B7DC22C77F9700DD2F54 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				CE4470B522BB9F8A0036524B /* Buy first DDD */,
+				CEC9B7D722C77E7900DD2F54 /* Support classes */,
 				CEC9B7CB22C75FAE00DD2F54 /* Extensions */,
 				CE4470B422BB9F8A0036524B /* Products */,
 				63CAA1D1105582BF96C24AAF /* Pods */,
@@ -180,8 +187,18 @@
 				CEC9B7CE22C7601900DD2F54 /* UIImage+Extensions.swift */,
 				CEC9B7D322C760C100DD2F54 /* UINavigationController+Extensions.swift */,
 				CEC9B7D522C7612400DD2F54 /* String+Extensions.swift */,
+				CEC9B7DC22C77F9700DD2F54 /* UITableView+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CEC9B7D722C77E7900DD2F54 /* Support classes */ = {
+			isa = PBXGroup;
+			children = (
+				CEC9B7D822C77E9000DD2F54 /* Animator.swift */,
+				CEC9B7DA22C77F0B00DD2F54 /* Animations.swift */,
+			);
+			path = "Support classes";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,8 +319,10 @@
 				CE4470CC22BBA1E30036524B /* Router.swift in Sources */,
 				CE39285622C3B4B90098EEE7 /* EbayResponse.swift in Sources */,
 				CE4470B922BB9F8A0036524B /* MainTableViewController.swift in Sources */,
+				CEC9B7D922C77E9000DD2F54 /* Animator.swift in Sources */,
 				CE4C110122C20B9B001855AE /* ItemTableViewCell.swift in Sources */,
 				CEC9B7D622C7612400DD2F54 /* String+Extensions.swift in Sources */,
+				CEC9B7DB22C77F0B00DD2F54 /* Animations.swift in Sources */,
 				CEC9B7D422C760C100DD2F54 /* UINavigationController+Extensions.swift in Sources */,
 				CE4470CE22BBA6330036524B /* MainViewControllerPresenter.swift in Sources */,
 				CE1C703622C0E4E50069D29D /* ResultsViewController.swift in Sources */,
@@ -312,6 +331,7 @@
 				CE1C703A22C0E6950069D29D /* ResultsViewControllerInteractor.swift in Sources */,
 				CE4470B722BB9F8A0036524B /* AppDelegate.swift in Sources */,
 				CE4470D022BBA6500036524B /* MainViewControllerInteractor.swift in Sources */,
+				CEC9B7DD22C77F9700DD2F54 /* UITableView+Extensions.swift in Sources */,
 				CEC9B7BD22C4B38A00DD2F54 /* StartViewController.swift in Sources */,
 				CEC9B7CD22C75FDF00DD2F54 /* UIView+Extensions.swift in Sources */,
 				CEC9B7BF22C4B3B600DD2F54 /* StartViewControllerInteractor.swift in Sources */,

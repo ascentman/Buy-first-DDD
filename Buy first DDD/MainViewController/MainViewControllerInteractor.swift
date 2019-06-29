@@ -72,10 +72,10 @@ final class MainViewControllerInteractor {
         itemToSearch = name
         let auctionRow = Filter.Row(title: "Auction", isSelected: true)
         let buyItNowRow = Filter.Row(title: "Buy it now", isSelected: false)
-        let anyShippingRow = Filter.Row(title: "Any", isSelected: true)
-        let freeShippingRow = Filter.Row(title: "Auction", isSelected: false)
+        let anyShippingRow = Filter.Row(title: "Any shipping", isSelected: true)
+        let freeShippingRow = Filter.Row(title: "Free shipping", isSelected: false)
 
-        self.currentFilter = Filter(title: "Filter", itemToSearch: itemToSearch, selectedCondition: .any, minPrice: "0", maxPrice: "9999", rows: [auctionRow, buyItNowRow, anyShippingRow, freeShippingRow])
+        self.currentFilter = Filter(title: "", itemToSearch: itemToSearch, selectedCondition: .any, minPrice: "0", maxPrice: "9999", rows: [auctionRow, buyItNowRow, anyShippingRow, freeShippingRow])
     }
 
     // MARK: - Private
