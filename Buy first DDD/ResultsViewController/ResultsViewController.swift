@@ -24,9 +24,9 @@ final class ResultsViewController: UIViewController {
     @IBOutlet private weak var activityIndicatorView: NVActivityIndicatorView!
 
     let webView = WKWebView()
-    var items: [Item] = []
-    var iterationItems: [Item] = []
-    var timer = Timer()
+    private var items: [Item] = []
+    private var iterationItems: [Item] = []
+    private var timer = Timer()
     var onGenerateRequest: () -> Void = {}
 
     var retainedObject: AnyObject?
@@ -43,6 +43,10 @@ final class ResultsViewController: UIViewController {
 
         activityIndicatorView.isHidden = false
         activityIndicatorView.startAnimating()
+
+        if !NetworkService.isConnectedToNetwork() {
+            createErrorBanner()
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -55,13 +59,17 @@ final class ResultsViewController: UIViewController {
         LocalNotificationsService.shared.registerLocalNotifications()
 
         if reloadSwitch.isOn {
-            let banner = createBanner()
+            let banner = createInfoBanner()
             banner.show(duration: 3.0)
             timer.invalidate()
             timer = Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
             RunLoop.current.add(timer, forMode: .common)
         } else {
             timer.invalidate()
+            webView.stopLoading()
+            activityIndicatorView.stopAnimating()
+            activityIndicatorView.isHidden = true
+            resultsTableView.alpha = 1.0
         }
     }
 
@@ -69,16 +77,25 @@ final class ResultsViewController: UIViewController {
         activityIndicatorView.isHidden = false
         activityIndicatorView.startAnimating()
         resultsTableView.alpha = 0.7
-        onGenerateRequest()
+        if self == navigationController?.topViewController {
+            onGenerateRequest()
+        }
     }
 
     // MARK: - Private
 
-    private func createBanner() -> Banner {
+    private func createInfoBanner() -> Banner {
         let banner = Banner(title: "Info", subtitle: "Please don't lock your device when continuous update enabled!", image: UIImage(named: "info"), backgroundColor: .purple, didTapBlock: nil)
         banner.dismissesOnTap = true
         banner.position = .bottom
         return banner
+    }
+
+    private func createErrorBanner() {
+        let banner = Banner(title: "Error", subtitle: "No Internet connection", image: UIImage(named: "error"), backgroundColor: .red, didTapBlock: nil)
+        banner.dismissesOnTap = true
+        banner.position = .bottom
+        banner.show(duration: 2.0)
     }
 
     private func setupWebView() {
@@ -90,7 +107,6 @@ final class ResultsViewController: UIViewController {
         view.addSubview(webView)
     }
 }
-
 
 // MARK: - Extensions
 
@@ -122,7 +138,6 @@ extension ResultsViewController: WKNavigationDelegate {
                     let itemLink = try document.getElementsByClass("s-item__link").array()
 
                     self?.iterationItems = []
-
                     for i in 3..<13 {
                         let name = try itemTitles[i + 1].text()
                         let price = try itemPrices[i].text()
@@ -158,20 +173,6 @@ extension ResultsViewController: WKNavigationDelegate {
                 } catch {}
             }
         }
-
-
-//        DispatchQueue.main.async { [weak self] in
-//            self?.webView.evaluateJavaScript("document.getElementsByTagName('html')[0].innerHTML") { [weak self] (value, error) in
-//                do {
-//                    let response = try EbayResponse(value)
-//                    self?.items = response.items
-//                    self?.activityIndicatorView.stopAnimating()
-//                    self?.activityIndicatorView.isHidden = true
-//                    self?.resultsTableView.alpha = 1.0
-//                    self?.resultsTableView.reloadData()
-//                } catch {}
-//            }
-//        }
     }
 }
 
@@ -199,21 +200,5 @@ extension ResultsViewController: UITableViewDelegate, UITableViewDataSource {
             svc.preferredControlTintColor = UIColor.orange
             present(svc, animated: true, completion: nil)
         }
-    }
-}
-
-
-extension Array where Element: Equatable {
-    func containSameElements(_ array: [Element]) -> Bool {
-        var selfCopy = self
-        var secondArrayCopy = array
-        while let currentItem = selfCopy.popLast() {
-            if let indexOfCurrentItem = secondArrayCopy.firstIndex(of: currentItem) {
-                secondArrayCopy.remove(at: indexOfCurrentItem)
-            } else {
-                return false
-            }
-        }
-        return secondArrayCopy.isEmpty
     }
 }
