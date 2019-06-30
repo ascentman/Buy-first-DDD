@@ -10,7 +10,6 @@
 		257F48F4ACAAC40B419A9728 /* Pods_Buy_first_DDD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E37C4F8B5042B260FE2396 /* Pods_Buy_first_DDD.framework */; };
 		CE1C703622C0E4E50069D29D /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1C703522C0E4E50069D29D /* ResultsViewController.swift */; };
 		CE1C703A22C0E6950069D29D /* ResultsViewControllerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1C703922C0E6950069D29D /* ResultsViewControllerInteractor.swift */; };
-		CE39285622C3B4B90098EEE7 /* EbayResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE39285522C3B4B90098EEE7 /* EbayResponse.swift */; };
 		CE39285822C3B4F10098EEE7 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE39285722C3B4F10098EEE7 /* Item.swift */; };
 		CE4470B722BB9F8A0036524B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4470B622BB9F8A0036524B /* AppDelegate.swift */; };
 		CE4470B922BB9F8A0036524B /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4470B822BB9F8A0036524B /* MainTableViewController.swift */; };
@@ -22,6 +21,7 @@
 		CE4470CE22BBA6330036524B /* MainViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4470CD22BBA6330036524B /* MainViewControllerPresenter.swift */; };
 		CE4470D022BBA6500036524B /* MainViewControllerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4470CF22BBA6500036524B /* MainViewControllerInteractor.swift */; };
 		CE4C110122C20B9B001855AE /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C110022C20B9B001855AE /* ItemTableViewCell.swift */; };
+		CE68B75222C8BD9A0014B24C /* LocalNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE68B75122C8BD9A0014B24C /* LocalNotificationService.swift */; };
 		CEC9B7BD22C4B38A00DD2F54 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9B7BC22C4B38A00DD2F54 /* StartViewController.swift */; };
 		CEC9B7BF22C4B3B600DD2F54 /* StartViewControllerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9B7BE22C4B3B600DD2F54 /* StartViewControllerInteractor.swift */; };
 		CEC9B7C122C4B3C400DD2F54 /* StartViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9B7C022C4B3C400DD2F54 /* StartViewControllerPresenter.swift */; };
@@ -40,7 +40,6 @@
 		B84D70FCCEE0BB73FCBA20C2 /* Pods-Buy first DDD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buy first DDD.debug.xcconfig"; path = "Target Support Files/Pods-Buy first DDD/Pods-Buy first DDD.debug.xcconfig"; sourceTree = "<group>"; };
 		CE1C703522C0E4E50069D29D /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		CE1C703922C0E6950069D29D /* ResultsViewControllerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewControllerInteractor.swift; sourceTree = "<group>"; };
-		CE39285522C3B4B90098EEE7 /* EbayResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EbayResponse.swift; sourceTree = "<group>"; };
 		CE39285722C3B4F10098EEE7 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		CE4470B322BB9F8A0036524B /* Buy first DDD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Buy first DDD.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE4470B622BB9F8A0036524B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -54,6 +53,7 @@
 		CE4470CD22BBA6330036524B /* MainViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerPresenter.swift; sourceTree = "<group>"; };
 		CE4470CF22BBA6500036524B /* MainViewControllerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerInteractor.swift; sourceTree = "<group>"; };
 		CE4C110022C20B9B001855AE /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
+		CE68B75122C8BD9A0014B24C /* LocalNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationService.swift; sourceTree = "<group>"; };
 		CEC9B7BC22C4B38A00DD2F54 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		CEC9B7BE22C4B3B600DD2F54 /* StartViewControllerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewControllerInteractor.swift; sourceTree = "<group>"; };
 		CEC9B7C022C4B3C400DD2F54 /* StartViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewControllerPresenter.swift; sourceTree = "<group>"; };
@@ -148,7 +148,7 @@
 				CE4470C222BB9F8B0036524B /* LaunchScreen.storyboard */,
 				CE4470C522BB9F8B0036524B /* Info.plist */,
 				CE4470BD22BB9F8A0036524B /* Buy_first_DDD.xcdatamodeld */,
-				CEC9B7CA22C75F8700DD2F54 /* Parser */,
+				CEC9B7CA22C75F8700DD2F54 /* LocalNotifications */,
 				CEC9B7C922C75F7500DD2F54 /* Model */,
 			);
 			path = "Buy first DDD";
@@ -172,12 +172,12 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		CEC9B7CA22C75F8700DD2F54 /* Parser */ = {
+		CEC9B7CA22C75F8700DD2F54 /* LocalNotifications */ = {
 			isa = PBXGroup;
 			children = (
-				CE39285522C3B4B90098EEE7 /* EbayResponse.swift */,
+				CE68B75122C8BD9A0014B24C /* LocalNotificationService.swift */,
 			);
-			path = Parser;
+			path = LocalNotifications;
 			sourceTree = "<group>";
 		};
 		CEC9B7CB22C75FAE00DD2F54 /* Extensions */ = {
@@ -317,7 +317,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE4470CC22BBA1E30036524B /* Router.swift in Sources */,
-				CE39285622C3B4B90098EEE7 /* EbayResponse.swift in Sources */,
+				CE68B75222C8BD9A0014B24C /* LocalNotificationService.swift in Sources */,
 				CE4470B922BB9F8A0036524B /* MainTableViewController.swift in Sources */,
 				CEC9B7D922C77E9000DD2F54 /* Animator.swift in Sources */,
 				CE4C110122C20B9B001855AE /* ItemTableViewCell.swift in Sources */,

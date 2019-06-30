@@ -11,6 +11,11 @@ import WebKit
 import SafariServices
 import NVActivityIndicatorView
 import BRYXBanner
+import SwiftSoup
+
+private enum HTMLError: Error {
+    case badResponse
+}
 
 final class ResultsViewController: UIViewController {
 
@@ -20,6 +25,7 @@ final class ResultsViewController: UIViewController {
 
     let webView = WKWebView()
     var items: [Item] = []
+    var iterationItems: [Item] = []
     var timer = Timer()
     var onGenerateRequest: () -> Void = {}
 
@@ -46,6 +52,7 @@ final class ResultsViewController: UIViewController {
     }
 
     @IBAction func switchDidTapped(_ sender: Any) {
+        LocalNotificationsService.shared.registerLocalNotifications()
 
         if reloadSwitch.isOn {
             let banner = createBanner()
@@ -100,18 +107,71 @@ extension WKWebView {
 extension ResultsViewController: WKNavigationDelegate {
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        DispatchQueue.main.async { [weak self] in
-            self?.webView.evaluateJavaScript("document.getElementsByTagName('html')[0].innerHTML") { [weak self] (value, error) in
+
+        webView.evaluateJavaScript("document.getElementsByTagName('html')[0].innerHTML") { [weak self] (value, error) in
+
+            DispatchQueue.global().async {
                 do {
-                    let response = try EbayResponse(value)
-                    self?.items = response.items
-                    self?.activityIndicatorView.stopAnimating()
-                    self?.activityIndicatorView.isHidden = true
-                    self?.resultsTableView.alpha = 1.0
-                    self?.resultsTableView.reloadData()
+                    guard let htmlString = value as? String else {
+                        throw HTMLError.badResponse
+                    }
+                    let document = try SwiftSoup.parse(htmlString)
+                    let itemTitles = try document.getElementsByClass("s-item__title").array()
+                    let itemPrices = try document.getElementsByClass("s-item__price").array()
+                    let itemImages = try document.getElementsByClass("s-item__image-img").array()
+                    let itemLink = try document.getElementsByClass("s-item__link").array()
+
+                    self?.iterationItems = []
+
+                    for i in 3..<13 {
+                        let name = try itemTitles[i + 1].text()
+                        let price = try itemPrices[i].text()
+                        let imageAbsolutePath = try itemImages[i].attr("src")
+                        let detailsLink = try itemLink[i].attr("href")
+
+                        let item = Item(name: name,
+                                        price: price,
+                                        imageAbsolutePath: imageAbsolutePath,
+                                        detailsLink: detailsLink)
+                        self?.iterationItems.append(item)
+                    }
+                    
+                    guard let items = self?.items, let iterItems = self?.iterationItems else {
+                        return
+                    }
+
+                    if items != iterItems,
+                        !items.isEmpty {
+                        LocalNotificationsService.shared.sendNotification()
+                        self?.items = iterItems
+                    } else {
+                        self?.items = iterItems
+                    }
+
+                    DispatchQueue.main.async {
+                        self?.activityIndicatorView.stopAnimating()
+                        self?.activityIndicatorView.isHidden = true
+                        self?.resultsTableView.alpha = 1.0
+                        self?.resultsTableView.reloadData()
+                    }
+
                 } catch {}
             }
         }
+
+
+//        DispatchQueue.main.async { [weak self] in
+//            self?.webView.evaluateJavaScript("document.getElementsByTagName('html')[0].innerHTML") { [weak self] (value, error) in
+//                do {
+//                    let response = try EbayResponse(value)
+//                    self?.items = response.items
+//                    self?.activityIndicatorView.stopAnimating()
+//                    self?.activityIndicatorView.isHidden = true
+//                    self?.resultsTableView.alpha = 1.0
+//                    self?.resultsTableView.reloadData()
+//                } catch {}
+//            }
+//        }
     }
 }
 
@@ -139,5 +199,21 @@ extension ResultsViewController: UITableViewDelegate, UITableViewDataSource {
             svc.preferredControlTintColor = UIColor.orange
             present(svc, animated: true, completion: nil)
         }
+    }
+}
+
+
+extension Array where Element: Equatable {
+    func containSameElements(_ array: [Element]) -> Bool {
+        var selfCopy = self
+        var secondArrayCopy = array
+        while let currentItem = selfCopy.popLast() {
+            if let indexOfCurrentItem = secondArrayCopy.firstIndex(of: currentItem) {
+                secondArrayCopy.remove(at: indexOfCurrentItem)
+            } else {
+                return false
+            }
+        }
+        return secondArrayCopy.isEmpty
     }
 }

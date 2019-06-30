@@ -16,6 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private let router = Router()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        application.isIdleTimerDisabled = true
+        UIApplication.shared.applicationIconBadgeNumber = 0
         window = UIWindow(frame: UIScreen.main.bounds)
         setupWindowLayout()
         router.start()
