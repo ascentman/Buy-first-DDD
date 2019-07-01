@@ -16,7 +16,7 @@ enum AnimationFactory {
         return { tableView in
 
             for (index, cell) in tableView.visibleCells.enumerated() {
-                cell.transform = CGAffineTransform(translationX: 0, y: rowHeight)
+                cell.transform = CGAffineTransform(translationX: 0, y: rowHeight / 2)
                 UIView.animate(
                     withDuration: duration,
                     delay: delayFactor * Double(index),

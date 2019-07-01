@@ -21,7 +21,6 @@
 		CE4470CE22BBA6330036524B /* MainViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4470CD22BBA6330036524B /* MainViewControllerPresenter.swift */; };
 		CE4470D022BBA6500036524B /* MainViewControllerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4470CF22BBA6500036524B /* MainViewControllerInteractor.swift */; };
 		CE4C110122C20B9B001855AE /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C110022C20B9B001855AE /* ItemTableViewCell.swift */; };
-		CE68B75222C8BD9A0014B24C /* LocalNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE68B75122C8BD9A0014B24C /* LocalNotificationService.swift */; };
 		CE68B75422C8C9830014B24C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE68B75322C8C9830014B24C /* NetworkService.swift */; };
 		CEC9B7BD22C4B38A00DD2F54 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9B7BC22C4B38A00DD2F54 /* StartViewController.swift */; };
 		CEC9B7BF22C4B3B600DD2F54 /* StartViewControllerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9B7BE22C4B3B600DD2F54 /* StartViewControllerInteractor.swift */; };
@@ -54,7 +53,6 @@
 		CE4470CD22BBA6330036524B /* MainViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerPresenter.swift; sourceTree = "<group>"; };
 		CE4470CF22BBA6500036524B /* MainViewControllerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerInteractor.swift; sourceTree = "<group>"; };
 		CE4C110022C20B9B001855AE /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
-		CE68B75122C8BD9A0014B24C /* LocalNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationService.swift; sourceTree = "<group>"; };
 		CE68B75322C8C9830014B24C /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		CEC9B7BC22C4B38A00DD2F54 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		CEC9B7BE22C4B3B600DD2F54 /* StartViewControllerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewControllerInteractor.swift; sourceTree = "<group>"; };
@@ -150,7 +148,6 @@
 				CE4470C222BB9F8B0036524B /* LaunchScreen.storyboard */,
 				CE4470C522BB9F8B0036524B /* Info.plist */,
 				CE4470BD22BB9F8A0036524B /* Buy_first_DDD.xcdatamodeld */,
-				CEC9B7CA22C75F8700DD2F54 /* LocalNotifications */,
 				CEC9B7C922C75F7500DD2F54 /* Model */,
 			);
 			path = "Buy first DDD";
@@ -172,14 +169,6 @@
 				CE39285722C3B4F10098EEE7 /* Item.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		CEC9B7CA22C75F8700DD2F54 /* LocalNotifications */ = {
-			isa = PBXGroup;
-			children = (
-				CE68B75122C8BD9A0014B24C /* LocalNotificationService.swift */,
-			);
-			path = LocalNotifications;
 			sourceTree = "<group>";
 		};
 		CEC9B7CB22C75FAE00DD2F54 /* Extensions */ = {
@@ -321,7 +310,6 @@
 			files = (
 				CE68B75422C8C9830014B24C /* NetworkService.swift in Sources */,
 				CE4470CC22BBA1E30036524B /* Router.swift in Sources */,
-				CE68B75222C8BD9A0014B24C /* LocalNotificationService.swift in Sources */,
 				CE4470B922BB9F8A0036524B /* MainTableViewController.swift in Sources */,
 				CEC9B7D922C77E9000DD2F54 /* Animator.swift in Sources */,
 				CE4C110122C20B9B001855AE /* ItemTableViewCell.swift in Sources */,

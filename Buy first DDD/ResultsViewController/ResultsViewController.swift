@@ -12,6 +12,7 @@ import SafariServices
 import NVActivityIndicatorView
 import BRYXBanner
 import SwiftSoup
+import AudioToolbox
 
 private enum HTMLError: Error {
     case badResponse
@@ -56,8 +57,6 @@ final class ResultsViewController: UIViewController {
     }
 
     @IBAction func switchDidTapped(_ sender: Any) {
-        LocalNotificationsService.shared.registerLocalNotifications()
-
         if reloadSwitch.isOn {
             let banner = createInfoBanner()
             banner.show(duration: 3.0)
@@ -138,7 +137,7 @@ extension ResultsViewController: WKNavigationDelegate {
                     let itemLink = try document.getElementsByClass("s-item__link").array()
 
                     self?.iterationItems = []
-                    for i in 3..<13 {
+                    for i in 3..<10 {
                         let name = try itemTitles[i + 1].text()
                         let price = try itemPrices[i].text()
                         let imageAbsolutePath = try itemImages[i].attr("src")
@@ -157,7 +156,7 @@ extension ResultsViewController: WKNavigationDelegate {
 
                     if items != iterItems,
                         !items.isEmpty {
-                        LocalNotificationsService.shared.sendNotification()
+                        AudioServicesPlayAlertSound(1315)
                         self?.items = iterItems
                     } else {
                         self?.items = iterItems

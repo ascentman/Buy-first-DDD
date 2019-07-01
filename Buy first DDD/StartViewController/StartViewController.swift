@@ -215,7 +215,7 @@ final class StartViewController: UIViewController {
         let textLayer = CATextLayer()
         textLayer.string = myAttributedString
         textLayer.backgroundColor = UIColor.clear.cgColor
-        textLayer.frame = CGRect(x: view.bounds.width / 2 - 90, y: 50, width: 240, height: 100)
+        textLayer.frame = CGRect(x: view.bounds.width / 2 - textLayer.preferredFrameSize().width / 2, y: 50, width: 200, height: 100)
 
         let animationOpacity = CABasicAnimation(keyPath: "opacity")
         let animationScaling = CABasicAnimation(keyPath: "transform.scale.y")
