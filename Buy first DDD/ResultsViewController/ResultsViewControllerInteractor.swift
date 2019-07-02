@@ -59,9 +59,11 @@ final class ResultsViewControllerInteractor {
             break
         }
 
-        if currentFilter.rows[0].isSelected {
+        if currentFilter.rows[0].isSelected,
+            !currentFilter.rows[1].isSelected {
             baseAbsoluteUrl.append("&LH_Auction=1")
-        } else if currentFilter.rows[1].isSelected {
+        } else if currentFilter.rows[1].isSelected,
+            !currentFilter.rows[0].isSelected {
             baseAbsoluteUrl.append("&LH_BIN=1")
         } else if currentFilter.rows[3].isSelected {
             baseAbsoluteUrl.append("&LH_FS=1")

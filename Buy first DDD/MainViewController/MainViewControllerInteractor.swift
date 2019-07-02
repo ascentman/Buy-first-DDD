@@ -71,7 +71,7 @@ final class MainViewControllerInteractor {
 
         itemToSearch = name
         let auctionRow = Filter.Row(title: "Auction", isSelected: true)
-        let buyItNowRow = Filter.Row(title: "Buy it now", isSelected: false)
+        let buyItNowRow = Filter.Row(title: "Buy it now", isSelected: true)
         let anyShippingRow = Filter.Row(title: "Any shipping", isSelected: true)
         let freeShippingRow = Filter.Row(title: "Free shipping", isSelected: false)
 

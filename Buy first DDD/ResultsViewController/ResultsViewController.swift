@@ -137,7 +137,7 @@ extension ResultsViewController: WKNavigationDelegate {
                     let itemLink = try document.getElementsByClass("s-item__link").array()
 
                     self?.iterationItems = []
-                    for i in 3..<10 {
+                    for i in 0..<10 {
                         let name = try itemTitles[i + 1].text()
                         let price = try itemPrices[i].text()
                         let imageAbsolutePath = try itemImages[i].attr("src")
