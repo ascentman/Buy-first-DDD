@@ -498,42 +498,42 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pf8-VJ-P8V">
-                                <rect key="frame" x="0.0" y="90" width="414" height="772"/>
+                                <rect key="frame" x="0.0" y="86" width="414" height="776"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="100" id="AJG-4F-Zd4" customClass="ItemTableViewCell" customModule="Buy_first_DDD" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="100"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="130" id="AJG-4F-Zd4" customClass="ItemTableViewCell" customModule="Buy_first_DDD" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="130"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AJG-4F-Zd4" id="ZF3-pR-DXg">
-                                            <rect key="frame" x="0.0" y="0.0" width="376" height="99.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="376" height="129.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PHV-RA-gBP">
-                                                    <rect key="frame" x="0.0" y="10" width="80" height="80"/>
+                                                    <rect key="frame" x="0.0" y="5" width="120" height="120"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="80" id="0s1-Un-0n1"/>
+                                                        <constraint firstAttribute="height" constant="120" id="0s1-Un-0n1"/>
                                                         <constraint firstAttribute="width" secondItem="PHV-RA-gBP" secondAttribute="height" multiplier="1:1" id="Q3c-Ns-Xnc"/>
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="z66-jp-HU7">
-                                                    <rect key="frame" x="90" y="10" width="266" height="80"/>
+                                                    <rect key="frame" x="130" y="15" width="226" height="100"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9bS-hV-2hA">
-                                                            <rect key="frame" x="0.0" y="0.0" width="266" height="37"/>
-                                                            <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="15"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9bS-hV-2hA">
+                                                            <rect key="frame" x="0.0" y="0.0" width="226" height="48"/>
+                                                            <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ap9-O2-er8">
-                                                            <rect key="frame" x="0.0" y="37" width="266" height="43"/>
+                                                            <rect key="frame" x="0.0" y="48" width="226" height="52"/>
                                                             <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="17"/>
                                                             <color key="textColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="80" id="7jy-Z3-zK9"/>
+                                                        <constraint firstAttribute="height" constant="100" id="7jy-Z3-zK9"/>
                                                     </constraints>
                                                 </stackView>
                                             </subviews>
@@ -558,22 +558,21 @@
                                     <outlet property="delegate" destination="1Fk-6p-uOk" id="69Q-xX-ZtS"/>
                                 </connections>
                             </tableView>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CL3-8H-0Vk">
-                                <rect key="frame" x="8" y="54" width="376" height="31"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="CL3-8H-0Vk">
+                                <rect key="frame" x="94.5" y="54" width="225.5" height="27"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Continuous reload" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKp-qL-MZt">
-                                        <rect key="frame" x="0.0" y="0.0" width="327" height="31"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="152.5" height="27"/>
                                         <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="19"/>
                                         <color key="textColor" red="0.57738816738128662" green="0.12740981578826904" blue="0.57375597953796387" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Gpt-7J-Nnv">
-                                        <rect key="frame" x="327" y="0.0" width="51" height="31"/>
-                                        <color key="onTintColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <connections>
-                                            <action selector="switchDidTapped:" destination="1Fk-6p-uOk" eventType="valueChanged" id="2ih-T4-Xt4"/>
-                                        </connections>
-                                    </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="disabled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cPr-TA-3JG">
+                                        <rect key="frame" x="156.5" y="0.0" width="69" height="27"/>
+                                        <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="19"/>
+                                        <color key="textColor" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                             </stackView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y3q-Qe-ztg" userLabel="activityIndicator" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
@@ -596,27 +595,172 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="SQV-mI-Zgy" firstAttribute="trailing" secondItem="CL3-8H-0Vk" secondAttribute="trailing" constant="30" id="5xC-7v-D15"/>
                             <constraint firstItem="Y3q-Qe-ztg" firstAttribute="centerY" secondItem="5Xp-oJ-P9e" secondAttribute="centerY" id="CnN-L1-kwA"/>
                             <constraint firstItem="pf8-VJ-P8V" firstAttribute="leading" secondItem="SQV-mI-Zgy" secondAttribute="leading" id="FlL-Sf-D3X"/>
                             <constraint firstItem="Y3q-Qe-ztg" firstAttribute="centerX" secondItem="5Xp-oJ-P9e" secondAttribute="centerX" id="MQR-CH-WIu"/>
-                            <constraint firstItem="CL3-8H-0Vk" firstAttribute="leading" secondItem="SQV-mI-Zgy" secondAttribute="leading" constant="8" id="aI6-54-uRG"/>
+                            <constraint firstItem="CL3-8H-0Vk" firstAttribute="top" secondItem="SQV-mI-Zgy" secondAttribute="top" constant="10" id="bhg-uI-Fm9"/>
+                            <constraint firstItem="CL3-8H-0Vk" firstAttribute="centerX" secondItem="5Xp-oJ-P9e" secondAttribute="centerX" id="bsW-it-aSe"/>
                             <constraint firstItem="SQV-mI-Zgy" firstAttribute="bottom" secondItem="pf8-VJ-P8V" secondAttribute="bottom" id="cpC-60-Pq6"/>
                             <constraint firstItem="SQV-mI-Zgy" firstAttribute="trailing" secondItem="pf8-VJ-P8V" secondAttribute="trailing" id="mzL-mj-9pG"/>
                             <constraint firstItem="pf8-VJ-P8V" firstAttribute="top" secondItem="ZKp-qL-MZt" secondAttribute="bottom" constant="5" id="tHo-u6-b2d"/>
-                            <constraint firstItem="CL3-8H-0Vk" firstAttribute="top" secondItem="SQV-mI-Zgy" secondAttribute="top" constant="10" id="w0U-9E-Pyx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SQV-mI-Zgy"/>
                     </view>
                     <connections>
                         <outlet property="activityIndicatorView" destination="Y3q-Qe-ztg" id="61C-DN-3g9"/>
-                        <outlet property="reloadSwitch" destination="Gpt-7J-Nnv" id="46m-UP-XB8"/>
                         <outlet property="resultsTableView" destination="pf8-VJ-P8V" id="q5o-WV-r8r"/>
+                        <outlet property="statusLabel" destination="cPr-TA-3JG" id="Xqp-YB-FVf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zx6-SJ-u8N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1130.4347826086957" y="19.419642857142858"/>
+        </scene>
+        <!--Options Table View Controller-->
+        <scene sceneID="6zt-53-Rjh">
+            <objects>
+                <tableViewController storyboardIdentifier="OptionsTableViewController" id="BgY-8N-reg" customClass="OptionsTableViewController" customModule="Buy_first_DDD" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="DxR-eR-NLr">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection headerTitle="Show" footerTitle="Configure amount of last items to show" id="qww-lC-SoF">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="60" id="GOV-PM-c5V">
+                                        <rect key="frame" x="0.0" y="55.5" width="414" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GOV-PM-c5V" id="dWq-2R-Pd3">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="59.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Items" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S6P-cW-N5l">
+                                                    <rect key="frame" x="20" y="15" width="53.5" height="30"/>
+                                                    <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="21"/>
+                                                    <color key="textColor" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="bGw-Xm-cTC">
+                                                    <rect key="frame" x="310" y="15.5" width="94" height="29"/>
+                                                    <connections>
+                                                        <action selector="itemsCountDidPressed:" destination="BgY-8N-reg" eventType="valueChanged" id="6vk-Hy-7Ya"/>
+                                                    </connections>
+                                                </stepper>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="skE-hD-Zbm">
+                                                    <rect key="frame" x="260" y="30" width="50" height="0.0"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="zOU-IG-ENo"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="19"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="S6P-cW-N5l" firstAttribute="leading" secondItem="dWq-2R-Pd3" secondAttribute="leadingMargin" id="0LN-fA-tKB"/>
+                                                <constraint firstItem="skE-hD-Zbm" firstAttribute="centerY" secondItem="dWq-2R-Pd3" secondAttribute="centerY" id="1nB-lY-QFe"/>
+                                                <constraint firstItem="bGw-Xm-cTC" firstAttribute="leading" secondItem="skE-hD-Zbm" secondAttribute="trailing" id="2GT-Sc-bQF"/>
+                                                <constraint firstAttribute="trailing" secondItem="bGw-Xm-cTC" secondAttribute="trailing" constant="10" id="k8f-b6-q2f"/>
+                                                <constraint firstItem="bGw-Xm-cTC" firstAttribute="centerY" secondItem="dWq-2R-Pd3" secondAttribute="centerY" id="uqC-ER-NkD"/>
+                                                <constraint firstItem="S6P-cW-N5l" firstAttribute="centerY" secondItem="dWq-2R-Pd3" secondAttribute="centerY" id="wHJ-f1-oAX"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Update" footerTitle="Configure continuous reload time interval, sec" id="Twm-td-9Gg">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="60" id="0Xc-at-0sr">
+                                        <rect key="frame" x="0.0" y="191" width="414" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0Xc-at-0sr" id="eSR-gj-A3p">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="59.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="OXR-1l-EHD">
+                                                    <rect key="frame" x="310" y="15.5" width="94" height="29"/>
+                                                    <connections>
+                                                        <action selector="timeIntervalDidPressed:" destination="BgY-8N-reg" eventType="valueChanged" id="rxg-1S-4F6"/>
+                                                    </connections>
+                                                </stepper>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reload time interval" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g9a-wp-3U4">
+                                                    <rect key="frame" x="20" y="15" width="193" height="30"/>
+                                                    <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="21"/>
+                                                    <color key="textColor" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t8S-mF-xZG">
+                                                    <rect key="frame" x="260" y="30" width="50" height="0.0"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="JHe-Fy-dSs"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="19"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="OXR-1l-EHD" firstAttribute="leading" secondItem="t8S-mF-xZG" secondAttribute="trailing" id="2iE-8l-USh"/>
+                                                <constraint firstItem="t8S-mF-xZG" firstAttribute="centerY" secondItem="eSR-gj-A3p" secondAttribute="centerY" id="MvJ-aO-LFO"/>
+                                                <constraint firstItem="OXR-1l-EHD" firstAttribute="centerY" secondItem="eSR-gj-A3p" secondAttribute="centerY" id="UdA-cT-WHt"/>
+                                                <constraint firstItem="g9a-wp-3U4" firstAttribute="leading" secondItem="eSR-gj-A3p" secondAttribute="leadingMargin" id="XKu-64-hQs"/>
+                                                <constraint firstAttribute="trailing" secondItem="OXR-1l-EHD" secondAttribute="trailing" constant="10" id="cqA-zA-toX"/>
+                                                <constraint firstItem="g9a-wp-3U4" firstAttribute="centerY" secondItem="eSR-gj-A3p" secondAttribute="centerY" id="ewZ-gp-Qh2"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Reload" footerTitle="Allow continuous reload to be always enabled on start" id="xcU-7o-Rit">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="60" id="DJ0-Vc-4Ff">
+                                        <rect key="frame" x="0.0" y="326.5" width="414" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DJ0-Vc-4Ff" id="4rh-Un-29L">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="59.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable continuous reload" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pAx-On-zd3">
+                                                    <rect key="frame" x="20" y="15" width="235.5" height="30"/>
+                                                    <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="21"/>
+                                                    <color key="textColor" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="qpM-th-LZr">
+                                                    <rect key="frame" x="345" y="14.5" width="51" height="31"/>
+                                                    <color key="onTintColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <connections>
+                                                        <action selector="reloadOnStartDidPressed:" destination="BgY-8N-reg" eventType="valueChanged" id="g5K-lo-cIJ"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="qpM-th-LZr" secondAttribute="trailing" id="5Ew-gA-gSh"/>
+                                                <constraint firstItem="pAx-On-zd3" firstAttribute="leading" secondItem="4rh-Un-29L" secondAttribute="leadingMargin" id="SJX-ii-Z8g"/>
+                                                <constraint firstItem="qpM-th-LZr" firstAttribute="centerY" secondItem="4rh-Un-29L" secondAttribute="centerY" id="aq5-T8-tUH"/>
+                                                <constraint firstItem="pAx-On-zd3" firstAttribute="centerY" secondItem="4rh-Un-29L" secondAttribute="centerY" id="oOV-9Q-rpP"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="BgY-8N-reg" id="1Tr-wE-bGF"/>
+                            <outlet property="delegate" destination="BgY-8N-reg" id="TfD-TO-1wR"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="itemsLabel" destination="skE-hD-Zbm" id="xCb-A9-7lc"/>
+                        <outlet property="itemsStepper" destination="bGw-Xm-cTC" id="kdZ-l3-6QS"/>
+                        <outlet property="reloadStepper" destination="OXR-1l-EHD" id="ELt-nj-bCq"/>
+                        <outlet property="reloadSwitch" destination="qpM-th-LZr" id="B3n-cr-QFZ"/>
+                        <outlet property="reloadTimeLabel" destination="t8S-mF-xZG" id="0zu-jk-ixK"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lr0-Ba-rkJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1826.0869565217392" y="15.401785714285714"/>
         </scene>
     </scenes>
 </document>

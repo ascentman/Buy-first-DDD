@@ -161,8 +161,12 @@ final class MainTableViewController: UITableViewController {
         addDoneButtonOnKeyboard()
         togglePicker()
         conditionPicker.delegate = self
+    }
 
-        let animation = AnimationFactory.makeMoveUpWithBounce(rowHeight: 44, duration: 0.5, delayFactor: 0.05)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        let animation = AnimationFactory.makeMoveUpWithBounce(rowHeight: 22, duration: 0.3, delayFactor: 0.05)
         let animator = Animator(animation: animation)
         animator.animate(tableView: tableView)
     }

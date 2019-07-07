@@ -29,4 +29,19 @@ enum AnimationFactory {
             }
         }
     }
+
+    static func makeSlideIn(duration: TimeInterval, delayFactor: Double) -> Animation {
+        return { tableView in
+            for (index, cell) in tableView.visibleCells.enumerated() {
+                cell.transform = CGAffineTransform(translationX: tableView.bounds.width, y: 0)
+                UIView.animate(
+                    withDuration: duration,
+                    delay: delayFactor * Double(index),
+                    options: [.curveEaseInOut],
+                    animations: {
+                        cell.transform = CGAffineTransform(translationX: 0, y: 0)
+                })
+            }
+        }
+    }
 }

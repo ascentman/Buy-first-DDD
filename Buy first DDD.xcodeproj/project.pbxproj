@@ -22,6 +22,8 @@
 		CE4470D022BBA6500036524B /* MainViewControllerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4470CF22BBA6500036524B /* MainViewControllerInteractor.swift */; };
 		CE4C110122C20B9B001855AE /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C110022C20B9B001855AE /* ItemTableViewCell.swift */; };
 		CE68B75422C8C9830014B24C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE68B75322C8C9830014B24C /* NetworkService.swift */; };
+		CE68B76022D1EF170014B24C /* OptionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE68B75F22D1EF170014B24C /* OptionsTableViewController.swift */; };
+		CE68B76222D200230014B24C /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE68B76122D200230014B24C /* UserDefaults+Extensions.swift */; };
 		CEC9B7BD22C4B38A00DD2F54 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9B7BC22C4B38A00DD2F54 /* StartViewController.swift */; };
 		CEC9B7BF22C4B3B600DD2F54 /* StartViewControllerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9B7BE22C4B3B600DD2F54 /* StartViewControllerInteractor.swift */; };
 		CEC9B7C122C4B3C400DD2F54 /* StartViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9B7C022C4B3C400DD2F54 /* StartViewControllerPresenter.swift */; };
@@ -54,6 +56,8 @@
 		CE4470CF22BBA6500036524B /* MainViewControllerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerInteractor.swift; sourceTree = "<group>"; };
 		CE4C110022C20B9B001855AE /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		CE68B75322C8C9830014B24C /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		CE68B75F22D1EF170014B24C /* OptionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsTableViewController.swift; sourceTree = "<group>"; };
+		CE68B76122D200230014B24C /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
 		CEC9B7BC22C4B38A00DD2F54 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		CEC9B7BE22C4B3B600DD2F54 /* StartViewControllerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewControllerInteractor.swift; sourceTree = "<group>"; };
 		CEC9B7C022C4B3C400DD2F54 /* StartViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewControllerPresenter.swift; sourceTree = "<group>"; };
@@ -143,6 +147,7 @@
 				CEC9B7C222C4B3CE00DD2F54 /* StartViewController */,
 				CE4470CB22BBA1E30036524B /* Router.swift */,
 				CE4470BA22BB9F8A0036524B /* Main.storyboard */,
+				CE68B75E22D1EEFB0014B24C /* OptionsTableViewController */,
 				CE1C703822C0E5150069D29D /* ResultsViewController */,
 				CE4470C022BB9F8B0036524B /* Assets.xcassets */,
 				CE4470C222BB9F8B0036524B /* LaunchScreen.storyboard */,
@@ -151,6 +156,14 @@
 				CEC9B7C922C75F7500DD2F54 /* Model */,
 			);
 			path = "Buy first DDD";
+			sourceTree = "<group>";
+		};
+		CE68B75E22D1EEFB0014B24C /* OptionsTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CE68B75F22D1EF170014B24C /* OptionsTableViewController.swift */,
+			);
+			path = OptionsTableViewController;
 			sourceTree = "<group>";
 		};
 		CEC9B7C222C4B3CE00DD2F54 /* StartViewController */ = {
@@ -179,6 +192,7 @@
 				CEC9B7D322C760C100DD2F54 /* UINavigationController+Extensions.swift */,
 				CEC9B7D522C7612400DD2F54 /* String+Extensions.swift */,
 				CEC9B7DC22C77F9700DD2F54 /* UITableView+Extensions.swift */,
+				CE68B76122D200230014B24C /* UserDefaults+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -320,9 +334,11 @@
 				CE4C110122C20B9B001855AE /* ItemTableViewCell.swift in Sources */,
 				CEC9B7D622C7612400DD2F54 /* String+Extensions.swift in Sources */,
 				CEC9B7DB22C77F0B00DD2F54 /* Animations.swift in Sources */,
+				CE68B76222D200230014B24C /* UserDefaults+Extensions.swift in Sources */,
 				CEC9B7D422C760C100DD2F54 /* UINavigationController+Extensions.swift in Sources */,
 				CE4470CE22BBA6330036524B /* MainViewControllerPresenter.swift in Sources */,
 				CE1C703622C0E4E50069D29D /* ResultsViewController.swift in Sources */,
+				CE68B76022D1EF170014B24C /* OptionsTableViewController.swift in Sources */,
 				CE39285822C3B4F10098EEE7 /* Item.swift in Sources */,
 				CEC9B7C122C4B3C400DD2F54 /* StartViewControllerPresenter.swift in Sources */,
 				CE1C703A22C0E6950069D29D /* ResultsViewControllerInteractor.swift in Sources */,

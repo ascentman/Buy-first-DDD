@@ -20,7 +20,7 @@ private enum HTMLError: Error {
 
 final class ResultsViewController: UIViewController {
 
-    @IBOutlet private weak var reloadSwitch: UISwitch!
+    @IBOutlet private weak var statusLabel: UILabel!
     @IBOutlet private weak var resultsTableView: UITableView!
     @IBOutlet private weak var activityIndicatorView: NVActivityIndicatorView!
 
@@ -38,15 +38,25 @@ final class ResultsViewController: UIViewController {
         super.viewDidLoad()
 
         title = "Results"
+        activityIndicatorView.isHidden = false
+        activityIndicatorView.startAnimating()
         setupWebView()
         resultsTableView.tableFooterView = UIView()
         webView.navigationDelegate = self
 
-        activityIndicatorView.isHidden = false
-        activityIndicatorView.startAnimating()
-
         if !NetworkService.isConnectedToNetwork() {
             createErrorBanner()
+        }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if UserDefaults.standard.continuousReload {
+            statusLabel.text = "enabled"
+            setupContinuousLoading()
+        } else {
+            statusLabel.text = "disabled"
         }
     }
 
@@ -54,22 +64,6 @@ final class ResultsViewController: UIViewController {
         super.viewWillDisappear(animated)
 
         webView.stopLoading()
-    }
-
-    @IBAction func switchDidTapped(_ sender: Any) {
-        if reloadSwitch.isOn {
-            let banner = createInfoBanner()
-            banner.show(duration: 3.0)
-            timer.invalidate()
-            timer = Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
-            RunLoop.current.add(timer, forMode: .common)
-        } else {
-            timer.invalidate()
-            webView.stopLoading()
-            activityIndicatorView.stopAnimating()
-            activityIndicatorView.isHidden = true
-            resultsTableView.alpha = 1.0
-        }
     }
 
     @objc func timerAction() {
@@ -83,11 +77,34 @@ final class ResultsViewController: UIViewController {
 
     // MARK: - Private
 
+    private func setupContinuousLoading() {
+        if UserDefaults.standard.continuousReload {
+            let banner = createInfoBanner()
+            banner.show(duration: 3.0)
+            timer.invalidate()
+            timer = Timer.scheduledTimer(timeInterval: Double(UserDefaults.standard.reloadTimeInterval), target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
+            RunLoop.current.add(timer, forMode: .common)
+        } else {
+            timer.invalidate()
+            webView.stopLoading()
+            activityIndicatorView.stopAnimating()
+            activityIndicatorView.isHidden = true
+            resultsTableView.alpha = 1.0
+        }
+    }
+
     private func createInfoBanner() -> Banner {
         let banner = Banner(title: "Info", subtitle: "Please don't lock your device when continuous update enabled!", image: UIImage(named: "info"), backgroundColor: .purple, didTapBlock: nil)
         banner.dismissesOnTap = true
         banner.position = .bottom
         return banner
+    }
+
+    private func showResultBanner() {
+        let banner = Banner(title: "Info", subtitle: "Displaying last \(UserDefaults.standard.itemsCount) added on website items", image: UIImage(named: "present"), backgroundColor: .orange, didTapBlock: nil)
+        banner.dismissesOnTap = true
+        banner.position = .bottom
+        banner.show(duration: 3.0)
     }
 
     private func createErrorBanner() {
@@ -137,7 +154,7 @@ extension ResultsViewController: WKNavigationDelegate {
                     let itemLink = try document.getElementsByClass("s-item__link").array()
 
                     self?.iterationItems = []
-                    for i in 0..<10 {
+                    for i in 0..<UserDefaults.standard.itemsCount {
                         let name = try itemTitles[i + 1].text()
                         let price = try itemPrices[i].text()
                         let imageAbsolutePath = try itemImages[i].attr("src")
@@ -165,6 +182,7 @@ extension ResultsViewController: WKNavigationDelegate {
                     DispatchQueue.main.async {
                         self?.activityIndicatorView.stopAnimating()
                         self?.activityIndicatorView.isHidden = true
+                        self?.showResultBanner()
                         self?.resultsTableView.alpha = 1.0
                         self?.resultsTableView.reloadData()
                     }
@@ -190,10 +208,11 @@ extension ResultsViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return 130
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         if let url = URL(string: items[indexPath.row].detailsLink) {
             let svc = SFSafariViewController(url: url)
             svc.preferredControlTintColor = UIColor.orange

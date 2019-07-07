@@ -52,6 +52,7 @@ final class StartViewController: UIViewController {
 
         addAnimations()
         nameTextField.tintColor = .orange
+        setupDefaultsSettings()
         nameTextField.delegate = self
         nameTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     }
@@ -93,6 +94,20 @@ final class StartViewController: UIViewController {
             } else {
                 nameTextField.errorMessage = "Invalid characters"
             }
+        }
+    }
+
+    private func setupDefaultsSettings() {
+        if !UserDefaults.standard.isItemsCountPresentInUserDefaults() {
+            UserDefaults.standard.updateItemsCount(4)
+        }
+
+        if !UserDefaults.standard.isItemsReloadTimeIntervalPresentInUserDefaults() {
+            UserDefaults.standard.updateReloadTimeInterval(60)
+        }
+
+        if !UserDefaults.standard.isItemsContinuousReloadPresentInUserDefaults() {
+            UserDefaults.standard.updateContinuousReload(true)
         }
     }
 
