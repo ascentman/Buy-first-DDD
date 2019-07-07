@@ -21,6 +21,7 @@ private enum HTMLError: Error {
 final class ResultsViewController: UIViewController {
 
     @IBOutlet private weak var statusLabel: UILabel!
+    @IBOutlet private weak var timerLabel: UILabel!
     @IBOutlet private weak var resultsTableView: UITableView!
     @IBOutlet private weak var activityIndicatorView: NVActivityIndicatorView!
 
@@ -54,9 +55,11 @@ final class ResultsViewController: UIViewController {
 
         if UserDefaults.standard.continuousReload {
             statusLabel.text = "enabled"
+            timerLabel.text = ""
             setupContinuousLoading()
         } else {
             statusLabel.text = "disabled"
+            timerLabel.text = ""
         }
     }
 
