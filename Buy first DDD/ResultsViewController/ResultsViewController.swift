@@ -13,6 +13,7 @@ import NVActivityIndicatorView
 import BRYXBanner
 import SwiftSoup
 import AudioToolbox
+import GoogleMobileAds
 
 private enum HTMLError: Error {
     case badResponse
@@ -20,6 +21,7 @@ private enum HTMLError: Error {
 
 final class ResultsViewController: UIViewController {
 
+    @IBOutlet private weak var adView: GADBannerView!
     @IBOutlet private weak var statusLabel: UILabel!
     @IBOutlet private weak var timerLabel: UILabel!
     @IBOutlet private weak var resultsTableView: UITableView!
@@ -44,10 +46,10 @@ final class ResultsViewController: UIViewController {
         setupWebView()
         resultsTableView.tableFooterView = UIView()
         webView.navigationDelegate = self
-
         if !NetworkService.isConnectedToNetwork() {
             createErrorBanner()
         }
+        configureAdBanner()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -94,6 +96,14 @@ final class ResultsViewController: UIViewController {
             activityIndicatorView.isHidden = true
             resultsTableView.alpha = 1.0
         }
+    }
+
+    private func configureAdBanner() {
+        adView.delegate = self
+        //FIXME: Replace then to: ca-app-pub-3685732098366048/9918439272
+        adView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        adView.rootViewController = self
+        adView.load(GADRequest())
     }
 
     private func createInfoBanner() -> Banner {
@@ -221,5 +231,15 @@ extension ResultsViewController: UITableViewDelegate, UITableViewDataSource {
             svc.preferredControlTintColor = UIColor.orange
             present(svc, animated: true, completion: nil)
         }
+    }
+}
+
+extension ResultsViewController: GADBannerViewDelegate {
+
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        bannerView.alpha = 0
+        UIView.animate(withDuration: 1, animations: {
+            bannerView.alpha = 1
+        })
     }
 }

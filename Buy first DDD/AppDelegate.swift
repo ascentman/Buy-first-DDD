@@ -4,10 +4,9 @@
 //
 //  Created by user on 6/20/19.
 //  Copyright © 2019 user. All rights reserved.
-//
 
 import UIKit
-import CoreData
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         router.start()
         window?.rootViewController = router.rootViewController
         window?.makeKeyAndVisible()
+
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
         return true
     }
 
