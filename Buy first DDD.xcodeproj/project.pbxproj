@@ -23,12 +23,13 @@
 		CE68B75422C8C9830014B24C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE68B75322C8C9830014B24C /* NetworkService.swift */; };
 		CE68B76022D1EF170014B24C /* OptionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE68B75F22D1EF170014B24C /* OptionsTableViewController.swift */; };
 		CE68B76222D200230014B24C /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE68B76122D200230014B24C /* UserDefaults+Extensions.swift */; };
+		CEC0A17622D6547000D3B82D /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC0A17522D6547000D3B82D /* CustomTabBarController.swift */; };
+		CEC0A17822D65B2900D3B82D /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC0A17722D65B2800D3B82D /* CustomNavigationController.swift */; };
 		CEC9B7BD22C4B38A00DD2F54 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9B7BC22C4B38A00DD2F54 /* StartViewController.swift */; };
 		CEC9B7BF22C4B3B600DD2F54 /* StartViewControllerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9B7BE22C4B3B600DD2F54 /* StartViewControllerInteractor.swift */; };
 		CEC9B7C122C4B3C400DD2F54 /* StartViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9B7C022C4B3C400DD2F54 /* StartViewControllerPresenter.swift */; };
 		CEC9B7CD22C75FDF00DD2F54 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9B7CC22C75FDF00DD2F54 /* UIView+Extensions.swift */; };
 		CEC9B7CF22C7601900DD2F54 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9B7CE22C7601900DD2F54 /* UIImage+Extensions.swift */; };
-		CEC9B7D422C760C100DD2F54 /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9B7D322C760C100DD2F54 /* UINavigationController+Extensions.swift */; };
 		CEC9B7D622C7612400DD2F54 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9B7D522C7612400DD2F54 /* String+Extensions.swift */; };
 		CEC9B7D922C77E9000DD2F54 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9B7D822C77E9000DD2F54 /* Animator.swift */; };
 		CEC9B7DB22C77F0B00DD2F54 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9B7DA22C77F0B00DD2F54 /* Animations.swift */; };
@@ -56,12 +57,13 @@
 		CE68B75322C8C9830014B24C /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		CE68B75F22D1EF170014B24C /* OptionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsTableViewController.swift; sourceTree = "<group>"; };
 		CE68B76122D200230014B24C /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
+		CEC0A17522D6547000D3B82D /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		CEC0A17722D65B2800D3B82D /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		CEC9B7BC22C4B38A00DD2F54 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		CEC9B7BE22C4B3B600DD2F54 /* StartViewControllerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewControllerInteractor.swift; sourceTree = "<group>"; };
 		CEC9B7C022C4B3C400DD2F54 /* StartViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewControllerPresenter.swift; sourceTree = "<group>"; };
 		CEC9B7CC22C75FDF00DD2F54 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		CEC9B7CE22C7601900DD2F54 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
-		CEC9B7D322C760C100DD2F54 /* UINavigationController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extensions.swift"; sourceTree = "<group>"; };
 		CEC9B7D522C7612400DD2F54 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		CEC9B7D822C77E9000DD2F54 /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		CEC9B7DA22C77F0B00DD2F54 /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
@@ -186,7 +188,6 @@
 			children = (
 				CEC9B7CC22C75FDF00DD2F54 /* UIView+Extensions.swift */,
 				CEC9B7CE22C7601900DD2F54 /* UIImage+Extensions.swift */,
-				CEC9B7D322C760C100DD2F54 /* UINavigationController+Extensions.swift */,
 				CEC9B7D522C7612400DD2F54 /* String+Extensions.swift */,
 				CEC9B7DC22C77F9700DD2F54 /* UITableView+Extensions.swift */,
 				CE68B76122D200230014B24C /* UserDefaults+Extensions.swift */,
@@ -200,6 +201,8 @@
 				CEC9B7D822C77E9000DD2F54 /* Animator.swift */,
 				CEC9B7DA22C77F0B00DD2F54 /* Animations.swift */,
 				CE68B75322C8C9830014B24C /* NetworkService.swift */,
+				CEC0A17522D6547000D3B82D /* CustomTabBarController.swift */,
+				CEC0A17722D65B2800D3B82D /* CustomNavigationController.swift */,
 			);
 			path = "Support classes";
 			sourceTree = "<group>";
@@ -332,9 +335,10 @@
 				CEC9B7D622C7612400DD2F54 /* String+Extensions.swift in Sources */,
 				CEC9B7DB22C77F0B00DD2F54 /* Animations.swift in Sources */,
 				CE68B76222D200230014B24C /* UserDefaults+Extensions.swift in Sources */,
-				CEC9B7D422C760C100DD2F54 /* UINavigationController+Extensions.swift in Sources */,
 				CE4470CE22BBA6330036524B /* MainViewControllerPresenter.swift in Sources */,
 				CE1C703622C0E4E50069D29D /* ResultsViewController.swift in Sources */,
+				CEC0A17622D6547000D3B82D /* CustomTabBarController.swift in Sources */,
+				CEC0A17822D65B2900D3B82D /* CustomNavigationController.swift in Sources */,
 				CE68B76022D1EF170014B24C /* OptionsTableViewController.swift in Sources */,
 				CE39285822C3B4F10098EEE7 /* Item.swift in Sources */,
 				CEC9B7C122C4B3C400DD2F54 /* StartViewControllerPresenter.swift in Sources */,

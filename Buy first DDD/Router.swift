@@ -10,9 +10,9 @@ import UIKit
 
 final class Router {
 
-    private let tabBarController = UITabBarController()
-    private let searchNavController = UINavigationController()
-    private let optionsNavController = UINavigationController()
+    private let tabBarController = CustomTabBarController()
+    private let searchNavController = CustomNavigationController()
+    private let optionsNavController = CustomNavigationController()
 
     init() {
         tabBarController.viewControllers = [searchNavController, optionsNavController]
@@ -80,7 +80,7 @@ final class Router {
 
         mainViewController.retainedObject = [presenter, mainViewControllerInteractor] as AnyObject
         mainViewControllerInteractor.start(name)
-        searchNavController.fadeTo(mainViewController)
+        searchNavController.pushViewController(mainViewController, animated: false)
     }
 
     func routeToResultsViewController(filter: Filter) {
@@ -90,7 +90,7 @@ final class Router {
         }
         let resultViewControllerInteractor = ResultsViewControllerInteractor(resultsViewController: resultsViewContoller, filter: filter)
         resultsViewContoller.retainedObject = [resultViewControllerInteractor] as AnyObject
-        searchNavController.pushViewController(resultsViewContoller, animated: true)
+        searchNavController.pushViewController(resultsViewContoller, animated: false)
     }
 
     func routeToOptionsTableViewController() {
