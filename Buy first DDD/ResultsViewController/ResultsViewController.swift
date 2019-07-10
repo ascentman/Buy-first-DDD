@@ -31,8 +31,9 @@ final class ResultsViewController: UIViewController {
     private var items: [Item] = []
     private var iterationItems: [Item] = []
     private var timer = Timer()
-    var onGenerateRequest: () -> Void = {}
+    private var currentTime = UserDefaults.standard.reloadTimeInterval
 
+    var onGenerateRequest: () -> Void = {}
     var retainedObject: AnyObject?
 
     // MARK: - Lifecycle
@@ -56,9 +57,9 @@ final class ResultsViewController: UIViewController {
         super.viewWillAppear(animated)
 
         if UserDefaults.standard.continuousReload {
-            statusLabel.text = "enabled"
-            timerLabel.text = ""
+            statusLabel.text = "enabled:"
             setupContinuousLoading()
+            timerLabel.text = String(currentTime)
         } else {
             statusLabel.text = "disabled"
             timerLabel.text = ""
@@ -69,14 +70,20 @@ final class ResultsViewController: UIViewController {
         super.viewWillDisappear(animated)
 
         webView.stopLoading()
+        timer.invalidate()
     }
 
     @objc func timerAction() {
-        activityIndicatorView.isHidden = false
-        activityIndicatorView.startAnimating()
-        resultsTableView.alpha = 0.7
-        if self == navigationController?.topViewController {
-            onGenerateRequest()
+        currentTime -= 1
+        timerLabel.text = String(currentTime)
+        if currentTime < 1 {
+            currentTime = UserDefaults.standard.reloadTimeInterval
+            activityIndicatorView.isHidden = false
+            activityIndicatorView.startAnimating()
+            resultsTableView.alpha = 0.7
+            if self == navigationController?.topViewController {
+                onGenerateRequest()
+            }
         }
     }
 
@@ -87,7 +94,7 @@ final class ResultsViewController: UIViewController {
             let banner = createInfoBanner()
             banner.show(duration: 3.0)
             timer.invalidate()
-            timer = Timer.scheduledTimer(timeInterval: Double(UserDefaults.standard.reloadTimeInterval), target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
             RunLoop.current.add(timer, forMode: .common)
         } else {
             timer.invalidate()
