@@ -21,7 +21,6 @@ final class OptionsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Settings"
         setupSettings()
         setupSteppers()
     }
@@ -29,6 +28,7 @@ final class OptionsTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        tabBarController?.title = "Settings"
         let animation = AnimationFactory.makeSlideIn(duration: 0.3, delayFactor: 0.05)
         let animator = Animator(animation: animation)
         animator.animate(tableView: tableView)

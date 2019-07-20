@@ -121,7 +121,6 @@ final class MainTableViewController: UITableViewController {
 
     func render(props: Props) {
         self.props = props
-        title = props.title
         if self.isViewLoaded {
             markRow(cell: auctionCell, state: props.auctionCheckMark.isChecked)
             markRow(cell: buyItNowCell, state: props.buyItNowCheckMark.isChecked)
@@ -166,6 +165,7 @@ final class MainTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        tabBarController?.title = props.title
         let animation = AnimationFactory.makeMoveUpWithBounce(rowHeight: 22, duration: 0.3, delayFactor: 0.05)
         let animator = Animator(animation: animation)
         animator.animate(tableView: tableView)

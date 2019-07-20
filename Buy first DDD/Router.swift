@@ -10,38 +10,27 @@ import UIKit
 
 final class Router {
 
-    private let tabBarController = CustomTabBarController()
-    private let searchNavController = CustomNavigationController()
-    private let optionsNavController = CustomNavigationController()
+    private let navController = CustomNavigationController()
 
     init() {
-        tabBarController.viewControllers = [searchNavController, optionsNavController]
-        searchNavController.navigationBar.titleTextAttributes =
-            [NSAttributedString.Key.foregroundColor: UIColor.purple,
-             NSAttributedString.Key.font: UIFont(name: "ChalkboardSE-Bold", size: 19.0)!]
-        optionsNavController.navigationBar.titleTextAttributes =
-            [NSAttributedString.Key.foregroundColor: UIColor.purple,
-             NSAttributedString.Key.font: UIFont(name: "ChalkboardSE-Bold", size: 19.0)!]
-
         let backImage = UIImage(named: "back")
         UINavigationBar.appearance().backIndicatorImage = backImage
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = backImage
         UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor:
             UIColor.clear], for: .normal)
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor:
+            UIColor.clear], for: .highlighted)
         UIBarButtonItem.appearance().tintColor = UIColor.orange
         UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: 0, vertical: -5), for: .default)
 
-        routeToOptionsTableViewController()
+        navController.navigationBar.titleTextAttributes =
+            [NSAttributedString.Key.foregroundColor: UIColor.purple,
+             NSAttributedString.Key.font: UIFont(name: "ChalkboardSE-Bold", size: 19.0)!]
 
-        // tabBar items
-        let item1 = UITabBarItem(tabBarSystemItem: .search, tag: 0)
-        let item2 = UITabBarItem(title: "Settings", image: UIImage(named: "settings"), tag: 1)
-        searchNavController.tabBarItem = item1
-        optionsNavController.tabBarItem = item2
     }
 
     var rootViewController: UIViewController {
-        return tabBarController
+        return navController
     }
 
     // MARK: - Public
@@ -56,7 +45,7 @@ final class Router {
             return
         }
 
-        searchNavController.pushViewController(startViewController, animated: false)
+        navController.pushViewController(startViewController, animated: false)
 
         let presenter = StartViewControllerPresenter(viewController: startViewController)
         let startViewControllerInteractor = StartViewControllerInteractor(presenter: presenter, onSearchRequested: { [weak self] name in
@@ -69,7 +58,8 @@ final class Router {
 
     func routeToMainViewController(_ name: String) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let mainViewController = storyboard.instantiateViewController(withIdentifier: "MainTableViewController") as? MainTableViewController else {
+        guard let mainViewController = storyboard.instantiateViewController(withIdentifier: "MainTableViewController") as? MainTableViewController,
+        let optionsTableViewController = storyboard.instantiateViewController(withIdentifier: "OptionsTableViewController") as? OptionsTableViewController else {
             return
         }
 
@@ -80,7 +70,17 @@ final class Router {
 
         mainViewController.retainedObject = [presenter, mainViewControllerInteractor] as AnyObject
         mainViewControllerInteractor.start(name)
-        searchNavController.pushViewController(mainViewController, animated: false)
+
+        // tabBar
+        let tabBarController = CustomTabBarController()
+        tabBarController.viewControllers = [mainViewController, optionsTableViewController]
+
+        // tabBar items
+        let item1 = UITabBarItem(tabBarSystemItem: .search, tag: 0)
+        let item2 = UITabBarItem(title: "Settings", image: UIImage(named: "settings"), tag: 1)
+        mainViewController.tabBarItem = item1
+        optionsTableViewController.tabBarItem = item2
+        navController.pushViewController(tabBarController, animated: false)
     }
 
     func routeToResultsViewController(filter: Filter) {
@@ -90,15 +90,6 @@ final class Router {
         }
         let resultViewControllerInteractor = ResultsViewControllerInteractor(resultsViewController: resultsViewContoller, filter: filter)
         resultsViewContoller.retainedObject = [resultViewControllerInteractor] as AnyObject
-        searchNavController.pushViewController(resultsViewContoller, animated: false)
-    }
-
-    func routeToOptionsTableViewController() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let optionsTableViewController = storyboard.instantiateViewController(withIdentifier: "OptionsTableViewController") as? OptionsTableViewController else {
-            return
-        }
-
-        optionsNavController.pushViewController(optionsTableViewController, animated: false)
+        navController.pushViewController(resultsViewContoller, animated: false)
     }
 }
