@@ -26,6 +26,7 @@ final class ResultsViewController: UIViewController {
     @IBOutlet private weak var timerLabel: UILabel!
     @IBOutlet private weak var resultsTableView: UITableView!
     @IBOutlet private weak var activityIndicatorView: NVActivityIndicatorView!
+    @IBOutlet weak var adViewHeight: NSLayoutConstraint!
 
     let webView = WKWebView()
     private var items: [Item] = []
@@ -107,8 +108,7 @@ final class ResultsViewController: UIViewController {
 
     private func configureAdBanner() {
         adView.delegate = self
-        //FIXME: Replace then to: ca-app-pub-3685732098366048/9918439272
-        adView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        adView.adUnitID = "ca-app-pub-3685732098366048/9918439272"
         adView.rootViewController = self
         adView.load(GADRequest())
     }
@@ -248,5 +248,9 @@ extension ResultsViewController: GADBannerViewDelegate {
         UIView.animate(withDuration: 1, animations: {
             bannerView.alpha = 1
         })
+    }
+
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        adViewHeight.constant = 0
     }
 }

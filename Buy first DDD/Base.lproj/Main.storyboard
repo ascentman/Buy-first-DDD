@@ -613,6 +613,7 @@
                     <connections>
                         <outlet property="activityIndicatorView" destination="Y3q-Qe-ztg" id="61C-DN-3g9"/>
                         <outlet property="adView" destination="QTS-Lu-EEw" id="ssn-0x-P9Q"/>
+                        <outlet property="adViewHeight" destination="OKx-2u-KbQ" id="UvF-CG-a3a"/>
                         <outlet property="resultsTableView" destination="pf8-VJ-P8V" id="q5o-WV-r8r"/>
                         <outlet property="statusLabel" destination="cPr-TA-3JG" id="Xqp-YB-FVf"/>
                         <outlet property="timerLabel" destination="iuF-IG-CHK" id="IgZ-Uu-Uwu"/>
