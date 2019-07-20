@@ -131,11 +131,11 @@ final class StartViewController: UIViewController {
         cartLayer.contents = myImage
 
         let animation = CABasicAnimation(keyPath: "position")
-        animation.fromValue = [0, 200]
+        animation.fromValue = [-10, 200]
         animation.toValue = [view.frame.width / 2 , 200]
         animation.duration = 1.3
         animation.isRemovedOnCompletion = false
-        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
         cartLayer.add(animation, forKey: nil)
         view.layer.addSublayer(cartLayer)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
@@ -154,7 +154,7 @@ final class StartViewController: UIViewController {
         let animation = CABasicAnimation(keyPath: "position")
         animation.fromValue = [view.frame.width / 2 + 10, 0]
         animation.toValue = [view.frame.width / 2  + 10, 180]
-        animation.duration = 1.3
+        animation.duration = 0.7
         animation.isRemovedOnCompletion = false
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
         presentLayer.add(animation, forKey: nil)
@@ -233,10 +233,10 @@ final class StartViewController: UIViewController {
         textLayer.frame = CGRect(x: view.bounds.width / 2 - textLayer.preferredFrameSize().width / 2, y: 50, width: 200, height: 100)
 
         let animationOpacity = CABasicAnimation(keyPath: "opacity")
-        let animationScaling = CABasicAnimation(keyPath: "transform.scale.y")
+        let animationScaling = CABasicAnimation(keyPath: "transform.scale.x")
         animationOpacity.fromValue = 0
         animationOpacity.toValue = 1
-        animationScaling.fromValue = 0
+        animationScaling.fromValue = 0.9
         animationScaling.toValue = 1
         let animationGroup = CAAnimationGroup()
         animationGroup.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
