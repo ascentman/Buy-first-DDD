@@ -267,7 +267,7 @@ open class Banner: UIView {
             contentView.addSubview(imageView)
             contentView.addConstraint(imageView.constraintWithAttribute(.leading, .equal, to: contentView, constant: 15.0))
             contentView.addConstraint(imageView.constraintWithAttribute(.centerY, .equal, to: contentView))
-            imageView.addConstraint(imageView.constraintWithAttribute(.width, .equal, to: 25.0))
+            imageView.addConstraint(imageView.constraintWithAttribute(.width, .equal, to: 100.0))
             imageView.addConstraint(imageView.constraintWithAttribute(.height, .equal, to: .width))
             leftConstraintText = "[imageView]"
         }

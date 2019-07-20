@@ -114,14 +114,14 @@ final class ResultsViewController: UIViewController {
     }
 
     private func createInfoBanner() -> Banner {
-        let banner = Banner(title: "Info", subtitle: "Please don't lock your device when continuous update enabled!", image: UIImage(named: "info"), backgroundColor: .purple, didTapBlock: nil)
+        let banner = Banner(title: "Info", subtitle: "Please don't lock your device when continuous update enabled!", image: UIImage(named: "Ricky"), backgroundColor: .purple, didTapBlock: nil)
         banner.dismissesOnTap = true
         banner.position = .bottom
         return banner
     }
 
     private func showResultBanner() {
-        let banner = Banner(title: "Info", subtitle: "Displaying last \(UserDefaults.standard.itemsCount) added on website items", image: UIImage(named: "present"), backgroundColor: .orange, didTapBlock: nil)
+        let banner = Banner(title: "Info", subtitle: "Displaying last \(UserDefaults.standard.itemsCount) added on website items", image: UIImage(named: "Ricky"), backgroundColor: .orange, didTapBlock: nil)
         banner.dismissesOnTap = true
         banner.position = .bottom
         banner.show(duration: 3.0)
