@@ -59,7 +59,8 @@ final class Router {
     func routeToMainViewController(_ name: String) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let mainViewController = storyboard.instantiateViewController(withIdentifier: "MainTableViewController") as? MainTableViewController,
-        let optionsTableViewController = storyboard.instantiateViewController(withIdentifier: "OptionsTableViewController") as? OptionsTableViewController else {
+        let optionsTableViewController = storyboard.instantiateViewController(withIdentifier: "OptionsTableViewController") as? OptionsTableViewController,
+        let aboutTableViewController = storyboard.instantiateViewController(withIdentifier: "AboutTableViewController") as? AboutTableViewController else {
             return
         }
 
@@ -73,13 +74,15 @@ final class Router {
 
         // tabBar
         let tabBarController = CustomTabBarController()
-        tabBarController.viewControllers = [mainViewController, optionsTableViewController]
+        tabBarController.viewControllers = [mainViewController, optionsTableViewController, aboutTableViewController]
 
         // tabBar items
         let item1 = UITabBarItem(tabBarSystemItem: .search, tag: 0)
         let item2 = UITabBarItem(title: "Settings", image: UIImage(named: "settings"), tag: 1)
+        let item3 = UITabBarItem(title: "About", image: UIImage(named: "About"), tag: 2)
         mainViewController.tabBarItem = item1
         optionsTableViewController.tabBarItem = item2
+        aboutTableViewController.tabBarItem = item3
         navController.pushViewController(tabBarController, animated: false)
     }
 

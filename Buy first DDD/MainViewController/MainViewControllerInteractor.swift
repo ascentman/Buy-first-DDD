@@ -56,6 +56,14 @@ final class MainViewControllerInteractor {
             self?.currentFilter?.selectedCondition = condition
         }
 
+        self.presenter.onMinPricePressed = { [weak self] price in
+            self?.currentFilter?.minPrice = price
+        }
+
+        self.presenter.onMaxPricePressed = { [weak self] price in
+            self?.currentFilter?.maxPrice = price
+        }
+
         self.presenter.onSearchPressed = { [weak self] (minPrice, maxPrice) in
             self?.currentFilter?.itemToSearch = self?.itemToSearch ?? ""
             self?.currentFilter?.minPrice = minPrice

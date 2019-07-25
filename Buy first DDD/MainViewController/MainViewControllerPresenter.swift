@@ -18,6 +18,8 @@ final class MainViewControllerPresenter {
     var didSelectFreeShipping: () -> Void = { assertionFailure() }
     var didSelectCondition: (Condition) -> Void = { _ in assertionFailure() }
     var onSearchPressed: (String, String) -> Void = { _,_ in assertionFailure() }
+    var onMinPricePressed: (String) -> Void = { _ in assertionFailure() }
+    var onMaxPricePressed: (String) -> Void = { _ in assertionFailure() }
 
     init(viewController: MainTableViewController) {
         self.mainViewController = viewController
@@ -37,13 +39,21 @@ final class MainViewControllerPresenter {
             self?.didSelectFreeShipping()
         }
 
+        let minPriceChanged = PriceChange(value: filter.minPrice) {  [weak self] newMinPrice in
+            self?.onMinPricePressed(newMinPrice)
+        }
+
+        let maxPriceChanged = PriceChange(value: filter.maxPrice) {  [weak self] newMaxPrice in
+            self?.onMaxPricePressed(newMaxPrice)
+        }
+
         mainViewController?.render(props: MainTableViewController.Props(title: filter.title,
                                                                         auctionCheckMark: auctionCheckMark,
                                                                         buyItNowCheckMark: buyItNowCheckMark,
                                                                         anyShippingCheckmark: anyShippingCheckMark,
                                                                         freeShippingCheckmark: freeShippingCheckMark,
-                                                                        minPrice: filter.minPrice,
-                                                                        maxPrice: filter.maxPrice,
+                                                                        minPrice: minPriceChanged,
+                                                                        maxPrice: maxPriceChanged,
                                                                         selectedCondition: filter.selectedCondition,
                                                                         onUpdateCondition: { [weak self] condition in
                                                                             self?.didSelectCondition(condition) },

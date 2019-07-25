@@ -90,6 +90,11 @@ struct Checkmark {
     let onSelect: () -> Void
 }
 
+struct PriceChange {
+    let value: String
+    let onSelect: (String) -> Void
+}
+
 final class MainTableViewController: UITableViewController {
 
     // MARK: - Props
@@ -101,8 +106,8 @@ final class MainTableViewController: UITableViewController {
         let buyItNowCheckMark: Checkmark
         let anyShippingCheckmark: Checkmark
         let freeShippingCheckmark: Checkmark
-        let minPrice: String
-        let maxPrice: String
+        let minPrice: PriceChange
+        let maxPrice: PriceChange
         var selectedCondition: Condition
         let onUpdateCondition: (Condition) -> Void
         let onSearch: (String, String) -> Void
@@ -112,8 +117,8 @@ final class MainTableViewController: UITableViewController {
                                    buyItNowCheckMark: Checkmark(isChecked: false, onSelect: {}),
                                    anyShippingCheckmark: Checkmark(isChecked: false, onSelect: {}),
                                    freeShippingCheckmark: Checkmark(isChecked: false, onSelect: {}),
-                                   minPrice: "",
-                                   maxPrice: "",
+                                   minPrice: PriceChange(value: "", onSelect: {_ in}),
+                                   maxPrice: PriceChange(value: "", onSelect: {_ in}),
                                    selectedCondition: .any,
                                    onUpdateCondition: { _ in },
                                    onSearch: { _,_ in })
@@ -126,8 +131,8 @@ final class MainTableViewController: UITableViewController {
             markRow(cell: buyItNowCell, state: props.buyItNowCheckMark.isChecked)
             markRow(cell: anyShippingCell, state: props.anyShippingCheckmark.isChecked)
             markRow(cell: freeShippingCell, state: props.freeShippingCheckmark.isChecked)
-            minPriceTextLabel.text = props.minPrice
-            maxPriceTextLabel.text = props.maxPrice
+            minPriceTextLabel.text = props.minPrice.value
+            maxPriceTextLabel.text = props.maxPrice.value
             tableView.reloadData()
         }
     }
@@ -160,6 +165,7 @@ final class MainTableViewController: UITableViewController {
         addDoneButtonOnKeyboard()
         togglePicker()
         conditionPicker.delegate = self
+        addTextFieldsTargets()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -239,12 +245,26 @@ final class MainTableViewController: UITableViewController {
         }
     }
 
+    private func addTextFieldsTargets() {
+        minPriceTextLabel.addTarget(self, action: #selector(MainTableViewController.minPriceTextFieldDidEndEditing(_:)), for: UIControl.Event.editingDidEnd)
+        maxPriceTextLabel.addTarget(self, action: #selector(MainTableViewController.maxPriceTextFieldDidEndEditing(_:)), for: UIControl.Event.editingDidEnd)
+    }
+
+    @objc private func minPriceTextFieldDidEndEditing(_ textField: UITextField) {
+        props.minPrice.onSelect(textField.text ?? "")
+    }
+
+    @objc private func maxPriceTextFieldDidEndEditing(_ textField: UITextField) {
+        props.maxPrice.onSelect(textField.text ?? "")
+    }
+
     private func addDoneButtonOnKeyboard(){
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
         doneToolbar.barStyle = .blackTranslucent
-
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.doneButtonAction))
+        done.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white,
+                                     NSAttributedString.Key.font: UIFont(name: "ChalkboardSE-Bold", size: 19.0)!], for: .normal)
         let items = [flexSpace, done]
         doneToolbar.items = items
         doneToolbar.sizeToFit()
@@ -253,7 +273,7 @@ final class MainTableViewController: UITableViewController {
         minPriceTextLabel.inputAccessoryView = doneToolbar
     }
 
-    @objc func doneButtonAction(){
+    @objc private func doneButtonAction(){
         maxPriceTextLabel.resignFirstResponder()
         minPriceTextLabel.resignFirstResponder()
     }

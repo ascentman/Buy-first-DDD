@@ -35,6 +35,7 @@
 		CEC9B7D922C77E9000DD2F54 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9B7D822C77E9000DD2F54 /* Animator.swift */; };
 		CEC9B7DB22C77F0B00DD2F54 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9B7DA22C77F0B00DD2F54 /* Animations.swift */; };
 		CEC9B7DD22C77F9700DD2F54 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9B7DC22C77F9700DD2F54 /* UITableView+Extensions.swift */; };
+		CEE75E0822E79B230016C8C6 /* AboutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE75E0722E79B230016C8C6 /* AboutTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		CEC9B7D822C77E9000DD2F54 /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		CEC9B7DA22C77F0B00DD2F54 /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
 		CEC9B7DC22C77F9700DD2F54 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
+		CEE75E0722E79B230016C8C6 /* AboutTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AboutTableViewController.swift; path = ../AboutTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 				CEC9B7C222C4B3CE00DD2F54 /* StartViewController */,
 				CE4470CB22BBA1E30036524B /* Router.swift */,
 				CE4470BA22BB9F8A0036524B /* Main.storyboard */,
+				CEE75E0922E79B2C0016C8C6 /* AboutTableViewController */,
 				CE68B75E22D1EEFB0014B24C /* OptionsTableViewController */,
 				CE1C703822C0E5150069D29D /* ResultsViewController */,
 				CE4470C022BB9F8B0036524B /* Assets.xcassets */,
@@ -209,6 +212,14 @@
 				CEC0A17722D65B2800D3B82D /* CustomNavigationController.swift */,
 			);
 			path = "Support classes";
+			sourceTree = "<group>";
+		};
+		CEE75E0922E79B2C0016C8C6 /* AboutTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CEE75E0722E79B230016C8C6 /* AboutTableViewController.swift */,
+			);
+			path = AboutTableViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -345,6 +356,7 @@
 				CE4470CE22BBA6330036524B /* MainViewControllerPresenter.swift in Sources */,
 				CE1C703622C0E4E50069D29D /* ResultsViewController.swift in Sources */,
 				CEC0A17622D6547000D3B82D /* CustomTabBarController.swift in Sources */,
+				CEE75E0822E79B230016C8C6 /* AboutTableViewController.swift in Sources */,
 				CEC0A17822D65B2900D3B82D /* CustomNavigationController.swift in Sources */,
 				CE68B76022D1EF170014B24C /* OptionsTableViewController.swift in Sources */,
 				CE39285822C3B4F10098EEE7 /* Item.swift in Sources */,
