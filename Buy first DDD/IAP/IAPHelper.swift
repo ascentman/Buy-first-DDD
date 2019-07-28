@@ -36,7 +36,7 @@ extension Notification.Name {
     static let IAPHelperPurchaseNotification = Notification.Name("IAPHelperPurchaseNotification")
 }
 
-open class IAPHelper: NSObject  {
+final class IAPHelper: NSObject {
 
     private let productIdentifiers: Set<ProductIdentifier>
     private var purchasedProductIdentifiers: Set<ProductIdentifier> = []

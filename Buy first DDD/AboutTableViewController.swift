@@ -47,7 +47,6 @@ final class AboutTableViewController: UITableViewController {
         BuyProducts.store.requestProducts { [weak self] success, products in
             if success {
                 self?.products = products!
-                self?.setupLocalCurrency()
             }
         }
 
@@ -138,26 +137,6 @@ final class AboutTableViewController: UITableViewController {
             presentAlert("Info", message: "You successfully bought 100 searches", acceptTitle: "Ok", declineTitle: nil)
         default:
             break
-        }
-    }
-
-    private func setupLocalCurrency() {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .currency
-        for product in products {
-            switch product.productIdentifier {
-            case BuyProducts.buy30searches:
-                numberFormatter.locale = product.priceLocale
-                seaches30Button.titleLabel?.text = numberFormatter.string(from: product.price)
-            case BuyProducts.buy100searches:
-                numberFormatter.locale = product.priceLocale
-                searches100Button.titleLabel?.text = numberFormatter.string(from: product.price)
-            case BuyProducts.removeAds:
-                numberFormatter.locale = product.priceLocale
-                remvoeAdsButton.titleLabel?.text = numberFormatter.string(from: product.price)
-            default:
-                break
-            }
         }
     }
 }
