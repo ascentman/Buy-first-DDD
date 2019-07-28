@@ -843,11 +843,27 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <dataDetectorType key="dataDetectorTypes" address="YES"/>
                                                 </textView>
+                                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zt2-rg-CqY" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
+                                                    <rect key="frame" x="177" y="261" width="60" height="60"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="tintColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="9h8-vu-PbU"/>
+                                                        <constraint firstAttribute="height" constant="60" id="Wno-uX-muE"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                            <color key="value" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="jm1-eW-wub" firstAttribute="leading" secondItem="1lH-Kj-2nH" secondAttribute="leading" constant="8" id="IoG-Tw-uEY"/>
                                                 <constraint firstItem="3gj-7J-v2C" firstAttribute="top" secondItem="1lH-Kj-2nH" secondAttribute="topMargin" id="MEv-um-h0w"/>
                                                 <constraint firstItem="jm1-eW-wub" firstAttribute="top" secondItem="3gj-7J-v2C" secondAttribute="bottom" constant="-10" id="MKk-T7-3ga"/>
+                                                <constraint firstItem="zt2-rg-CqY" firstAttribute="top" secondItem="1lH-Kj-2nH" secondAttribute="topMargin" constant="250" id="MuN-nO-OZd"/>
+                                                <constraint firstItem="zt2-rg-CqY" firstAttribute="centerX" secondItem="1lH-Kj-2nH" secondAttribute="centerX" id="RPr-J3-bsz"/>
                                                 <constraint firstItem="3gj-7J-v2C" firstAttribute="centerX" secondItem="1lH-Kj-2nH" secondAttribute="centerX" id="bYT-KI-e3s"/>
                                                 <constraint firstAttribute="bottom" secondItem="jm1-eW-wub" secondAttribute="bottom" id="eRU-LB-YQ6"/>
                                                 <constraint firstAttribute="trailing" secondItem="jm1-eW-wub" secondAttribute="trailing" constant="8" id="wKe-78-KJ1"/>
@@ -1066,6 +1082,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="zt2-rg-CqY" id="wcr-oM-lyZ"/>
                         <outlet property="remvoeAdsButton" destination="fp3-Ka-5OA" id="Jci-pS-MiR"/>
                         <outlet property="seaches30Button" destination="C1l-4z-iLr" id="pDN-t7-hnq"/>
                         <outlet property="searches100Button" destination="Rho-JP-Ua1" id="wrH-Ya-akE"/>

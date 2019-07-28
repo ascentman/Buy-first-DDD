@@ -112,6 +112,7 @@ extension IAPHelper: SKProductsRequestDelegate {
         print("Error: \(error.localizedDescription)")
         productsRequestCompletionHandler?(false, nil)
         clearRequestAndHandler()
+        NotificationCenter.default.post(name: .IAPHelperPurchaseNotification, object: nil)
     }
 
     private func clearRequestAndHandler() {
@@ -169,24 +170,15 @@ extension IAPHelper: SKPaymentTransactionObserver {
             print("Transaction Error: \(localizedDescription)")
             showFailBanner(error: localizedDescription)
         }
-
         SKPaymentQueue.default().finishTransaction(transaction)
+        NotificationCenter.default.post(name: .IAPHelperPurchaseNotification, object: nil)
     }
 
     private func deliverPurchaseNotificationFor(identifier: String?) {
         guard let identifier = identifier else { return }
 
         purchasedProductIdentifiers.insert(identifier)
-        switch identifier {
-        case BuyProducts.removeAds:
-            UserDefaults.standard.updateHidingAds(true)
-        case BuyProducts.buy30searches:
-            UserDefaults.standard.increaseSearchesCountBy(30)
-        case BuyProducts.buy100searches:
-            UserDefaults.standard.increaseSearchesCountBy(100)
-        default:
-            break
-        }
+        NotificationCenter.default.post(name: .IAPHelperPurchaseNotification, object: identifier)
     }
 
     private func showFailBanner(error: String) {
@@ -200,6 +192,6 @@ extension IAPHelper: SKPaymentTransactionObserver {
         let banner = Banner(title: "Info", subtitle: "Purchases are restored", image: UIImage(named: "Ricky"), backgroundColor: .orange, didTapBlock: nil)
         banner.dismissesOnTap = true
         banner.position = .bottom
-        banner.show(duration: 2.0)
+        banner.show(duration: 3.0)
     }
 }

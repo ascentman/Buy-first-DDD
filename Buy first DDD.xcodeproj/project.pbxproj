@@ -10,6 +10,7 @@
 		257F48F4ACAAC40B419A9728 /* Pods_Buy_first_DDD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E37C4F8B5042B260FE2396 /* Pods_Buy_first_DDD.framework */; };
 		CE0CDE8A22EC6DC8003D3CA4 /* BuyProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0CDE8922EC6DC8003D3CA4 /* BuyProducts.swift */; };
 		CE0CDE8C22EC6ED2003D3CA4 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0CDE8B22EC6ED2003D3CA4 /* IAPHelper.swift */; };
+		CE0CDE9022EE28AE003D3CA4 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0CDE8F22EE28AE003D3CA4 /* UIViewController+Extensions.swift */; };
 		CE1C703622C0E4E50069D29D /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1C703522C0E4E50069D29D /* ResultsViewController.swift */; };
 		CE1C703A22C0E6950069D29D /* ResultsViewControllerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1C703922C0E6950069D29D /* ResultsViewControllerInteractor.swift */; };
 		CE39285822C3B4F10098EEE7 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE39285722C3B4F10098EEE7 /* Item.swift */; };
@@ -46,6 +47,7 @@
 		B84D70FCCEE0BB73FCBA20C2 /* Pods-Buy first DDD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buy first DDD.debug.xcconfig"; path = "Target Support Files/Pods-Buy first DDD/Pods-Buy first DDD.debug.xcconfig"; sourceTree = "<group>"; };
 		CE0CDE8922EC6DC8003D3CA4 /* BuyProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyProducts.swift; sourceTree = "<group>"; };
 		CE0CDE8B22EC6ED2003D3CA4 /* IAPHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
+		CE0CDE8F22EE28AE003D3CA4 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		CE1C703522C0E4E50069D29D /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		CE1C703922C0E6950069D29D /* ResultsViewControllerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewControllerInteractor.swift; sourceTree = "<group>"; };
 		CE39285722C3B4F10098EEE7 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 				CEC9B7D522C7612400DD2F54 /* String+Extensions.swift */,
 				CEC9B7DC22C77F9700DD2F54 /* UITableView+Extensions.swift */,
 				CE68B76122D200230014B24C /* UserDefaults+Extensions.swift */,
+				CE0CDE8F22EE28AE003D3CA4 /* UIViewController+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 				CE4470B722BB9F8A0036524B /* AppDelegate.swift in Sources */,
 				CE4470D022BBA6500036524B /* MainViewControllerInteractor.swift in Sources */,
 				CEC9B7DD22C77F9700DD2F54 /* UITableView+Extensions.swift in Sources */,
+				CE0CDE9022EE28AE003D3CA4 /* UIViewController+Extensions.swift in Sources */,
 				CEC9B7BD22C4B38A00DD2F54 /* StartViewController.swift in Sources */,
 				CEC9B7CD22C75FDF00DD2F54 /* UIView+Extensions.swift in Sources */,
 				CEC9B7BF22C4B3B600DD2F54 /* StartViewControllerInteractor.swift in Sources */,

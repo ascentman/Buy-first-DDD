@@ -8,6 +8,7 @@
 
 import UIKit
 import StoreKit
+import NVActivityIndicatorView
 
 private enum Row: Int {
     case none
@@ -27,13 +28,13 @@ private enum Row: Int {
     }
 }
 
-
 final class AboutTableViewController: UITableViewController {
 
     @IBOutlet private weak var seaches30Button: UIButton!
     @IBOutlet private weak var searches100Button: UIButton!
     @IBOutlet private weak var remvoeAdsButton: UIButton!
-
+    @IBOutlet weak var activityIndicatorView: NVActivityIndicatorView!
+    
     private var products: [SKProduct] = []
     private var removeAdsIsHidden = false
 
@@ -42,35 +43,45 @@ final class AboutTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        activityIndicatorView.isHidden = true
         BuyProducts.store.requestProducts { [weak self] success, products in
             if success {
                 self?.products = products!
+                self?.setupLocalCurrency()
             }
         }
+
+        if BuyProducts.store.isProductPurchased(BuyProducts.removeAds) {
+            removeAdsHide()
+        }
+
+        NotificationCenter.default.addObserver(self, selector: #selector(AboutTableViewController.handlePurchaseNotification(_:)),
+                                               name: .IAPHelperPurchaseNotification,
+                                               object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         tabBarController?.title = "About"
-        if BuyProducts.store.isProductPurchased(BuyProducts.removeAds) {
-            removeAdsHide()
-            tableView.reloadData()
-            tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
-        }
     }
 
     // MARK: - Actions
 
     @IBAction func searches30DidPressed(_ sender: Any) {
+        activityIndicatorView.isHidden = false
+        activityIndicatorView.startAnimating()
         buyProductBy(id: BuyProducts.buy30searches)
     }
     @IBAction func searches100DidPressed(_ sender: Any) {
+        activityIndicatorView.isHidden = false
+        activityIndicatorView.startAnimating()
         buyProductBy(id: BuyProducts.buy100searches)
     }
     @IBAction func removeAdsDidPressed(_ sender: Any) {
+        activityIndicatorView.isHidden = false
+        activityIndicatorView.startAnimating()
         buyProductBy(id: BuyProducts.removeAds)
-        removeAdsHide()
     }
     @IBAction func restorePurchasesDidPressed(_ sender: Any) {
         BuyProducts.store.restorePurchases()
@@ -104,5 +115,49 @@ final class AboutTableViewController: UITableViewController {
     private func removeAdsHide() {
         removeAdsIsHidden = true
         UserDefaults.standard.updateHidingAds(true)
+        tableView.reloadData()
+        tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+    }
+
+    @objc private func handlePurchaseNotification(_ notification: Notification) {
+        activityIndicatorView.stopAnimating()
+        activityIndicatorView.isHidden = true
+
+        guard let productID = notification.object as? String else {
+            return
+        }
+        switch productID {
+        case BuyProducts.removeAds:
+            removeAdsHide()
+            presentAlert("Info", message: "You successfully removed ads within the app", acceptTitle: "Ok", declineTitle: nil)
+        case BuyProducts.buy30searches:
+            UserDefaults.standard.increaseSearchesCountBy(30)
+            presentAlert("Info", message: "You successfully bought 30 searches", acceptTitle: "Ok", declineTitle: nil)
+        case BuyProducts.buy100searches:
+            UserDefaults.standard.increaseSearchesCountBy(100)
+            presentAlert("Info", message: "You successfully bought 100 searches", acceptTitle: "Ok", declineTitle: nil)
+        default:
+            break
+        }
+    }
+
+    private func setupLocalCurrency() {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .currency
+        for product in products {
+            switch product.productIdentifier {
+            case BuyProducts.buy30searches:
+                numberFormatter.locale = product.priceLocale
+                seaches30Button.titleLabel?.text = numberFormatter.string(from: product.price)
+            case BuyProducts.buy100searches:
+                numberFormatter.locale = product.priceLocale
+                searches100Button.titleLabel?.text = numberFormatter.string(from: product.price)
+            case BuyProducts.removeAds:
+                numberFormatter.locale = product.priceLocale
+                remvoeAdsButton.titleLabel?.text = numberFormatter.string(from: product.price)
+            default:
+                break
+            }
+        }
     }
 }
