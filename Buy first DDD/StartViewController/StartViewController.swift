@@ -111,6 +111,10 @@ final class StartViewController: UIViewController {
         if !UserDefaults.standard.isItemsContinuousReloadPresentInUserDefaults() {
             UserDefaults.standard.updateContinuousReload(true)
         }
+
+        if !UserDefaults.standard.isSearchesCountPresentInUserDefaults() {
+            UserDefaults.standard.setDefaultSearchesCount()
+        }
     }
 
     private func addAnimations() {

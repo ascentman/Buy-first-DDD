@@ -15,6 +15,7 @@ final class OptionsTableViewController: UITableViewController {
     @IBOutlet private weak var reloadStepper: UIStepper!
     @IBOutlet private weak var reloadTimeLabel: UILabel!
     @IBOutlet private weak var reloadSwitch: UISwitch!
+    @IBOutlet private weak var availableSearches: UILabel!
 
     // MARK: - Lifecycle
 
@@ -29,6 +30,7 @@ final class OptionsTableViewController: UITableViewController {
         super.viewWillAppear(animated)
 
         tabBarController?.title = "Settings"
+        availableSearches.text = String(UserDefaults.standard.searchesCount)
         let animation = AnimationFactory.makeSlideIn(duration: 0.3, delayFactor: 0.05)
         let animator = Animator(animation: animation)
         animator.animate(tableView: tableView)

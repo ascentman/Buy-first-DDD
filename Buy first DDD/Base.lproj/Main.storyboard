@@ -757,6 +757,39 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Searches" footerTitle="Amount of available searches. You can buy new searches on About section." id="c96-iC-p43">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="60" id="jZG-Uc-XVr">
+                                        <rect key="frame" x="0.0" y="462" width="414" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jZG-Uc-XVr" id="t6d-kF-Fhh">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="59.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Available searches" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xwe-W1-Uwz">
+                                                    <rect key="frame" x="20" y="15" width="173" height="30"/>
+                                                    <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="21"/>
+                                                    <color key="textColor" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YFX-Sw-qwY">
+                                                    <rect key="frame" x="382" y="15" width="12" height="30"/>
+                                                    <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="21"/>
+                                                    <color key="textColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="xwe-W1-Uwz" firstAttribute="leading" secondItem="t6d-kF-Fhh" secondAttribute="leadingMargin" id="17L-wM-iSO"/>
+                                                <constraint firstItem="xwe-W1-Uwz" firstAttribute="leading" secondItem="t6d-kF-Fhh" secondAttribute="leadingMargin" id="3Hl-6Z-7RU"/>
+                                                <constraint firstItem="YFX-Sw-qwY" firstAttribute="centerY" secondItem="t6d-kF-Fhh" secondAttribute="centerY" id="8wE-RZ-Edt"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="YFX-Sw-qwY" secondAttribute="trailing" id="BXk-Tw-C2X"/>
+                                                <constraint firstItem="xwe-W1-Uwz" firstAttribute="centerY" secondItem="t6d-kF-Fhh" secondAttribute="centerY" id="wv0-em-r3Y"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="BgY-8N-reg" id="1Tr-wE-bGF"/>
@@ -764,6 +797,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="availableSearches" destination="YFX-Sw-qwY" id="brG-kK-8NP"/>
                         <outlet property="itemsLabel" destination="skE-hD-Zbm" id="xCb-A9-7lc"/>
                         <outlet property="itemsStepper" destination="bGw-Xm-cTC" id="kdZ-l3-6QS"/>
                         <outlet property="reloadStepper" destination="OXR-1l-EHD" id="ELt-nj-bCq"/>

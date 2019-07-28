@@ -27,6 +27,7 @@
 /// THE SOFTWARE.
 
 import StoreKit
+import BRYXBanner
 
 public typealias ProductIdentifier = String
 public typealias ProductsRequestCompletionHandler = (_ success: Bool, _ products: [SKProduct]?) -> Void
@@ -157,6 +158,7 @@ extension IAPHelper: SKPaymentTransactionObserver {
         print("restore... \(productIdentifier)")
         deliverPurchaseNotificationFor(identifier: productIdentifier)
         SKPaymentQueue.default().finishTransaction(transaction)
+        showRestoreBanner()
     }
 
     private func fail(transaction: SKPaymentTransaction) {
@@ -165,6 +167,7 @@ extension IAPHelper: SKPaymentTransactionObserver {
             let localizedDescription = transaction.error?.localizedDescription,
             transactionError.code != SKError.paymentCancelled.rawValue {
             print("Transaction Error: \(localizedDescription)")
+            showFailBanner(error: localizedDescription)
         }
 
         SKPaymentQueue.default().finishTransaction(transaction)
@@ -174,7 +177,29 @@ extension IAPHelper: SKPaymentTransactionObserver {
         guard let identifier = identifier else { return }
 
         purchasedProductIdentifiers.insert(identifier)
-        UserDefaults.standard.set(true, forKey: identifier)
-        NotificationCenter.default.post(name: .IAPHelperPurchaseNotification, object: identifier)
+        switch identifier {
+        case BuyProducts.removeAds:
+            UserDefaults.standard.updateHidingAds(true)
+        case BuyProducts.buy30searches:
+            UserDefaults.standard.increaseSearchesCountBy(30)
+        case BuyProducts.buy100searches:
+            UserDefaults.standard.increaseSearchesCountBy(100)
+        default:
+            break
+        }
+    }
+
+    private func showFailBanner(error: String) {
+        let banner = Banner(title: "Error", subtitle: error, image: UIImage(named: "Ricky"), backgroundColor: .purple, didTapBlock: nil)
+        banner.dismissesOnTap = true
+        banner.position = .bottom
+        banner.show(duration: 2.0)
+    }
+
+    private func showRestoreBanner() {
+        let banner = Banner(title: "Info", subtitle: "Purchases are restored", image: UIImage(named: "Ricky"), backgroundColor: .orange, didTapBlock: nil)
+        banner.dismissesOnTap = true
+        banner.position = .bottom
+        banner.show(duration: 2.0)
     }
 }

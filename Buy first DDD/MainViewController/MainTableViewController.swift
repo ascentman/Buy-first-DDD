@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import BRYXBanner
 
 enum Condition: Int, CaseIterable {
     case any = 0
@@ -154,6 +155,7 @@ final class MainTableViewController: UITableViewController {
 
     private var conditionPickerIsHidden = false
     private var configurePriceIsHidden = true
+    private var searches: Int = 0
 
     // MARK: - Lifecycle
 
@@ -172,6 +174,7 @@ final class MainTableViewController: UITableViewController {
         super.viewWillAppear(animated)
 
         tabBarController?.title = props.title
+        searches = UserDefaults.standard.searchesCount
         let animation = AnimationFactory.makeMoveUpWithBounce(rowHeight: 22, duration: 0.3, delayFactor: 0.05)
         let animator = Animator(animation: animation)
         animator.animate(tableView: tableView)
@@ -187,13 +190,19 @@ final class MainTableViewController: UITableViewController {
     
     @IBAction func searchPressed(_ sender: Any) {
         guard let minPrice = minPriceTextLabel.text,
-        let maxPrice = maxPriceTextLabel.text else {
-            return
+            let maxPrice = maxPriceTextLabel.text else {
+                return
         }
 
-        searchButton.pulse(completion: { [weak self] in
-            self?.props.onSearch(minPrice, maxPrice)
-        })
+        if searches <= 0 {
+            showInfoBanner()
+        } else {
+            searchButton.pulse(completion: { [weak self] in
+                self?.props.onSearch(minPrice, maxPrice)
+                self?.searches -= 1
+                UserDefaults.standard.decreaseSearchesCount()
+            })
+        }
     }
 
     // MARK: - UITableViewDelegate
@@ -276,6 +285,13 @@ final class MainTableViewController: UITableViewController {
     @objc private func doneButtonAction(){
         maxPriceTextLabel.resignFirstResponder()
         minPriceTextLabel.resignFirstResponder()
+    }
+
+    private func showInfoBanner() {
+        let banner = Banner(title: "Info", subtitle: "Sorry:( You have used all available searches. Buy additional ones on About section. Thanks!)", image: UIImage(named: "Ricky"), backgroundColor: .purple, didTapBlock: nil)
+        banner.dismissesOnTap = true
+        banner.position = .bottom
+        banner.show(duration: 2.0)
     }
 }
 

@@ -42,6 +42,10 @@ final class ResultsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if UserDefaults.standard.isRemoveAdsInUserDefaults(),
+            UserDefaults.standard.removeAd == true {
+            adViewHeight.constant = 0
+        }
         title = "Results"
         activityIndicatorView.isHidden = false
         activityIndicatorView.startAnimating()
