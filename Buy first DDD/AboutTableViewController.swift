@@ -10,6 +10,10 @@ import UIKit
 
 final class AboutTableViewController: UITableViewController {
 
+    @IBOutlet private weak var seaches30Button: UIButton!
+    @IBOutlet private weak var searches100Button: UIButton!
+    @IBOutlet private weak var remvoeAdsButton: UIButton!
+
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
@@ -20,5 +24,17 @@ final class AboutTableViewController: UITableViewController {
         super.viewWillAppear(animated)
 
         tabBarController?.title = "About"
+    }
+
+    // MARK: - Actions
+
+    @IBAction func searches30DidPressed(_ sender: Any) {
+    }
+    @IBAction func searches100DidPressed(_ sender: Any) {
+    }
+
+    @IBAction func removeAdsDidPressed(_ sender: Any) {
+    }
+    @IBAction func restorePurchasesDidPressed(_ sender: Any) {
     }
 }

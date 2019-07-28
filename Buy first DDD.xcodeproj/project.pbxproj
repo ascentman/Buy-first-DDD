@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		257F48F4ACAAC40B419A9728 /* Pods_Buy_first_DDD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E37C4F8B5042B260FE2396 /* Pods_Buy_first_DDD.framework */; };
+		CE0CDE8A22EC6DC8003D3CA4 /* BuyProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0CDE8922EC6DC8003D3CA4 /* BuyProducts.swift */; };
+		CE0CDE8C22EC6ED2003D3CA4 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0CDE8B22EC6ED2003D3CA4 /* IAPHelper.swift */; };
 		CE1C703622C0E4E50069D29D /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1C703522C0E4E50069D29D /* ResultsViewController.swift */; };
 		CE1C703A22C0E6950069D29D /* ResultsViewControllerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1C703922C0E6950069D29D /* ResultsViewControllerInteractor.swift */; };
 		CE39285822C3B4F10098EEE7 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE39285722C3B4F10098EEE7 /* Item.swift */; };
@@ -42,6 +44,8 @@
 		05E37C4F8B5042B260FE2396 /* Pods_Buy_first_DDD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Buy_first_DDD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		956A10EC62918BC27427DE91 /* Pods-Buy first DDD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buy first DDD.release.xcconfig"; path = "Target Support Files/Pods-Buy first DDD/Pods-Buy first DDD.release.xcconfig"; sourceTree = "<group>"; };
 		B84D70FCCEE0BB73FCBA20C2 /* Pods-Buy first DDD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buy first DDD.debug.xcconfig"; path = "Target Support Files/Pods-Buy first DDD/Pods-Buy first DDD.debug.xcconfig"; sourceTree = "<group>"; };
+		CE0CDE8922EC6DC8003D3CA4 /* BuyProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyProducts.swift; sourceTree = "<group>"; };
+		CE0CDE8B22EC6ED2003D3CA4 /* IAPHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
 		CE1C703522C0E4E50069D29D /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		CE1C703922C0E6950069D29D /* ResultsViewControllerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewControllerInteractor.swift; sourceTree = "<group>"; };
 		CE39285722C3B4F10098EEE7 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -105,6 +109,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		CE0CDE8822EC6D8F003D3CA4 /* IAP */ = {
+			isa = PBXGroup;
+			children = (
+				CE0CDE8922EC6DC8003D3CA4 /* BuyProducts.swift */,
+				CE0CDE8B22EC6ED2003D3CA4 /* IAPHelper.swift */,
+			);
+			path = IAP;
+			sourceTree = "<group>";
+		};
 		CE1C703722C0E4F60069D29D /* MainViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +161,7 @@
 		CE4470B522BB9F8A0036524B /* Buy first DDD */ = {
 			isa = PBXGroup;
 			children = (
+				CE0CDE8822EC6D8F003D3CA4 /* IAP */,
 				CE4470B622BB9F8A0036524B /* AppDelegate.swift */,
 				CE1C703722C0E4F60069D29D /* MainViewController */,
 				CEC9B7C222C4B3CE00DD2F54 /* StartViewController */,
@@ -348,6 +362,7 @@
 				CE68B75422C8C9830014B24C /* NetworkService.swift in Sources */,
 				CE4470CC22BBA1E30036524B /* Router.swift in Sources */,
 				CE4470B922BB9F8A0036524B /* MainTableViewController.swift in Sources */,
+				CE0CDE8A22EC6DC8003D3CA4 /* BuyProducts.swift in Sources */,
 				CEC9B7D922C77E9000DD2F54 /* Animator.swift in Sources */,
 				CE4C110122C20B9B001855AE /* ItemTableViewCell.swift in Sources */,
 				CEC9B7D622C7612400DD2F54 /* String+Extensions.swift in Sources */,
@@ -358,6 +373,7 @@
 				CEC0A17622D6547000D3B82D /* CustomTabBarController.swift in Sources */,
 				CEE75E0822E79B230016C8C6 /* AboutTableViewController.swift in Sources */,
 				CEC0A17822D65B2900D3B82D /* CustomNavigationController.swift in Sources */,
+				CE0CDE8C22EC6ED2003D3CA4 /* IAPHelper.swift in Sources */,
 				CE68B76022D1EF170014B24C /* OptionsTableViewController.swift in Sources */,
 				CE39285822C3B4F10098EEE7 /* Item.swift in Sources */,
 				CEC9B7C122C4B3C400DD2F54 /* StartViewControllerPresenter.swift in Sources */,

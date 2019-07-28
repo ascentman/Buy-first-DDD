@@ -61,8 +61,8 @@ final class OptionsTableViewController: UITableViewController {
 
         reloadStepper.wraps = true
         reloadStepper.autorepeat = true
-        reloadStepper.stepValue = 20
-        reloadStepper.minimumValue = 20
+        reloadStepper.stepValue = 10
+        reloadStepper.minimumValue = 10
         reloadStepper.maximumValue = 600
     }
 
