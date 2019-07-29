@@ -95,6 +95,6 @@ extension UserDefaults {
     }
 
     func setDefaultSearchesCount() {
-        UserDefaults.standard.set(3, forKey: Constants.searchesCount)
+        UserDefaults.standard.set(5, forKey: Constants.searchesCount)
     }
 }

@@ -173,7 +173,6 @@ final class MainTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        tabBarController?.title = props.title
         searches = UserDefaults.standard.searchesCount
         let animation = AnimationFactory.makeMoveUpWithBounce(rowHeight: 22, duration: 0.3, delayFactor: 0.05)
         let animator = Animator(animation: animation)

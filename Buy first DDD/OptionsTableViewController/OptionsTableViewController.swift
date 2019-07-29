@@ -56,13 +56,11 @@ final class OptionsTableViewController: UITableViewController {
 
     private func setupSteppers() {
         itemsStepper.wraps = true
-        itemsStepper.autorepeat = true
         itemsStepper.stepValue = 3
         itemsStepper.minimumValue = 1
         itemsStepper.maximumValue = 10
 
         reloadStepper.wraps = true
-        reloadStepper.autorepeat = true
         reloadStepper.stepValue = 10
         reloadStepper.minimumValue = 10
         reloadStepper.maximumValue = 600

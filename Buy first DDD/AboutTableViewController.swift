@@ -128,7 +128,7 @@ final class AboutTableViewController: UITableViewController {
         switch productID {
         case BuyProducts.removeAds:
             removeAdsHide()
-            presentAlert("Info", message: "You successfully removed ads within the app", acceptTitle: "Ok", declineTitle: nil)
+            presentAlert("Info", message: "You successfully restored old purchases", acceptTitle: "Ok", declineTitle: nil)
         case BuyProducts.buy30searches:
             UserDefaults.standard.increaseSearchesCountBy(30)
             presentAlert("Info", message: "You successfully bought 30 searches", acceptTitle: "Ok", declineTitle: nil)

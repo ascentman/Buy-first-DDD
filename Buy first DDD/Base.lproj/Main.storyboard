@@ -592,6 +592,7 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="padding">
                                         <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="ballRotateChase"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
@@ -627,7 +628,7 @@
         <scene sceneID="6zt-53-Rjh">
             <objects>
                 <tableViewController storyboardIdentifier="OptionsTableViewController" id="BgY-8N-reg" customClass="OptionsTableViewController" customModule="Buy_first_DDD" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="DxR-eR-NLr">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="DxR-eR-NLr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -757,7 +758,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Searches" footerTitle="Amount of available searches. You can buy new searches on About section." id="c96-iC-p43">
+                            <tableViewSection headerTitle="Searches" footerTitle="Amount of available searches. You can buy new searches on About tab." id="c96-iC-p43">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="60" id="jZG-Uc-XVr">
                                         <rect key="frame" x="0.0" y="462" width="414" height="60"/>
@@ -813,7 +814,7 @@
         <scene sceneID="HVU-Hh-Is9">
             <objects>
                 <tableViewController storyboardIdentifier="AboutTableViewController" id="Mlz-10-MsG" customClass="AboutTableViewController" customModule="Buy_first_DDD" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="70P-aU-Nga">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="70P-aU-Nga">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.57738816739999999" green="0.12740981579999999" blue="0.57375597950000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -855,6 +856,7 @@
                                                         <userDefinedRuntimeAttribute type="color" keyPath="color">
                                                             <color key="value" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="ballRotateChase"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
