@@ -44,12 +44,7 @@ final class AboutTableViewController: UITableViewController {
         super.viewDidLoad()
 
         activityIndicatorView.isHidden = true
-        BuyProducts.store.requestProducts { [weak self] success, products in
-            if success {
-                self?.products = products!
-            }
-        }
-
+        requestProducts()
         if BuyProducts.store.isProductPurchased(BuyProducts.removeAds) {
             removeAdsHide()
         }
@@ -68,19 +63,31 @@ final class AboutTableViewController: UITableViewController {
     // MARK: - Actions
 
     @IBAction func searches30DidPressed(_ sender: Any) {
-        activityIndicatorView.isHidden = false
-        activityIndicatorView.startAnimating()
-        buyProductBy(id: BuyProducts.buy30searches)
+        if NetworkService.isConnectedToNetwork() {
+            activityIndicatorView.isHidden = false
+            activityIndicatorView.startAnimating()
+            buyProductBy(id: BuyProducts.buy30searches)
+        } else {
+            showNoInternetConnectionAlert()
+        }
     }
     @IBAction func searches100DidPressed(_ sender: Any) {
-        activityIndicatorView.isHidden = false
-        activityIndicatorView.startAnimating()
-        buyProductBy(id: BuyProducts.buy100searches)
+        if NetworkService.isConnectedToNetwork() {
+            activityIndicatorView.isHidden = false
+            activityIndicatorView.startAnimating()
+            buyProductBy(id: BuyProducts.buy100searches)
+        } else {
+            showNoInternetConnectionAlert()
+        }
     }
     @IBAction func removeAdsDidPressed(_ sender: Any) {
-        activityIndicatorView.isHidden = false
-        activityIndicatorView.startAnimating()
-        buyProductBy(id: BuyProducts.removeAds)
+        if NetworkService.isConnectedToNetwork() {
+            activityIndicatorView.isHidden = false
+            activityIndicatorView.startAnimating()
+            buyProductBy(id: BuyProducts.removeAds)
+        } else {
+            showNoInternetConnectionAlert()
+        }
     }
     @IBAction func restorePurchasesDidPressed(_ sender: Any) {
         BuyProducts.store.restorePurchases()
@@ -103,12 +110,15 @@ final class AboutTableViewController: UITableViewController {
     // MARK: - Private
 
     private func buyProductBy(id: String) {
-        let product = products.filter { id == $0.productIdentifier }.first
-        guard let productToBuy = product else {
-            print("can't buy it")
-            return
+        if products.isEmpty {
+            requestProducts()
         }
-        BuyProducts.store.buyProduct(productToBuy)
+
+        for product in products {
+            if product.productIdentifier == id {
+                BuyProducts.store.buyProduct(product)
+            }
+        }
     }
 
     private func removeAdsHide() {
@@ -137,6 +147,18 @@ final class AboutTableViewController: UITableViewController {
             presentAlert("Info", message: "You successfully bought 100 searches", acceptTitle: "Ok", declineTitle: nil)
         default:
             break
+        }
+    }
+
+    private func showNoInternetConnectionAlert() {
+        presentAlert("Info", message: "No Internet connection", acceptTitle: "Ok", declineTitle: nil)
+    }
+
+    private func requestProducts() {
+        BuyProducts.store.requestProducts { [weak self] success, products in
+            if success {
+                self?.products = products!
+            }
         }
     }
 }
